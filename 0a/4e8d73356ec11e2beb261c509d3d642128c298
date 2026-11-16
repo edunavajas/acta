@@ -1,0 +1,275 @@
+.gitignore
+  s_8eb0f68c1f71c0::t_22fe1c76c7ccde 9-10
+Cargo.lock
+  s_8eb0f68c1f71c0::t_2c86c321da798e 1-6648
+apps/desktop/.gitignore
+  s_8eb0f68c1f71c0::t_abdfc109fa8748 1-4
+apps/desktop/index.html
+  s_8eb0f68c1f71c0::t_4a98d489b0861f 1-12
+apps/desktop/overlay.html
+  s_8eb0f68c1f71c0::t_ee9e0eb6f916c4 1-13
+apps/desktop/package.json
+  s_8eb0f68c1f71c0::t_8350d9c5956582 1-29
+apps/desktop/pnpm-lock.yaml
+  s_8eb0f68c1f71c0::t_e3533b904054d6 1-2062
+apps/desktop/pnpm-workspace.yaml
+  s_8eb0f68c1f71c0::t_c1fd053f0c827b 1-3
+apps/desktop/src-tauri/Cargo.toml
+  s_8eb0f68c1f71c0::t_7a04c4ba0bf00a 1-38
+apps/desktop/src-tauri/Info.plist
+  s_8eb0f68c1f71c0::t_8781479b4af203 1-17
+apps/desktop/src-tauri/build.rs
+  s_8eb0f68c1f71c0::t_6f4dadfa3385bb 1-3
+apps/desktop/src-tauri/capabilities/default.json
+  s_8eb0f68c1f71c0::t_4de9b2db3f7d96 1-7
+apps/desktop/src-tauri/src/commands.rs
+  s_8eb0f68c1f71c0::t_c7a2282698d6e4 1-18
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_e3cbad7f9586cd 1-37
+apps/desktop/src-tauri/src/main.rs
+  s_8eb0f68c1f71c0::t_1f04a0720ffc14 1-7
+apps/desktop/src-tauri/tauri.conf.json
+  s_8eb0f68c1f71c0::t_001a91b08b316d 1-58
+apps/desktop/src/api/api.test.ts
+  s_8eb0f68c1f71c0::t_dfb10831980a9e 1-39
+apps/desktop/src/api/index.ts
+  s_8eb0f68c1f71c0::t_cf586127ea2c6a 1-15
+apps/desktop/src/app/App.test.tsx
+  s_8eb0f68c1f71c0::t_304b367dcbfe04 1-10
+apps/desktop/src/app/App.tsx
+  s_8eb0f68c1f71c0::t_de3d1fce7d3e61 1-23
+apps/desktop/src/app/main.tsx
+  s_8eb0f68c1f71c0::t_8361afc2a4848a 1-6
+apps/desktop/src/overlay/Overlay.tsx
+  s_8eb0f68c1f71c0::t_066a13b56842a8 1-18
+apps/desktop/src/overlay/main.tsx
+  s_8eb0f68c1f71c0::t_b738f5e3c9b451 1-6
+apps/desktop/src/test/setup.ts
+  s_8eb0f68c1f71c0::t_97eb4938fbfbed 1
+apps/desktop/src/vite-env.d.ts
+  s_8eb0f68c1f71c0::t_ad7feb962208c9 1
+apps/desktop/tsconfig.json
+  s_8eb0f68c1f71c0::t_cd38b50f5e0412 1-21
+clippy.toml
+  s_8eb0f68c1f71c0::t_8975691cd3041b 1-10
+crates/acta-audio/Cargo.toml
+  s_8eb0f68c1f71c0::t_b7da9f2d65e6dc 1-27
+crates/acta-audio/src/concat/mod.rs
+  s_8eb0f68c1f71c0::t_d8111717f90142 1-18
+crates/acta-audio/src/levels/mod.rs
+  s_8eb0f68c1f71c0::t_3a0db67fdabd50 1-43
+crates/acta-audio/src/lib.rs
+  s_8eb0f68c1f71c0::t_1a47d0db56ebbd 1-27
+crates/acta-audio/src/processing/mod.rs
+  s_8eb0f68c1f71c0::t_609fbd04c12436 1-37
+crates/acta-audio/src/recovery/mod.rs
+  s_8eb0f68c1f71c0::t_be7a2d85dd5257 1-19
+crates/acta-audio/src/supervisor/mod.rs
+  s_8eb0f68c1f71c0::t_bf118654576b29 1-80
+crates/acta-audio/src/watchdog/mod.rs
+  s_8eb0f68c1f71c0::t_609c1798591f49 1-28
+crates/acta-audio/src/writer/mod.rs
+  s_8eb0f68c1f71c0::t_5841a9768ce84d 1-80
+crates/acta-audio/tests/writer.rs
+  s_8eb0f68c1f71c0::t_f590e031a9d6c9 1-13
+crates/acta-core/Cargo.toml
+  s_8eb0f68c1f71c0::t_4f18c13b90d88c 1-23
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_19cfadf8fa6851 1-142
+crates/acta-core/src/api/events.rs
+  s_8eb0f68c1f71c0::t_c29fe9601c11aa 1-46
+crates/acta-core/src/chat/mod.rs
+  s_8eb0f68c1f71c0::t_9f0ad35b4e7c12 1-131
+crates/acta-core/src/detection/model.rs
+  s_8eb0f68c1f71c0::t_1b38bcda420ed3 1-103
+crates/acta-core/src/lib.rs
+  s_8eb0f68c1f71c0::t_fefb446d83ed9d 1-38
+crates/acta-core/src/library/model.rs
+  s_8eb0f68c1f71c0::t_732289414cfe84 1-207
+crates/acta-core/src/llm/model.rs
+  s_8eb0f68c1f71c0::t_5035f8ac350ddd 1-123
+crates/acta-core/src/processing/mod.rs
+  s_8eb0f68c1f71c0::t_23477674d08126 1-11
+crates/acta-core/src/recording/health.rs
+  s_8eb0f68c1f71c0::t_21aeac1e70872a 1-65
+crates/acta-core/src/recording/model.rs
+  s_8eb0f68c1f71c0::t_186b95ba8e1c2b 1-257
+crates/acta-core/src/screen/mod.rs
+  s_8eb0f68c1f71c0::t_c62485a0586df6 1-104
+crates/acta-core/tests/state_machine.rs
+  s_8eb0f68c1f71c0::t_f9259d7842f9ea 1-647
+crates/acta-llm/Cargo.toml
+  s_8eb0f68c1f71c0::t_2de12ce48706fe 1-28
+crates/acta-llm/prompts/chat.system.md
+  s_8eb0f68c1f71c0::t_73478fbc1c1bc5 1-3
+crates/acta-llm/prompts/group_name.system.md
+  s_8eb0f68c1f71c0::t_bf7d53839b68ec 1
+crates/acta-llm/prompts/minutes.system.md
+  s_8eb0f68c1f71c0::t_78f602fe60bac0 1-13
+crates/acta-llm/prompts/minutes.user.md
+  s_8eb0f68c1f71c0::t_bee092b2d82677 1-13
+crates/acta-llm/schemas/group_name.v1.json
+  s_8eb0f68c1f71c0::t_866b42fa33bff1 1-11
+crates/acta-llm/schemas/minutes.v1.json
+  s_8eb0f68c1f71c0::t_e3b13749a4f4ea 1-75
+crates/acta-llm/src/chat/mod.rs
+  s_8eb0f68c1f71c0::t_9e554112c1f925 1-3
+crates/acta-llm/src/lib.rs
+  s_8eb0f68c1f71c0::t_e3e58f114e47d0 1-34
+crates/acta-llm/src/minutes/mod.rs
+  s_8eb0f68c1f71c0::t_59b9516a7f6d4d 1-70
+crates/acta-llm/src/moments/mod.rs
+  s_8eb0f68c1f71c0::t_6f6fd25b76c016 1-4
+crates/acta-llm/src/naming/mod.rs
+  s_8eb0f68c1f71c0::t_67573f42a3e931 1
+crates/acta-llm/src/process.rs
+  s_8eb0f68c1f71c0::t_74efe1b0c58d25 1-123
+crates/acta-llm/src/providers/mod.rs
+  s_8eb0f68c1f71c0::t_3d8570419d1c39 1-5
+crates/acta-llm/src/transcript/mod.rs
+  s_8eb0f68c1f71c0::t_11792a10aae143 1-26
+crates/acta-mac-bridge/Cargo.toml
+  s_8eb0f68c1f71c0::t_2ca46463d32e65 1-26
+crates/acta-mac-bridge/src/audio/mod.rs
+  s_8eb0f68c1f71c0::t_d8460154a1f7ac 1
+crates/acta-mac-bridge/src/client/mod.rs
+  s_8eb0f68c1f71c0::t_ddc0720b059350 1-63
+crates/acta-mac-bridge/src/detection/mod.rs
+  s_8eb0f68c1f71c0::t_4922c0e908add2 1
+crates/acta-mac-bridge/src/lib.rs
+  s_8eb0f68c1f71c0::t_ac4cf01e9934df 1-28
+crates/acta-mac-bridge/src/permissions/mod.rs
+  s_8eb0f68c1f71c0::t_b3353642a4969f 1
+crates/acta-mac-bridge/src/protocol.rs
+  s_8eb0f68c1f71c0::t_9243844acd69d6 1-740
+crates/acta-mac-bridge/src/screen/mod.rs
+  s_8eb0f68c1f71c0::t_f480495d101191 1
+crates/acta-mac-bridge/src/speakers/mod.rs
+  s_8eb0f68c1f71c0::t_f1277bd7ae209a 1
+crates/acta-mac-bridge/src/transcription/mod.rs
+  s_8eb0f68c1f71c0::t_bafd617aee5873 1
+crates/acta-store/Cargo.toml
+  s_8eb0f68c1f71c0::t_b4ef29b8724855 1-33
+crates/acta-store/src/chat/mod.rs
+  s_8eb0f68c1f71c0::t_eded9ed6053374 1-2
+crates/acta-store/src/clustering/mod.rs
+  s_8eb0f68c1f71c0::t_7d7f174877b7bb 1-2
+crates/acta-store/src/db/mod.rs
+  s_8eb0f68c1f71c0::t_ca4bea4665b02a 1-96
+crates/acta-store/src/embeddings/mod.rs
+  s_8eb0f68c1f71c0::t_063ef504ef15ec 1-4
+crates/acta-store/src/groups/mod.rs
+  s_8eb0f68c1f71c0::t_e5bbb31e82bd17 1-2
+crates/acta-store/src/lib.rs
+  s_8eb0f68c1f71c0::t_161d52af156b61 1-27
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_200fbde2b74fb6 1-2
+crates/acta-store/src/search/mod.rs
+  s_8eb0f68c1f71c0::t_1ba142354f3a3e 1-2
+crates/acta-store/src/settings/mod.rs
+  s_8eb0f68c1f71c0::t_f82d46ad42c498 1-2
+crates/acta-store/src/voiceprints/mod.rs
+  s_8eb0f68c1f71c0::t_de6bb32da2b26e 1-2
+crates/acta-store/tests/schema.rs
+  s_8eb0f68c1f71c0::t_af26285c75fa0b 1-38
+scripts/guards.sh
+  s_8eb0f68c1f71c0::t_72ac84002c0fdf 1-25
+scripts/verify.sh
+  s_8eb0f68c1f71c0::t_731b87f3007e33 1-12
+sidecars/acta-mac/.gitignore
+  s_8eb0f68c1f71c0::t_72e5c186b6089e 1-2
+sidecars/acta-mac/Package.swift
+  s_8eb0f68c1f71c0::t_efcb0758a98f08 1-36
+sidecars/acta-mac/Sources/ActaMacCore/Audio/AudioCapture.swift
+  s_8eb0f68c1f71c0::t_86fb58a9c6695f 1-5
+sidecars/acta-mac/Sources/ActaMacCore/Detection/MeetingDetection.swift
+  s_8eb0f68c1f71c0::t_e6706d364f6489 1-5
+sidecars/acta-mac/Sources/ActaMacCore/Permissions/Permissions.swift
+  s_8eb0f68c1f71c0::t_a041a48d95a56c 1-5
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ScreenShareCapture.swift
+  s_8eb0f68c1f71c0::t_0cea553f43f06b 1-5
+sidecars/acta-mac/Sources/ActaMacCore/Speakers/TeamsAccessibility.swift
+  s_8eb0f68c1f71c0::t_8dd0d6210328d7 1-5
+sidecars/acta-mac/Sources/ActaMacCore/Transcription/Transcription.swift
+  s_8eb0f68c1f71c0::t_dcb1cdce4bc74e 1-9
+sidecars/acta-mac/Sources/acta-mac/main.swift
+  s_8eb0f68c1f71c0::t_a70dd9f78f9beb 1-37
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_8eb0f68c1f71c0::t_b4a7f93333d190 1-31
+Cargo.toml
+  s_595ff32e92c040::t_dd82ea04189b66 1-98
+crates/acta-core/src/api/mod.rs
+  s_595ff32e92c040::t_68620ff3e4a77f 1-60
+crates/acta-core/src/detection/mod.rs
+  s_595ff32e92c040::t_d80ae99ecea771 1-11
+crates/acta-core/src/detection/ports.rs
+  s_595ff32e92c040::t_03eb8e5860421a 1-21
+crates/acta-core/src/error.rs
+  s_595ff32e92c040::t_1d6e9b374e9f19 1-48
+crates/acta-core/src/ids.rs
+  s_595ff32e92c040::t_473a749beeb2f6 1-78
+crates/acta-core/src/library/mod.rs
+  s_595ff32e92c040::t_99e6c97b715a68 1-7
+crates/acta-core/src/library/ports.rs
+  s_595ff32e92c040::t_f68ae3c1257127 1-117
+crates/acta-core/src/llm/mod.rs
+  s_595ff32e92c040::t_3d82b8ce63a3be 1-7
+crates/acta-core/src/llm/ports.rs
+  s_595ff32e92c040::t_be99af0fe22883 1-19
+crates/acta-core/src/minutes/mod.rs
+  s_595ff32e92c040::t_21d79ab2ab5f4c 1-8
+crates/acta-core/src/minutes/model.rs
+  s_595ff32e92c040::t_64ec7c351f2bc7 1-164
+crates/acta-core/src/minutes/ports.rs
+  s_595ff32e92c040::t_68c2aadeba780e 1-25
+crates/acta-core/src/permissions/mod.rs
+  s_595ff32e92c040::t_d12d49c8de1a32 1-47
+crates/acta-core/src/processing/model.rs
+  s_595ff32e92c040::t_36e26e54d513ba 1-52
+crates/acta-core/src/processing/pipeline.rs
+  s_595ff32e92c040::t_7325bb97d42a13 1-37
+crates/acta-core/src/recording/autostop.rs
+  s_595ff32e92c040::t_b38cd18b52ce5b 1-98
+crates/acta-core/src/recording/machine.rs
+  s_595ff32e92c040::t_5ea40ba006d44a 1-540
+crates/acta-core/src/recording/mod.rs
+  s_595ff32e92c040::t_ff3762b71dd2c3 1-18
+crates/acta-core/src/recording/ports.rs
+  s_595ff32e92c040::t_c7114953541bca 1-25
+crates/acta-core/src/settings/mod.rs
+  s_595ff32e92c040::t_a88bb04eb707a1 1-246
+crates/acta-core/src/time.rs
+  s_595ff32e92c040::t_96b99da7e4fc5b 1-72
+crates/acta-core/src/transcription/mod.rs
+  s_595ff32e92c040::t_3f4b8eb79c861f 1-7
+crates/acta-core/src/transcription/model.rs
+  s_595ff32e92c040::t_3e0dd46cc3fd7d 1-167
+crates/acta-core/src/transcription/ports.rs
+  s_595ff32e92c040::t_2afebece45be15 1-39
+crates/acta-store/migrations/0001_init.sql
+  s_595ff32e92c040::t_7f92ac7a936231 1-231
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0a4e8d73356ec11e2beb261c509d3d642128c298",
+  "prompts": {},
+  "sessions": {
+    "s_595ff32e92c040": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-ae687daeb5ae38ac7",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
