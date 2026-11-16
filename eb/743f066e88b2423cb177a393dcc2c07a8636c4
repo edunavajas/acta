@@ -1,0 +1,51 @@
+apps/desktop/src/features/captures/Captures.test.tsx
+  s_8eb0f68c1f71c0::t_c90b3666da0250 100-122
+apps/desktop/src/features/captures/CapturesTab.tsx
+  s_8eb0f68c1f71c0::t_e0f99cad6dfa19 1-2,5,26-37,39,52,58,60-86,88-91,94-95,105-106,116,125
+apps/desktop/src/features/escaleta/Escaleta.test.tsx
+  s_8eb0f68c1f71c0::t_5ff07fbd85c2b8 6,40-74
+apps/desktop/src/features/escaleta/EscaletaTab.tsx
+  s_8eb0f68c1f71c0::t_f13faac70373b9 1,4-6,11,13,17,20,22-24,29,41-47,49-71
+apps/desktop/src/features/escaleta/MindMap.tsx
+  s_8eb0f68c1f71c0::t_e993968c50ae2f 1-82
+apps/desktop/src/features/meetings/MeetingDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_9f871d18e7ecea 4-6,18-19,33-44,105-107,109-122,124-137,139-191,193-196,198,200-205,207-241,243
+apps/desktop/src/features/meetings/MeetingList.test.tsx
+  s_8eb0f68c1f71c0::t_c508008364c36d 1,69-118,137-160
+apps/desktop/src/features/meetings/MeetingList.tsx
+  s_8eb0f68c1f71c0::t_2c0c162fd38993 1,3-5,28,31-43,45-48,50-55,57-94,96-126
+apps/desktop/src/features/meetings/MeetingListContainer.tsx
+  s_8eb0f68c1f71c0::t_6675c433381eb8 78
+apps/desktop/src/features/meetings/MeetingRow.tsx
+  s_8eb0f68c1f71c0::t_6439b57f86a420 1-32
+apps/desktop/src/features/meetings/ProcessingStatus.tsx
+  s_8eb0f68c1f71c0::t_6ae0f69158663d 1-2,4-5,17-19,35-36,40-41,43-51,53-67,69-89,93,95,97-99,101-105
+apps/desktop/src/features/minutes/MinutesTab.tsx
+  s_8eb0f68c1f71c0::t_3950bee5c70e47 1-2,6,23-24,27-31,33,35,38-40,43-49,61-63,66-71,75-79,81,83,86-87,95-96
+apps/desktop/src/features/player/AudioPlayer.tsx
+  s_8eb0f68c1f71c0::t_f3b3fc06ad237f 1-2,5,10,12-40,50-51,65-70,74,77,91-121,133-137,150
+apps/desktop/src/features/player/Player.test.tsx
+  s_8eb0f68c1f71c0::t_99b3b8baa28583 6,63-109
+apps/desktop/src/features/timeline/TimelineTab.tsx
+  s_8eb0f68c1f71c0::t_60bf53e28f2969 1,16-27,33-61,63-72,75-79
+apps/desktop/src/features/transcript/Transcript.test.tsx
+  s_8eb0f68c1f71c0::t_c828a80bdb901d 71-96
+apps/desktop/src/features/transcript/TranscriptTab.tsx
+  s_8eb0f68c1f71c0::t_8883e64a9c852b 1,5,29,36,54-56,64-65,79,82-83,89-91,99-100,103-105,107-116,118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "eb743f066e88b2423cb177a393dcc2c07a8636c4",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
