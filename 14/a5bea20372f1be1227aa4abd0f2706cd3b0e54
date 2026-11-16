@@ -1,0 +1,31 @@
+crates/acta-llm/src/lib.rs
+  s_8eb0f68c1f71c0::t_898c6226dc9185 38-50
+crates/acta-llm/src/providers/anthropic.rs
+  s_8eb0f68c1f71c0::t_e04ab63bfa5a46 4,72,204-212
+crates/acta-llm/src/providers/claude.rs
+  s_8eb0f68c1f71c0::t_daf9b3eed3bcbc 51,166-176
+crates/acta-llm/src/providers/codex.rs
+  s_8eb0f68c1f71c0::t_b4748137876d03 73,179-203
+crates/acta-llm/src/providers/common.rs
+  s_8eb0f68c1f71c0::t_527bbae97e4d82 28-54,59,126-140
+crates/acta-llm/src/providers/openai.rs
+  s_8eb0f68c1f71c0::t_c6be135bb1c22e 57,169-179
+crates/acta-llm/tests/real_cli.rs
+  s_8eb0f68c1f71c0::t_0f771ed53f5ff1 1-100
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "14a5bea20372f1be1227aa4abd0f2706cd3b0e54",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
