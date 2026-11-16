@@ -1,0 +1,21 @@
+crates/acta-core/src/recording/health.rs
+  s_8eb0f68c1f71c0::t_3a268bc37cd617 242-247,251-252
+crates/acta-core/tests/autostop_health.rs
+  s_8eb0f68c1f71c0::t_ed18834271c8f3 371-386
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "27f81138e5c4a24120df01eaafda7cab0dfcbba9",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
