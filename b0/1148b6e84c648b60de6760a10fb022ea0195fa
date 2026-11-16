@@ -1,0 +1,23 @@
+sidecars/acta-mac/Package.swift
+  s_8eb0f68c1f71c0::t_baa3bcccab37ed 38
+sidecars/acta-mac/Sources/ActaMacCore/Transcription/Transcription.swift
+  s_8eb0f68c1f71c0::t_ab4e4caf3c21cf 127-133,385-396
+sidecars/acta-mac/Tests/ActaMacCoreTests/RuntimeTests.swift
+  s_8eb0f68c1f71c0::t_d896e2967fa312 3,207-215
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "b01148b6e84c648b60de6760a10fb022ea0195fa",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
