@@ -1,0 +1,129 @@
+apps/desktop/package.json
+  s_8eb0f68c1f71c0::t_c4475e7d7bf8d6 21
+apps/desktop/pnpm-lock.yaml
+  s_8eb0f68c1f71c0::t_dbe81c6557608f 30-32,627-632,1584-1587
+apps/desktop/src/app/ApiContext.tsx
+  s_8eb0f68c1f71c0::t_1e35113a633636 1-29
+apps/desktop/src/app/App.test.tsx
+  s_8eb0f68c1f71c0::t_73f89d8ad71ce0 1-4,7-12,14-60
+apps/desktop/src/app/App.tsx
+  s_8eb0f68c1f71c0::t_45a907ff62002d 1-9,11-23,25-53,55,57-59
+apps/desktop/src/app/Sidebar.tsx
+  s_8eb0f68c1f71c0::t_ca5471aab68f7c 1-52
+apps/desktop/src/app/main.tsx
+  s_8eb0f68c1f71c0::t_bb04766cbb6d89 4
+apps/desktop/src/features/captures/Captures.test.tsx
+  s_8eb0f68c1f71c0::t_28a7c5a35af0d9 1-99
+apps/desktop/src/features/captures/CapturesContainer.tsx
+  s_8eb0f68c1f71c0::t_37c15b862133c3 1-26
+apps/desktop/src/features/captures/CapturesTab.tsx
+  s_8eb0f68c1f71c0::t_2ed31284c18d67 1-101
+apps/desktop/src/features/chat/Chat.test.tsx
+  s_8eb0f68c1f71c0::t_e03b355d0b0e89 1-86
+apps/desktop/src/features/chat/ChatContainer.tsx
+  s_8eb0f68c1f71c0::t_695b0b21abf705 1-74
+apps/desktop/src/features/chat/ChatView.tsx
+  s_8eb0f68c1f71c0::t_13e238d08e06ed 1-101
+apps/desktop/src/features/escaleta/Escaleta.test.tsx
+  s_8eb0f68c1f71c0::t_1ae7ac5cc3c6ba 1-38
+apps/desktop/src/features/escaleta/EscaletaTab.tsx
+  s_8eb0f68c1f71c0::t_9634291ff80dfd 1-48
+apps/desktop/src/features/groups/GroupDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_479531be5f81e3 1-102
+apps/desktop/src/features/groups/Groups.test.tsx
+  s_8eb0f68c1f71c0::t_5a25e3856065c3 1-105
+apps/desktop/src/features/groups/GroupsContainer.tsx
+  s_8eb0f68c1f71c0::t_3737449a127c8a 1-56
+apps/desktop/src/features/groups/GroupsView.tsx
+  s_8eb0f68c1f71c0::t_3c2b6b7326085f 1-85
+apps/desktop/src/features/meetings/MeetingDetail.test.tsx
+  s_8eb0f68c1f71c0::t_4ed270f4d97b63 1-98
+apps/desktop/src/features/meetings/MeetingDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_1a8b3d01888687 1-196
+apps/desktop/src/features/meetings/MeetingList.test.tsx
+  s_8eb0f68c1f71c0::t_4e6243cd7cdbd1 1-92
+apps/desktop/src/features/meetings/MeetingList.tsx
+  s_8eb0f68c1f71c0::t_0ff5b04da58c5e 1-94
+apps/desktop/src/features/meetings/MeetingListContainer.tsx
+  s_8eb0f68c1f71c0::t_68a1959fc49d20 1-80
+apps/desktop/src/features/meetings/ProcessingStatus.tsx
+  s_8eb0f68c1f71c0::t_206d0ad66ff9f9 1-54
+apps/desktop/src/features/meetings/useMeetingDetail.ts
+  s_8eb0f68c1f71c0::t_980e81801a5ec3 1-30
+apps/desktop/src/features/minutes/Minutes.test.tsx
+  s_8eb0f68c1f71c0::t_32d0c9507d7f7e 1-58
+apps/desktop/src/features/minutes/MinutesTab.tsx
+  s_8eb0f68c1f71c0::t_403361a1505ff2 1-77
+apps/desktop/src/features/overlay/Overlay.test.tsx
+  s_8eb0f68c1f71c0::t_89094d6e0058df 1-161
+apps/desktop/src/features/overlay/OverlayContainer.tsx
+  s_8eb0f68c1f71c0::t_6c2d6cfa930a3c 1-75
+apps/desktop/src/features/overlay/OverlayPill.tsx
+  s_8eb0f68c1f71c0::t_ce2197338d6e82 1-128
+apps/desktop/src/features/overlay/overlay.css
+  s_8eb0f68c1f71c0::t_f3ec4492bbd32f 1-50
+apps/desktop/src/features/player/AudioPlayer.tsx
+  s_8eb0f68c1f71c0::t_c31947557b208e 1-105
+apps/desktop/src/features/player/Player.test.tsx
+  s_8eb0f68c1f71c0::t_22e07a330a9857 1-62
+apps/desktop/src/features/player/PlayerContext.tsx
+  s_8eb0f68c1f71c0::t_18e8f580a8f16d 1-57
+apps/desktop/src/features/settings/GeneralSections.tsx
+  s_8eb0f68c1f71c0::t_e20432d5c0e540 1-170
+apps/desktop/src/features/settings/PermissionsSection.tsx
+  s_8eb0f68c1f71c0::t_bead12fcdc7be9 1-72
+apps/desktop/src/features/settings/ProvidersSection.tsx
+  s_8eb0f68c1f71c0::t_58947cf3e35d85 1-186
+apps/desktop/src/features/settings/Settings.test.tsx
+  s_8eb0f68c1f71c0::t_0f002e0deb4437 1-124
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_8eb0f68c1f71c0::t_480ca59576ae5d 1-114
+apps/desktop/src/features/settings/fields.tsx
+  s_8eb0f68c1f71c0::t_8d80819ca288a0 1-53
+apps/desktop/src/features/timeline/Timeline.test.tsx
+  s_8eb0f68c1f71c0::t_f34e4047d953ae 1-33
+apps/desktop/src/features/timeline/TimelineTab.tsx
+  s_8eb0f68c1f71c0::t_cb0bdd362226c0 1-62
+apps/desktop/src/features/transcript/Transcript.test.tsx
+  s_8eb0f68c1f71c0::t_73202392624467 1-70
+apps/desktop/src/features/transcript/TranscriptTab.tsx
+  s_8eb0f68c1f71c0::t_1a1c46deb6e630 1-119
+apps/desktop/src/overlay/Overlay.tsx
+  s_8eb0f68c1f71c0::t_7593d1e415e115 1-2,5
+apps/desktop/src/shared/Markdown.tsx
+  s_8eb0f68c1f71c0::t_819cf0f97c2c53 1-42
+apps/desktop/src/shared/format.test.ts
+  s_8eb0f68c1f71c0::t_1fc1a225458fcb 1-40
+apps/desktop/src/shared/format.ts
+  s_8eb0f68c1f71c0::t_1638156c63b0c1 1-73
+apps/desktop/src/shared/ui/ui.tsx
+  s_8eb0f68c1f71c0::t_23a2b5b164593c 1-82
+apps/desktop/src/test/setup.ts
+  s_8eb0f68c1f71c0::t_bb2bd4211f13e3 2-8
+apps/desktop/src/app/styles.css
+  s_adf05a6e4e9e62::t_67f5251e5933dd 1-254
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "88c0c41e817722e7f24665223828d069da5ee600",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_adf05a6e4e9e62": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a47b3696771504ac8",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
