@@ -1,0 +1,21 @@
+apps/desktop/src/api/index.test.ts
+  s_8eb0f68c1f71c0::t_1198002b4dc27a 1-26
+apps/desktop/src/api/index.ts
+  s_8eb0f68c1f71c0::t_daa6be7234c3ab 3-5,18-33,36-37,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "cbb78cff8a7094b593108b7b75a8d3d02c97bd18",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
