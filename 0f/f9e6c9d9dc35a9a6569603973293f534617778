@@ -1,0 +1,61 @@
+crates/acta-llm/prompts/minutes.system.md
+  s_8eb0f68c1f71c0::t_b8d66fa41294e5 9
+crates/acta-llm/src/chat/mod.rs
+  s_8eb0f68c1f71c0::t_b5e027d24e48ed 1-530
+crates/acta-llm/src/lib.rs
+  s_8eb0f68c1f71c0::t_66b1b70f21ddc5 20-22
+crates/acta-llm/src/minutes/captures.rs
+  s_8eb0f68c1f71c0::t_b39159cc6a1c36 1-146
+crates/acta-llm/src/minutes/convert.rs
+  s_8eb0f68c1f71c0::t_e425968e2d97cc 1-305
+crates/acta-llm/src/minutes/generator.rs
+  s_8eb0f68c1f71c0::t_0b6a7bfd5fa661 1-338
+crates/acta-llm/src/minutes/mod.rs
+  s_8eb0f68c1f71c0::t_8377280ae9c931 2-14
+crates/acta-llm/src/minutes/timeline.rs
+  s_8eb0f68c1f71c0::t_316292df9409b8 1-73
+crates/acta-llm/src/moments/mod.rs
+  s_8eb0f68c1f71c0::t_e9205651015f8c 5-233
+crates/acta-llm/src/naming/mod.rs
+  s_8eb0f68c1f71c0::t_ce0f0892f3da2f 2-116
+crates/acta-llm/src/providers/anthropic.rs
+  s_8eb0f68c1f71c0::t_8fe867af8520f6 1-230
+crates/acta-llm/src/providers/claude.rs
+  s_8eb0f68c1f71c0::t_a931dcdf551b42 1-226
+crates/acta-llm/src/providers/codex.rs
+  s_8eb0f68c1f71c0::t_755bcb7c3af124 1-198
+crates/acta-llm/src/providers/common.rs
+  s_8eb0f68c1f71c0::t_ead4c58e02f1f4 1-104
+crates/acta-llm/src/providers/detect.rs
+  s_8eb0f68c1f71c0::t_7b9b2e386a3815 1-149
+crates/acta-llm/src/providers/http.rs
+  s_8eb0f68c1f71c0::t_2aa92e8ece6144 1-23
+crates/acta-llm/src/providers/mod.rs
+  s_8eb0f68c1f71c0::t_509308aee031ec 4-183
+crates/acta-llm/src/providers/openai.rs
+  s_8eb0f68c1f71c0::t_993eee0b2d6fe0 1-250
+crates/acta-llm/src/providers/sse.rs
+  s_8eb0f68c1f71c0::t_707aa998483531 1-85
+crates/acta-llm/src/structured.rs
+  s_8eb0f68c1f71c0::t_bc1b9f2fbfd12a 1-215
+crates/acta-llm/src/testutil.rs
+  s_8eb0f68c1f71c0::t_d4509846be3f10 1-204
+crates/acta-llm/src/transcript/mod.rs
+  s_8eb0f68c1f71c0::t_41ccf360f2d45d 3,5-7,20-133,137-166,172-238
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0ff9e6c9d9dc35a9a6569603973293f534617778",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
