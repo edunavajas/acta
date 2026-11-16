@@ -1,0 +1,63 @@
+crates/acta-store/Cargo.toml
+  s_8eb0f68c1f71c0::t_2a6be8c3fe8e40 27
+crates/acta-store/src/chat/mod.rs
+  s_8eb0f68c1f71c0::t_0e65cecc4e88b4 1-119
+crates/acta-store/src/clustering/mod.rs
+  s_8eb0f68c1f71c0::t_b00c6f7946a00d 1-169
+crates/acta-store/src/codec.rs
+  s_8eb0f68c1f71c0::t_29c36f4255ce5f 1-76
+crates/acta-store/src/db/mod.rs
+  s_8eb0f68c1f71c0::t_b45e778f0d144e 3-6,8,43,46-49,55,58,62-69,74,78-80,87-89,93-114,123
+crates/acta-store/src/embeddings/mod.rs
+  s_8eb0f68c1f71c0::t_3dc673a4475a30 1-125
+crates/acta-store/src/groups/mod.rs
+  s_8eb0f68c1f71c0::t_8063c864375c38 1-198
+crates/acta-store/src/lib.rs
+  s_8eb0f68c1f71c0::t_e0f19e7bdf713b 18,25,27-28
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_e12abb8fa08ec1 1-667
+crates/acta-store/src/meetings/timeline.rs
+  s_8eb0f68c1f71c0::t_8e37f6f88359f9 1-88
+crates/acta-store/src/search/chunking.rs
+  s_8eb0f68c1f71c0::t_3e96ff69ea8b55 1-153
+crates/acta-store/src/search/mod.rs
+  s_8eb0f68c1f71c0::t_c0c5b5a5d058e8 1-294
+crates/acta-store/src/search/rrf.rs
+  s_8eb0f68c1f71c0::t_84824f9594a569 1-17
+crates/acta-store/src/secrets/mod.rs
+  s_8eb0f68c1f71c0::t_f2f1eea14030d2 1-83
+crates/acta-store/src/settings/mod.rs
+  s_8eb0f68c1f71c0::t_55940719ac05da 1-41
+crates/acta-store/src/text.rs
+  s_8eb0f68c1f71c0::t_1acdd032aa757c 1-40
+crates/acta-store/src/vectors.rs
+  s_8eb0f68c1f71c0::t_d4211d1f24e408 1-39
+crates/acta-store/src/voiceprints/mod.rs
+  s_8eb0f68c1f71c0::t_db3dccab309c2a 1-127
+crates/acta-store/tests/common/mod.rs
+  s_8eb0f68c1f71c0::t_44daf1898eaf1b 1-140
+crates/acta-store/tests/pure.rs
+  s_8eb0f68c1f71c0::t_96f30723d7f0fd 1-222
+crates/acta-store/tests/search.rs
+  s_8eb0f68c1f71c0::t_b74d0c819f2039 1-235
+crates/acta-store/tests/secrets.rs
+  s_8eb0f68c1f71c0::t_0afbfb1515c756 1-38
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_38c53328ccc60c 1-588
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "6b9fc991fab1f0645ba5997af780738ee07e3f87",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
