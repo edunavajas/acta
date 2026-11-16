@@ -1,0 +1,57 @@
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_ac27f326e92b45 688
+apps/desktop/src-tauri/tests/core.rs
+  s_8eb0f68c1f71c0::t_b7e06fcb8d1f3f 587,631
+apps/desktop/src/api/api.test.ts
+  s_8eb0f68c1f71c0::t_016ede3d4f21f0 98-181
+apps/desktop/src/api/contract.ts
+  s_8eb0f68c1f71c0::t_63e5a7a0303e6c 62-71,84,99,122-123,139,147-154,176-184
+apps/desktop/src/api/demo.ts
+  s_8eb0f68c1f71c0::t_448b701dcb23fd 222-223
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_c18af17822cffc 31-96,163,187,271,303-305,329-337,390,405-438,476,481-485,530,541-547,635-673
+apps/desktop/src/api/tauri.ts
+  s_8eb0f68c1f71c0::t_b8845048023b1e 23,35,43-46,63-67
+apps/desktop/src/api/types.ts
+  s_8eb0f68c1f71c0::t_22d543c4f00e34 302-303,318-319,346-347,367-402,416-417,499-501,538-619,695-702
+apps/desktop/src/features/onboarding/AiStep.tsx
+  s_8eb0f68c1f71c0::t_27ab212d00d79d 1,7,23-24,81,100-104,127-132
+apps/desktop/src/features/onboarding/Onboarding.test.tsx
+  s_8eb0f68c1f71c0::t_909919b7690b82 128,141
+apps/desktop/src/features/onboarding/Onboarding.tsx
+  s_8eb0f68c1f71c0::t_03a2aa1a22ce4b 6,38,183
+apps/desktop/src/features/onboarding/aiChoice.ts
+  s_8eb0f68c1f71c0::t_d5c10dd2c266df 8,14-15,24,41,58,83,99-100
+apps/desktop/src/features/providers/BuiltIn.test.tsx
+  s_8eb0f68c1f71c0::t_10cb7296866ee8 1-226
+apps/desktop/src/features/providers/BuiltInModels.tsx
+  s_8eb0f68c1f71c0::t_dbbad14c77f85a 1-252
+apps/desktop/src/features/providers/presets.ts
+  s_8eb0f68c1f71c0::t_29f371bdc91853 7-10,40,50,61,83-84,111
+apps/desktop/src/features/settings/ProvidersSection.tsx
+  s_8eb0f68c1f71c0::t_a531c64b0b8a24 1,5,75,100,184-188,246,273-278,323-328
+apps/desktop/src/styles/providers.css
+  s_8eb0f68c1f71c0::t_dfaa1ac004a213 45-74
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_f77e5d5f443102 47
+crates/acta-core/src/api/events.rs
+  s_8eb0f68c1f71c0::t_35e654ef7dab5a 14,31
+crates/acta-core/src/llm/local.rs
+  s_8eb0f68c1f71c0::t_3140faea1db1d2 304
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "5991f8a76b6e71aa238a229c068ee6c66476dbc8",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
