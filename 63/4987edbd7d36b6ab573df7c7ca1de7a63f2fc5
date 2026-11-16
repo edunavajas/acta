@@ -1,0 +1,35 @@
+crates/acta-store/migrations/0002_screen_shares_titles_stale.sql
+  s_8eb0f68c1f71c0::t_6d8dd03983e3f8 1-13
+crates/acta-store/src/db/mod.rs
+  s_8eb0f68c1f71c0::t_71a61441bf6e81 14-17
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_a2e0df759f9be8 14,180-190,407,427-428,447,457,557-563,565-567,595,612-629
+crates/acta-store/src/meetings/timeline.rs
+  s_8eb0f68c1f71c0::t_974d55988dbb59 1,4,48,87-93
+crates/acta-store/src/search/mod.rs
+  s_8eb0f68c1f71c0::t_d1750cadd71882 198,244-246,252-261
+crates/acta-store/tests/pure.rs
+  s_8eb0f68c1f71c0::t_8b03c01759be75 6,204,223-237
+crates/acta-store/tests/schema.rs
+  s_8eb0f68c1f71c0::t_a77e11032ac08e 39-52
+crates/acta-store/tests/search.rs
+  s_8eb0f68c1f71c0::t_3d724885863d1c 161,236-268
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_b6eb7bf74158f6 13,589-672
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "634987edbd7d36b6ab573df7c7ca1de7a63f2fc5",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
