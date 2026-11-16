@@ -1,0 +1,31 @@
+apps/desktop/src-tauri/tests/core.rs
+  s_8eb0f68c1f71c0::t_5b8c8745d2cf75 343-351
+apps/desktop/src/api/api.test.ts
+  s_8eb0f68c1f71c0::t_deaed1f937f23f 64-71
+apps/desktop/src/api/contract.ts
+  s_8eb0f68c1f71c0::t_4cf659da89178b 49,156-157
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_c9ee229532963d 513-518
+apps/desktop/src/api/tauri.ts
+  s_8eb0f68c1f71c0::t_5cff4b59b68834 60
+apps/desktop/src/api/types.ts
+  s_8eb0f68c1f71c0::t_616a9da2707e5b 492-500
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_16646c7eac82ea 111-113
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "801fb3d09766413ada310a211741ac5e28a373a1",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
