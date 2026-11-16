@@ -1,0 +1,25 @@
+apps/desktop/src/api/demo.ts
+  s_8eb0f68c1f71c0::t_c1fa92f0bd09ac 6,218-222,239-259,321-322
+apps/desktop/src/features/onboarding/AiStep.tsx
+  s_8eb0f68c1f71c0::t_01fb29b162a903 129
+apps/desktop/src/features/providers/BuiltIn.test.tsx
+  s_8eb0f68c1f71c0::t_62a39dd641bd8b 195-196
+apps/desktop/src/features/providers/BuiltInModels.tsx
+  s_8eb0f68c1f71c0::t_d6654f4ebe0e38 98-99,219,229,245
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "7c3b0613d085ba4f89d62f42e2e93f70df8dc0d7",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
