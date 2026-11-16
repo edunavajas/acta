@@ -1,0 +1,21 @@
+crates/acta-llm/src/providers/claude.rs
+  s_8eb0f68c1f71c0::t_0059f5fe6343a5 44-45,47,159,179-188
+docs/01-arquitectura.md
+  s_8eb0f68c1f71c0::t_8ea7962cabab00 283
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "8bb8b2e62054c870506fa9128f22fafb4c3230ee",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
