@@ -1,0 +1,31 @@
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_789cb33519c7c4 535-538
+apps/desktop/src-tauri/src/commands.rs
+  s_8eb0f68c1f71c0::t_0b0d154b229d8f 76
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_1c1a1cd47dc67e 217
+apps/desktop/src-tauri/src/native.rs
+  s_8eb0f68c1f71c0::t_273052590a04b4 4,21-26,38,60-61,85-98,141
+apps/desktop/src-tauri/src/unavailable.rs
+  s_8eb0f68c1f71c0::t_1361da4d851747 5,106-112
+apps/desktop/src-tauri/tests/core.rs
+  s_8eb0f68c1f71c0::t_400711f7f57c79 252-260
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_e4f653fe04d695 42,102,152-163
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "eba1c6a2f1f3e5b1d1a97622a8a0feaf2731c8d1",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
