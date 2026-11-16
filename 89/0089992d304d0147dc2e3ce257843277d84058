@@ -1,0 +1,29 @@
+crates/acta-mac-bridge/src/protocol.rs
+  s_8eb0f68c1f71c0::t_765b1b9b327e98 18-21,661-665
+sidecars/acta-mac/Sources/ActaMacCore/Audio/AudioCapture.swift
+  s_8eb0f68c1f71c0::t_2614e4733d5ed8 120
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/AtomicFile.swift
+  s_8eb0f68c1f71c0::t_9e79b2239f0f91 1
+sidecars/acta-mac/Sources/ActaMacProtocol/Protocol.swift
+  s_8eb0f68c1f71c0::t_650201433f8a0d 15-17,67-72,77-81,88-93,100-105,111-115,122-127,136-143,149-153,159-163,180-195,202-207,216-223,229-233,243-251,257-261,267-271,274-279,281-286,434-439,442-453,460-466,472-476,484-490,493-498,504-509,520-529,532-537,543-548,554-558,564-568,575-580,583-588,601-610,618-624,631-636,642-646,654-660,667-672,678-682,688-692,699-704,712-718,725-730,738-744,750-754,760-764,767-772,855-860,869-876,885-891,898-903,910-915,923-928
+sidecars/acta-mac/Tests/ActaMacCoreTests/RuntimeTests.swift
+  s_8eb0f68c1f71c0::t_5c619ea0989306 159
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_8eb0f68c1f71c0::t_fb95329e200760 34-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "890089992d304d0147dc2e3ce257843277d84058",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
