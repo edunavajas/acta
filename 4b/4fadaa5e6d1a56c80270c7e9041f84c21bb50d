@@ -1,0 +1,67 @@
+Cargo.lock
+  s_8eb0f68c1f71c0::t_94e5061430148e 69,76-77,1395-1404,4760-4769
+Cargo.toml
+  s_8eb0f68c1f71c0::t_2fd8ea75895822 69-72
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_e611c3ee14ed71 15,17,56-59,69-70,86-93,132-133,672-746,789
+apps/desktop/src-tauri/src/commands.rs
+  s_8eb0f68c1f71c0::t_4d20e860896b74 82-86
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_5659a2ee23996a 88,162-169,236-240
+apps/desktop/src-tauri/src/llm.rs
+  s_8eb0f68c1f71c0::t_8617a0afe53c98 27
+apps/desktop/src-tauri/src/system.rs
+  s_8eb0f68c1f71c0::t_a16d1c64c7d853 41-54
+apps/desktop/src-tauri/tests/core.rs
+  s_8eb0f68c1f71c0::t_f90684d867dea3 81,484-632
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_a9ffbdd68251a4 76
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_ddc780f7bda4ce 46-50,124-128
+crates/acta-core/src/api/events.rs
+  s_8eb0f68c1f71c0::t_d5b3739fa7d72a 14,31
+crates/acta-core/src/layout.rs
+  s_8eb0f68c1f71c0::t_0e970d8a5a85c6 9-10,59-66
+crates/acta-core/src/llm/local.rs
+  s_8eb0f68c1f71c0::t_9e83da8495e086 1-454
+crates/acta-core/src/llm/mod.rs
+  s_8eb0f68c1f71c0::t_d6d3d07fa936d8 3
+crates/acta-core/src/llm/model.rs
+  s_8eb0f68c1f71c0::t_64cbb5cab1fd19 51-54
+crates/acta-llm/Cargo.toml
+  s_8eb0f68c1f71c0::t_cd0ee3b57ba7ce 12,23-25
+crates/acta-llm/src/lib.rs
+  s_8eb0f68c1f71c0::t_bebb88ddc70e2f 6,16
+crates/acta-llm/src/local/download.rs
+  s_8eb0f68c1f71c0::t_e8f51efa018e94 1-490
+crates/acta-llm/src/local/mod.rs
+  s_8eb0f68c1f71c0::t_a96f3134596383 1-545
+crates/acta-llm/src/local/provider.rs
+  s_8eb0f68c1f71c0::t_af61ebd5a865df 1-154
+crates/acta-llm/src/local/runtime.rs
+  s_8eb0f68c1f71c0::t_c079a4c746a2ba 1-350
+crates/acta-llm/src/local/server.rs
+  s_8eb0f68c1f71c0::t_7f28de44c6b195 1-529
+crates/acta-llm/src/minutes/convert.rs
+  s_8eb0f68c1f71c0::t_23fbdabc202000 118-125,238-250
+crates/acta-llm/src/providers/mod.rs
+  s_8eb0f68c1f71c0::t_a223858256f00b 14,57-58,63-68,99-104,186-206
+crates/acta-llm/tests/real_local.rs
+  s_8eb0f68c1f71c0::t_1eb724c7c50e64 1-201
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "4b4fadaa5e6d1a56c80270c7e9041f84c21bb50d",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
