@@ -1,0 +1,19 @@
+crates/acta-llm/src/providers/codex.rs
+  s_8eb0f68c1f71c0::t_0fd30ed431b099 56-70,108,219-226
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "ac97915c5b1e00265b3c0ec59a29eb70b354bfe8",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
