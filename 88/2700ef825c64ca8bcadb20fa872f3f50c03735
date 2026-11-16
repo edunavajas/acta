@@ -1,0 +1,27 @@
+crates/acta-audio/tests/support/mod.rs
+  s_8eb0f68c1f71c0::t_ae2f676320de14 333-335
+crates/acta-core/src/api/events.rs
+  s_8eb0f68c1f71c0::t_66685978921b19 14,30-36
+crates/acta-core/src/library/ports.rs
+  s_8eb0f68c1f71c0::t_65fd9fb79531ab 48
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_0dbe4e95d35a35 686-703
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_a949619fdbf7a1 364,367
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "882700ef825c64ca8bcadb20fa872f3f50c03735",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
