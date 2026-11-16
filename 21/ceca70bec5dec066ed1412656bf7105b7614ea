@@ -1,0 +1,107 @@
+Cargo.lock
+  s_8eb0f68c1f71c0::t_6e8e62434d1f9a 86,90,101,2548-2559,2862,4203-4215,5313
+crates/acta-mac-bridge/Cargo.toml
+  s_8eb0f68c1f71c0::t_6e8d28d77d1c2c 14,25
+crates/acta-mac-bridge/src/audio/mod.rs
+  s_8eb0f68c1f71c0::t_f5bb3cc60eae00 1-331
+crates/acta-mac-bridge/src/client/lines.rs
+  s_8eb0f68c1f71c0::t_0d1fc86bcbfec5 1-94
+crates/acta-mac-bridge/src/detection/fusion.rs
+  s_8eb0f68c1f71c0::t_73d4e73b0e3c99 1-422
+crates/acta-mac-bridge/src/detection/mod.rs
+  s_8eb0f68c1f71c0::t_9942c6adee0993 1-116
+crates/acta-mac-bridge/src/lib.rs
+  s_8eb0f68c1f71c0::t_d2a393b6c11ea4 28
+crates/acta-mac-bridge/src/permissions/mod.rs
+  s_8eb0f68c1f71c0::t_ba0c38b99ccc36 1-102
+crates/acta-mac-bridge/src/speakers/mod.rs
+  s_8eb0f68c1f71c0::t_85c4cb0f3ca07c 1-86
+crates/acta-mac-bridge/src/task.rs
+  s_8eb0f68c1f71c0::t_e07a4f0078f432 1-57
+crates/acta-mac-bridge/src/transcription/mod.rs
+  s_8eb0f68c1f71c0::t_879a78e2f564cd 1-430
+crates/acta-mac-bridge/tests/audio.rs
+  s_8eb0f68c1f71c0::t_8f6a6b1c6ad233 1-215
+crates/acta-mac-bridge/tests/client.rs
+  s_8eb0f68c1f71c0::t_3a2320efab59d7 1-259
+crates/acta-mac-bridge/tests/ports.rs
+  s_8eb0f68c1f71c0::t_10c603d9e6ef9c 1-365
+crates/acta-mac-bridge/tests/support/mod.rs
+  s_8eb0f68c1f71c0::t_da804b8efac057 1-123
+sidecars/acta-mac/Package.swift
+  s_8eb0f68c1f71c0::t_1f962d82139cb0 35-39
+sidecars/acta-mac/Sources/ActaMacCore/Audio/AudioCapture.swift
+  s_8eb0f68c1f71c0::t_62db95358387ae 1-10,12-13,16-489
+sidecars/acta-mac/Sources/ActaMacCore/Audio/CoreAudioObjects.swift
+  s_8eb0f68c1f71c0::t_a8330f0e73415b 1-210
+sidecars/acta-mac/Sources/ActaMacCore/Audio/HALCapture.swift
+  s_8eb0f68c1f71c0::t_f19060c28fcb9c 1-164
+sidecars/acta-mac/Sources/ActaMacCore/Permissions/Permissions.swift
+  s_8eb0f68c1f71c0::t_354259759f9699 1-11,13-16,19-210
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ScreenShareCapture.swift
+  s_8eb0f68c1f71c0::t_424fba0fa4414f 1-11,13-15,17-359,361-371
+sidecars/acta-mac/Sources/ActaMacCore/Speakers/AXSnapshot.swift
+  s_8eb0f68c1f71c0::t_8f81a24e5fd350 1-112
+sidecars/acta-mac/Tests/ActaMacCoreTests/AudioMathTests.swift
+  s_8eb0f68c1f71c0::t_2751b6f19c23b3 1-157
+sidecars/acta-mac/Tests/ActaMacCoreTests/RuntimeTests.swift
+  s_8eb0f68c1f71c0::t_cce3a416f4bfe1 1-205
+sidecars/acta-mac/Tests/ActaMacCoreTests/ScreenTests.swift
+  s_8eb0f68c1f71c0::t_04f2c192aef480 1-83
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_8eb0f68c1f71c0::t_26a193ebf2fcb9 1-3
+crates/acta-mac-bridge/src/client/locate.rs
+  s_5a46e14ff8c4eb::t_eba278a4d989a0 1-84
+crates/acta-mac-bridge/src/client/mod.rs
+  s_5a46e14ff8c4eb::t_6bc5e9948f9806 2-13,15-24,26-28,30-38,42,44-45,49-50,54-59,66,69,72-74,79-129,132-142,148-160,163-164,166-188,191-194,197-212,214-636
+crates/acta-mac-bridge/src/screen/mod.rs
+  s_5a46e14ff8c4eb::t_8eb64de13fb3fb 1-151
+sidecars/acta-mac/Sources/ActaMacCore/Audio/AppResolution.swift
+  s_5a46e14ff8c4eb::t_1caf4f1bc20995 1-89
+sidecars/acta-mac/Sources/ActaMacCore/Audio/AudioMath.swift
+  s_5a46e14ff8c4eb::t_fa41ebf4cafac3 1-317
+sidecars/acta-mac/Sources/ActaMacCore/Detection/MeetingDetection.swift
+  s_5a46e14ff8c4eb::t_ecc2f7dc3b47a4 1-13,15,18-203
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Dispatcher.swift
+  s_5a46e14ff8c4eb::t_b2e18ee6f171c3 9-15,18,20-32,44-49,52-73,76,79,81-85,89-90,92-93,95-165,168-181
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Jobs.swift
+  s_5a46e14ff8c4eb::t_024af2b4730d6d 1-73
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Output.swift
+  s_5a46e14ff8c4eb::t_38ac8ad67bcced 12-13,15-16,18-28,42-45,47,49-61,64,71-73
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Wire.swift
+  s_5a46e14ff8c4eb::t_c4e2699ac019ca 1-300
+sidecars/acta-mac/Sources/ActaMacCore/Transcription/Transcription.swift
+  s_5a46e14ff8c4eb::t_775a70d5d0ce2b 1-11,13-14,17-488
+sidecars/acta-mac/Sources/acta-mac/main.swift
+  s_5a46e14ff8c4eb::t_58a1b38e72b9a6 9-11,22,41
+sidecars/acta-mac/Tests/ActaMacCoreTests/DetectionTests.swift
+  s_5a46e14ff8c4eb::t_3be322cfe97c5c 1-92
+sidecars/acta-mac/Tests/ActaMacCoreTests/TeamsAXTests.swift
+  s_5a46e14ff8c4eb::t_f766d0c34e58cc 1-84
+sidecars/acta-mac/Tests/ActaMacCoreTests/TranscriptionTests.swift
+  s_5a46e14ff8c4eb::t_1c99d6e7dd1af1 1-83
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "21ceca70bec5dec066ed1412656bf7105b7614ea",
+  "prompts": {},
+  "sessions": {
+    "s_5a46e14ff8c4eb": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-acab79054c7cf4d97",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
