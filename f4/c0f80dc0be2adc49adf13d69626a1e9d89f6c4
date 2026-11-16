@@ -1,0 +1,37 @@
+apps/desktop/src/api/demo.ts
+  s_8eb0f68c1f71c0::t_6899b56065d8e6 6,200-207,287-294
+apps/desktop/src/api/index.ts
+  s_8eb0f68c1f71c0::t_149a7dd58612ec 38-40
+apps/desktop/src/app/App.tsx
+  s_8eb0f68c1f71c0::t_e2b731b46a99c4 7,9,22-36,75,77-84
+apps/desktop/src/features/onboarding/AiStep.tsx
+  s_8eb0f68c1f71c0::t_731055543144ad 1-217
+apps/desktop/src/features/onboarding/Onboarding.test.tsx
+  s_8eb0f68c1f71c0::t_04fbd0fce0de99 1-215
+apps/desktop/src/features/onboarding/Onboarding.tsx
+  s_8eb0f68c1f71c0::t_c67d07ed36c225 1-216
+apps/desktop/src/features/onboarding/aiChoice.test.ts
+  s_8eb0f68c1f71c0::t_214ef6d4860e31 1-69
+apps/desktop/src/features/onboarding/aiChoice.ts
+  s_8eb0f68c1f71c0::t_d2d6151e2bd232 1-103
+apps/desktop/src/features/onboarding/steps.tsx
+  s_8eb0f68c1f71c0::t_43ccbcfe1ad5ee 1-254
+apps/desktop/src/features/settings/GeneralSections.tsx
+  s_8eb0f68c1f71c0::t_6b3112fba4764a 23,26,67-76
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f4c0f80dc0be2adc49adf13d69626a1e9d89f6c4",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
