@@ -1,0 +1,23 @@
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_6381b8f11741f0 632-769
+docs/01-arquitectura.md
+  s_8eb0f68c1f71c0::t_245b45dce30330 10,29,286,322-323,372-373,377,393-394,429-432,449,532-600
+docs/04-informe-pruebas.md
+  s_8eb0f68c1f71c0::t_b48cf4eadd0246 25,66-93,133-137
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1488c4cbdc9e2e461499787d77cd0357e354c054",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
