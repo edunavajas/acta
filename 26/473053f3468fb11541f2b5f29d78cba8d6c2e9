@@ -1,0 +1,23 @@
+.gitignore
+  s_8eb0f68c1f71c0::t_a25acf280201de 1-8
+docs/00-analisis.md
+  s_8eb0f68c1f71c0::t_7ea6f80e6097fa 1-76
+docs/referencia-meetily-zombis.md
+  s_8eb0f68c1f71c0::t_d783453119281c 1-96
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "26473053f3468fb11541f2b5f29d78cba8d6c2e9",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
