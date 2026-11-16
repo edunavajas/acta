@@ -1,0 +1,21 @@
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_5744d7c2421c30 42,44
+apps/desktop/src-tauri/src/system.rs
+  s_8eb0f68c1f71c0::t_dd924194db1e66 24-35,52-60
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "5067819118035d69941bba332e19b9ef95f3a08c",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
