@@ -1,0 +1,27 @@
+crates/acta-llm/prompts/minutes.system.md
+  s_8eb0f68c1f71c0::t_39805a10f9701f 15-16
+crates/acta-llm/src/minutes/generator.rs
+  s_8eb0f68c1f71c0::t_60ad17f57bd1f3 5,61-62,156-160,292-319,351-353
+crates/acta-llm/src/minutes/meta.rs
+  s_8eb0f68c1f71c0::t_2babe2aee76007 1-132
+crates/acta-llm/src/minutes/mod.rs
+  s_8eb0f68c1f71c0::t_9b9f3aa46b26fc 12
+crates/acta-llm/tests/fixtures/minutes_meta_commentary.json
+  s_8eb0f68c1f71c0::t_d578314b6404cb 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1e2a39e048a3e3904eaf86c396df0c813b5b7f03",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
