@@ -1,0 +1,51 @@
+apps/desktop/src/app/styles.css
+  s_8eb0f68c1f71c0::t_00e1f44e27e370 4,10-11
+apps/desktop/src/features/meetings/MeetingList.test.tsx
+  s_8eb0f68c1f71c0::t_66f4fbd46a7d81 65,154
+apps/desktop/src/features/meetings/ProcessingStatus.tsx
+  s_8eb0f68c1f71c0::t_3b5ec45c32db37 10
+apps/desktop/src/features/providers/LocalModels.tsx
+  s_8eb0f68c1f71c0::t_a26281f800ac7e 1-135
+apps/desktop/src/features/providers/NanIntro.tsx
+  s_8eb0f68c1f71c0::t_ae32de1f73bffc 1-36
+apps/desktop/src/features/providers/PresetGallery.tsx
+  s_8eb0f68c1f71c0::t_040bbef4142ae0 1-35
+apps/desktop/src/features/providers/Providers.test.tsx
+  s_8eb0f68c1f71c0::t_a54ab473bc8291 1-166
+apps/desktop/src/features/providers/fields.tsx
+  s_8eb0f68c1f71c0::t_478d0fa2760809 1-133
+apps/desktop/src/features/providers/presets.test.ts
+  s_8eb0f68c1f71c0::t_932dfc03866c2e 1-79
+apps/desktop/src/features/providers/presets.ts
+  s_8eb0f68c1f71c0::t_1c92f5efee5175 1-119
+apps/desktop/src/features/settings/ModelsSection.tsx
+  s_8eb0f68c1f71c0::t_2d1e9283bcf465 7,9,12,17,23,37,43,47
+apps/desktop/src/features/settings/PermissionsSection.tsx
+  s_8eb0f68c1f71c0::t_67ba858dab2da2 8,15,22,29,36,42,62,64,68-69,72,78-79
+apps/desktop/src/features/settings/ProvidersSection.tsx
+  s_8eb0f68c1f71c0::t_2344fdc47fda36 1,3-11,73-75,77-78,80-81,85-91,93,95-101,103,111,118-145,166-175,179-180,184,191,197,223,228,238-239,241-243,257-273,275-276,305-326,330
+apps/desktop/src/features/settings/Settings.test.tsx
+  s_8eb0f68c1f71c0::t_31372d1335a2ef 220,225,230,234,242,244,275
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_8eb0f68c1f71c0::t_5e24717974d680 10-11,28,110,148
+apps/desktop/src/styles/onboarding.css
+  s_8eb0f68c1f71c0::t_1ca4f15a7f8071 1-82
+apps/desktop/src/styles/providers.css
+  s_8eb0f68c1f71c0::t_ba28484e4a0734 1-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "ce576318b9c433b1cc047fbc9e294a701e4ba25f",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
