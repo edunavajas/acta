@@ -1,0 +1,57 @@
+apps/desktop/src/app/App.tsx
+  s_8eb0f68c1f71c0::t_7df5fdf67a1eb1 21,47-50,78,90
+apps/desktop/src/app/CommandPalette.tsx
+  s_8eb0f68c1f71c0::t_a7ef28361d0f10 1-4,17-18,25,36,41-43,50-51,57-76,87,92,94-105,122,140-146,170-173,179,190,197-199
+apps/desktop/src/app/styles.css
+  s_8eb0f68c1f71c0::t_8f81c87083ff60 9
+apps/desktop/src/features/cleanup/Cleanup.test.tsx
+  s_8eb0f68c1f71c0::t_6367b93ac48951 1-204
+apps/desktop/src/features/cleanup/CleanupBanner.tsx
+  s_8eb0f68c1f71c0::t_4b7b76fb5cee30 1-34
+apps/desktop/src/features/cleanup/CleanupSheet.tsx
+  s_8eb0f68c1f71c0::t_329d2b7c5d08b0 1-194
+apps/desktop/src/features/cleanup/reasons.ts
+  s_8eb0f68c1f71c0::t_68769f4ec9af4d 1-44
+apps/desktop/src/features/cleanup/useCleanup.ts
+  s_8eb0f68c1f71c0::t_ab55fd40f49389 1-57
+apps/desktop/src/features/groups/GroupDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_a243f25fcc8db4 5,13,18,54,90-98
+apps/desktop/src/features/groups/GroupsContainer.tsx
+  s_8eb0f68c1f71c0::t_b21026f7e419ea 9,13-18,39,51
+apps/desktop/src/features/groups/GroupsView.tsx
+  s_8eb0f68c1f71c0::t_9de2ffda75b612 2-3,13,44-46,87-98,100-101,112,116
+apps/desktop/src/features/meetings/Favourites.test.tsx
+  s_8eb0f68c1f71c0::t_0c1f5d349357d8 1-210
+apps/desktop/src/features/meetings/MeetingDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_7269319a8c1114 6,133
+apps/desktop/src/features/meetings/MeetingList.tsx
+  s_8eb0f68c1f71c0::t_033e1e85f64e79 1-2,22-23,29-30,34-35,52,68,80-83,89-92,124
+apps/desktop/src/features/meetings/MeetingListContainer.tsx
+  s_8eb0f68c1f71c0::t_81f494bf7c58b7 4-6,31-32,40,46-47,51,60,71-76,78,85-92,102-115
+apps/desktop/src/features/meetings/MeetingRow.tsx
+  s_8eb0f68c1f71c0::t_5eb7b784a29cbf 4,12-13,18,20,32-37
+apps/desktop/src/features/settings/GeneralSections.tsx
+  s_8eb0f68c1f71c0::t_5b5679aeb10591 16-23,26-27,36-37,78-97
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_8eb0f68c1f71c0::t_267718e84b073a 144-145
+apps/desktop/src/shared/ui/Star.tsx
+  s_8eb0f68c1f71c0::t_ed589e51940485 1-36
+apps/desktop/src/styles/library.css
+  s_8eb0f68c1f71c0::t_0a7a1bed5f0f79 1-102
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "67fc1918d817bfba8b43fb72a97dabb7fc04b2c5",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
