@@ -1,0 +1,27 @@
+apps/desktop/src/features/overlay/Overlay.test.tsx
+  s_8eb0f68c1f71c0::t_d89341321b60f7 162-198
+apps/desktop/src/features/overlay/OverlayContainer.tsx
+  s_8eb0f68c1f71c0::t_4df257dfeb0014 67
+apps/desktop/src/features/overlay/OverlayPill.tsx
+  s_8eb0f68c1f71c0::t_a55e0c48fb8fc1 1,4,14-15,36-49,54-58,60,74,78-84,88,96-99,101,104,115,121-122,127-134,136,138-155,159,161-175,182
+apps/desktop/src/features/overlay/overlay.css
+  s_8eb0f68c1f71c0::t_84a4276fc6e712 1-7,9-24,26-109
+apps/desktop/src/overlay/main.tsx
+  s_8eb0f68c1f71c0::t_4906c5ae0b5a7c 3,6-10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "108179924f0bc836837480da429efb5824e60803",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
