@@ -1,0 +1,29 @@
+apps/desktop/src/app/styles.css
+  s_8eb0f68c1f71c0::t_1f9d234d0c8968 15
+apps/desktop/src/features/overlay/OverlayContainer.tsx
+  s_cbfa80c02d1f05::t_e79501092a8ad5 6
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f853d6d7f6398b55bc6d24d408cefb23295e0b1a",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_cbfa80c02d1f05": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c6782857-caf4-4d2e-a297-9a4a638ff1d1",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
