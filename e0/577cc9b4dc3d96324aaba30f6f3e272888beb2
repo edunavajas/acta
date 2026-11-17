@@ -1,0 +1,41 @@
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_d0a3b53d07f3f9 414,516,745
+apps/desktop/src/api/contract.ts
+  s_8eb0f68c1f71c0::t_5905ac9c859cf2 72-78,93-95,111-113,138-141,163-170,201-202
+apps/desktop/src/api/live.test.ts
+  s_8eb0f68c1f71c0::t_185f0d458a0c62 1-92
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_8c789a0dc2b650 10-11,39-42,45-78,185,204,347-348,485-492,589-609,707-718,814-824
+apps/desktop/src/api/tauri.ts
+  s_8eb0f68c1f71c0::t_93b45b0a4ba7d7 25-32,50-54,76
+apps/desktop/src/api/types.ts
+  s_8eb0f68c1f71c0::t_82e2e4b2a37f2a 157-255,794-795
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_d6390b83a61f71 61-63,137-143
+crates/acta-core/src/api/events.rs
+  s_8eb0f68c1f71c0::t_94e0dc2fd94f3e 16-17,35-40
+crates/acta-core/src/api/live.rs
+  s_8eb0f68c1f71c0::t_46ab4eeb1352e0 1-160
+crates/acta-core/src/api/mod.rs
+  s_8eb0f68c1f71c0::t_ce44d67c74be57 15,19
+crates/acta-core/src/processing/model.rs
+  s_8eb0f68c1f71c0::t_1320c03e039553 52-64
+crates/acta-core/src/settings/mod.rs
+  s_8eb0f68c1f71c0::t_3bbc8c01e25d25 30-40,114-115,157,236,294-308
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "e0577cc9b4dc3d96324aaba30f6f3e272888beb2",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
