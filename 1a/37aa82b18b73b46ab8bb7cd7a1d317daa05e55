@@ -1,0 +1,23 @@
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_962be4eff93ade 770-826
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_17a185a9dd0738 492,823-845
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_ba25b94f13f7d2 455-475
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1a37aa82b18b73b46ab8bb7cd7a1d317daa05e55",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
