@@ -1,0 +1,14 @@
+crates/acta-audio/tests/support/mod.rs
+  h_6241add5026f5b 280-281
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "977a29beb88194642f3abf896128d04b026c6b6a",
+  "prompts": {},
+  "humans": {
+    "h_6241add5026f5b": {
+      "author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
