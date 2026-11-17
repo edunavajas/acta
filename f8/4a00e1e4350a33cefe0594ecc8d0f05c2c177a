@@ -1,0 +1,29 @@
+apps/desktop/src/shared/format.ts
+  s_8eb0f68c1f71c0::t_1cba476e06adb9 154,157-158
+apps/desktop/src/shared/ui/AppListEditor.test.tsx
+  s_8eb0f68c1f71c0::t_e8a391611966fe 1-151
+apps/desktop/src/shared/ui/AppListEditor.tsx
+  s_8eb0f68c1f71c0::t_cbfee171c4b65f 1-322
+apps/desktop/src/shared/ui/ChipsInput.test.tsx
+  s_8eb0f68c1f71c0::t_cc417816e5ef0e 1-72
+apps/desktop/src/shared/ui/ChipsInput.tsx
+  s_8eb0f68c1f71c0::t_1327876fc60752 1-71
+apps/desktop/src/styles/settings.css
+  s_8eb0f68c1f71c0::t_282c4aa0c4784e 35-77,112-115
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f84a00e1e4350a33cefe0594ecc8d0f05c2c177a",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
