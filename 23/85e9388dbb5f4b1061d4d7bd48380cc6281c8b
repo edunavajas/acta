@@ -1,0 +1,41 @@
+apps/desktop/src/api/contract.ts
+  s_8eb0f68c1f71c0::t_2e1ccc228af7ab 79-80,173-174,191-192
+apps/desktop/src/api/live.test.ts
+  s_8eb0f68c1f71c0::t_0f65ba148b8424 85-95
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_b7f0cbb19b68e6 43-44,351,598-601,683-685
+apps/desktop/src/api/tauri.ts
+  s_8eb0f68c1f71c0::t_e0b108e2caf6d9 52,67
+apps/desktop/src/api/types.ts
+  s_8eb0f68c1f71c0::t_0c678d1952fdd1 403-405
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_f38320f2d59492 144-145
+crates/acta-core/src/api/live.rs
+  s_8eb0f68c1f71c0::t_087e74478f00be 12-13,160
+crates/acta-core/src/library/model.rs
+  s_8eb0f68c1f71c0::t_89ccf290f14c2f 39-43
+crates/acta-store/migrations/0005_error_provider.sql
+  s_8eb0f68c1f71c0::t_2be022ee4cf74e 1-3
+crates/acta-store/src/db/mod.rs
+  s_8eb0f68c1f71c0::t_43ccdef46625d6 19
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_0a50a4848bfb5b 23,43-44,442,446-450,854-864
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_627f08ecf13315 390-402
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "2385e9388dbb5f4b1061d4d7bd48380cc6281c8b",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
