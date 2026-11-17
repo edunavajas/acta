@@ -1,0 +1,21 @@
+README.en.md
+  s_342406bb9bf8e9::t_9bf96f57d5d2b3 1-166
+README.md
+  s_342406bb9bf8e9::t_beeffec0209aa7 1-2,19-25,67-74,76-89,109,111,164
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0e56816e6cb9d2cbaec1f49dcc408e4d7ef35af6",
+  "prompts": {},
+  "sessions": {
+    "s_342406bb9bf8e9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d744ec92-7cef-4386-8823-1c818e9ede51",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
