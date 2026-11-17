@@ -1,0 +1,31 @@
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_0751c0a8de804e 1036-1044
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_6776c624fb7415 174-195
+apps/desktop/src-tauri/src/system.rs
+  s_8eb0f68c1f71c0::t_66b4e46074fb7e 24-67,165-190
+crates/acta-core/src/recording/health.rs
+  s_8eb0f68c1f71c0::t_82c1557a7ed49e 201-210
+crates/acta-core/tests/autostop_health.rs
+  s_8eb0f68c1f71c0::t_8ad65db269db56 387-403
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ScreenShareCapture.swift
+  s_8eb0f68c1f71c0::t_0d1e52bb6a646a 152-207,227-233,235-237,242-249,253-266,290-291,294-296,298-299,320-321,324-327,343-349,363-386,480-481
+sidecars/acta-mac/Tests/ActaMacCoreTests/ScreenTests.swift
+  s_8eb0f68c1f71c0::t_b67ae821ad9123 84-118
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "4c33397891875edd8da4a7134e2f4883f59c19d1",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
