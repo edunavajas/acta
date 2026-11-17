@@ -1,0 +1,29 @@
+crates/acta-core/src/api/commands.rs
+  s_8eb0f68c1f71c0::t_9c5ce4eaf95163 37,63-64,147-149
+crates/acta-core/src/api/mod.rs
+  s_8eb0f68c1f71c0::t_743fdc1a346f98 16,21
+crates/acta-core/src/api/system.rs
+  s_8eb0f68c1f71c0::t_574a4841e5aba9 1-124
+crates/acta-core/src/layout.rs
+  s_8eb0f68c1f71c0::t_dc08aaa6fcad53 11,68-71,172-176
+crates/acta-core/src/settings/language.rs
+  s_8eb0f68c1f71c0::t_e3ec393493aa9b 1-74
+crates/acta-core/src/settings/mod.rs
+  s_8eb0f68c1f71c0::t_92ef8d4aa5123a 7,11-12,112-115,147-148,236,244-245,248,263-264,275-367
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "29dfdc051a8a9672c9480c71ef097e7075079681",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
