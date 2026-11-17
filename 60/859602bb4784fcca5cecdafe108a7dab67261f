@@ -1,0 +1,14 @@
+Casks/acta.rb
+  h_6241add5026f5b 1-33
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "60859602bb4784fcca5cecdafe108a7dab67261f",
+  "prompts": {},
+  "humans": {
+    "h_6241add5026f5b": {
+      "author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
