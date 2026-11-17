@@ -1,0 +1,29 @@
+apps/desktop/src/features/groups/GroupPicker.tsx
+  s_8eb0f68c1f71c0::t_b403cc3bf3583e 6,25-30,70,78-85
+apps/desktop/src/features/groups/Groups.test.tsx
+  s_8eb0f68c1f71c0::t_8401c3a65761f7 120-317
+apps/desktop/src/features/groups/GroupsContainer.tsx
+  s_8eb0f68c1f71c0::t_165e5add2529d1 5,9-14,20-21,29-33,36-86,97-103
+apps/desktop/src/features/groups/GroupsView.tsx
+  s_8eb0f68c1f71c0::t_dc297c441fa219 3,7,19-65,166-175,177-183
+apps/desktop/src/features/groups/MeetingPicker.tsx
+  s_8eb0f68c1f71c0::t_a712e80b30592c 7,25,40,93,96-102
+apps/desktop/src/styles/collab.css
+  s_8eb0f68c1f71c0::t_cb23b3ef5f493c 18-22
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "1028e1694a9951bed802cd67efd8676a54d8d3d0",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
