@@ -1,0 +1,31 @@
+crates/acta-mac-bridge/src/protocol.rs
+  s_8eb0f68c1f71c0::t_986846dfa2fdd5 97-137
+crates/acta-mac-bridge/tests/client.rs
+  s_8eb0f68c1f71c0::t_2bf8b140270a2c 272-292
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Dispatcher.swift
+  s_8eb0f68c1f71c0::t_bcfa467fad435f 170-173
+sidecars/acta-mac/Sources/ActaMacCore/System/InstalledApps.swift
+  s_8eb0f68c1f71c0::t_fb0407731ab123 1-157
+sidecars/acta-mac/Sources/ActaMacProtocol/Protocol.swift
+  s_8eb0f68c1f71c0::t_ad7b7d629fd37c 319-367,469-470
+sidecars/acta-mac/Tests/ActaMacCoreTests/SystemTests.swift
+  s_8eb0f68c1f71c0::t_c659507033a19a 1-101
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_8eb0f68c1f71c0::t_7ee6b2eef8c539 45-71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "3889641b5547f14886b151d0a16d76b60266e68f",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
