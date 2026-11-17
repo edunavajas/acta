@@ -1,0 +1,23 @@
+.github/workflows/ci.yml
+  s_342406bb9bf8e9::t_92e4b2e56e8d63 18
+.github/workflows/release.yml
+  s_342406bb9bf8e9::t_eb052b2014ab10 19
+docs/RELEASING.md
+  s_342406bb9bf8e9::t_df44df15cb10c0 67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "8d9e45bcbe72e20283b927d98b4a7cae9921944f",
+  "prompts": {},
+  "sessions": {
+    "s_342406bb9bf8e9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d744ec92-7cef-4386-8823-1c818e9ede51",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
