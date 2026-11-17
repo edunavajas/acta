@@ -1,0 +1,27 @@
+Cargo.toml
+  s_88937bb338b062::t_5da65f25fe45aa 24
+LICENSE
+  s_88937bb338b062::t_328286c1380f90 1-675
+README.md
+  s_88937bb338b062::t_f0644fdc508918 136-141
+apps/desktop/package.json
+  s_88937bb338b062::t_3a923656ce079a 4
+docs/RELEASING.md
+  s_88937bb338b062::t_87bef6d413b991 7
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0aa61870dc11ef841dbaa495decbcde520d29785",
+  "prompts": {},
+  "sessions": {
+    "s_88937bb338b062": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "175c5126-cb28-4b5c-97dc-76d9d48ff457",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
