@@ -1,0 +1,27 @@
+docs/01-arquitectura.md
+  s_88937bb338b062::t_5e025a17214aa0 31
+docs/03-instalacion.md
+  s_88937bb338b062::t_017e3c222a0424 1,35,79-81
+scripts/guards.sh
+  s_88937bb338b062::t_839f233dacd692 2
+scripts/install-mac.sh
+  s_88937bb338b062::t_5519c9164ca5ee 2
+scripts/verify.sh
+  s_88937bb338b062::t_aae6babcd95d16 2,10
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d042429a632064bdec90361691db081b9248972c",
+  "prompts": {},
+  "sessions": {
+    "s_88937bb338b062": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "175c5126-cb28-4b5c-97dc-76d9d48ff457",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
