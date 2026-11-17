@@ -1,0 +1,29 @@
+apps/desktop/src/api/demo.ts
+  s_8eb0f68c1f71c0::t_a714a3c951fff2 325-342,374-382
+apps/desktop/src/features/groups/GroupDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_e630b2e5d84bf0 4,36-54,70,72-74
+apps/desktop/src/features/groups/Groups.test.tsx
+  s_8eb0f68c1f71c0::t_c8258c5a6bf256 64-76
+apps/desktop/src/features/settings/GeneralSections.tsx
+  s_8eb0f68c1f71c0::t_637846e04be3e8 29-30,38,69-79
+apps/desktop/src/features/settings/Settings.test.tsx
+  s_8eb0f68c1f71c0::t_4552a77d0e273c 78-86
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_8eb0f68c1f71c0::t_21c3362df8a784 144-145
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f733acacd794a56a9b5a3a2b2bc0671dc4004239",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
