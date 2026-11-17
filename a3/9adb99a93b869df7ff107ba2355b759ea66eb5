@@ -1,0 +1,23 @@
+.github/workflows/release.yml
+  s_88937bb338b062::t_30b5ffb4bf3cbb 3-4,122-126,130-133,135-140
+README.md
+  s_88937bb338b062::t_4437c85fd5599e 60-65
+docs/RELEASING.md
+  s_88937bb338b062::t_c64b330a5d93d6 10,30,37-39,42-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a39adb99a93b869df7ff107ba2355b759ea66eb5",
+  "prompts": {},
+  "sessions": {
+    "s_88937bb338b062": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "175c5126-cb28-4b5c-97dc-76d9d48ff457",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
