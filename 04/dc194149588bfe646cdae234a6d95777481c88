@@ -1,0 +1,29 @@
+apps/desktop/src/features/transcript/Transcript.test.tsx
+  s_8eb0f68c1f71c0::t_d42b4ebda68271 97-171
+apps/desktop/src/features/transcript/TranscriptTab.tsx
+  s_8eb0f68c1f71c0::t_48ad40a5a4a2c5 2,5-7,16-17,54,56-58,67-70,117,128-130
+apps/desktop/src/shared/textSearch.tsx
+  s_8eb0f68c1f71c0::t_42632c1b4f511f 47-48,55
+apps/desktop/src/shared/ui/FindBar.tsx
+  s_8eb0f68c1f71c0::t_7124fcd1ca4ef3 1-66
+apps/desktop/src/shared/useLineSearch.ts
+  s_8eb0f68c1f71c0::t_48ff10cc1b1428 1-124
+apps/desktop/src/styles/detail.css
+  s_8eb0f68c1f71c0::t_5b9b357987c6c1 158-173
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "04dc194149588bfe646cdae234a6d95777481c88",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
