@@ -1,0 +1,23 @@
+crates/acta-audio/src/processing/mod.rs
+  s_8eb0f68c1f71c0::t_98551e12b853be 203-204,272-273,347
+crates/acta-audio/src/supervisor/actor.rs
+  s_8eb0f68c1f71c0::t_1f54cec01b9f9a 641,763,776,879
+crates/acta-audio/tests/pipeline.rs
+  s_8eb0f68c1f71c0::t_9473156b3ea1f4 375-401
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "6ae5528b02ea5769d44711e717fef1602098cd80",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
