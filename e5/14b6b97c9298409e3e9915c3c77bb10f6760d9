@@ -1,0 +1,81 @@
+apps/desktop/src/assets/brand/acta-icon.svg
+  s_88937bb338b062::t_9191b9d459d332 1-4
+apps/desktop/src/features/overlay/overlay.css
+  s_88937bb338b062::t_b143379ae6dcfb 14-15
+apps/desktop/src/shared/brand/ActaMark.tsx
+  s_88937bb338b062::t_9aa8b696d4c964 1,6,8-13
+apps/desktop/src/styles/brand.css
+  s_88937bb338b062::t_3b738d1555d01f 21
+apps/desktop/src/styles/tokens.css
+  s_88937bb338b062::t_753b8ef9aaf24c 51-55,114-118
+docs/brand/GUIA-DE-USO.md
+  s_88937bb338b062::t_5d3b6e6b979834 1-52
+docs/brand/acta-app-icon.svg
+  s_88937bb338b062::t_45a6f7229a7876 1-5
+docs/brand/acta-favicon-tile.svg
+  s_88937bb338b062::t_9fd1ec8b61fa5b 1-5
+docs/brand/acta-horizontal-reversed.svg
+  s_88937bb338b062::t_72ad47f66961c3 1-10
+docs/brand/acta-horizontal.svg
+  s_88937bb338b062::t_fce84d00bcaf37 1-10
+docs/brand/acta-stacked-reversed.svg
+  s_88937bb338b062::t_66de5c573cb71e 1-10
+docs/brand/acta-stacked.svg
+  s_88937bb338b062::t_5cd947f749c645 1-10
+docs/brand/acta-symbol-reversed.svg
+  s_88937bb338b062::t_9b5a521a228ac9 1-7
+docs/brand/acta-symbol-small-reversed.svg
+  s_88937bb338b062::t_61ddfee94ffeca 1-7
+docs/brand/acta-symbol-small.svg
+  s_88937bb338b062::t_8ec35c9049a7bf 1-7
+docs/brand/acta-symbol.svg
+  s_88937bb338b062::t_fd6ba4d671cdf2 1-7
+docs/brand/acta-wordmark.svg
+  s_88937bb338b062::t_b422bf07aede07 1-9
+docs/brand/mono/acta-horizontal-black.svg
+  s_88937bb338b062::t_871690fc07e851 1-10
+docs/brand/mono/acta-horizontal-mono-3b36c9.svg
+  s_88937bb338b062::t_a8b628f5bbc321 1-10
+docs/brand/mono/acta-horizontal-white.svg
+  s_88937bb338b062::t_ff95ef424b690d 1-10
+docs/brand/mono/acta-stacked-black.svg
+  s_88937bb338b062::t_dc09fb338c644f 1-10
+docs/brand/mono/acta-stacked-mono-3b36c9.svg
+  s_88937bb338b062::t_0cd82f7033e4db 1-10
+docs/brand/mono/acta-stacked-white.svg
+  s_88937bb338b062::t_b9986cdd108217 1-10
+docs/brand/mono/acta-symbol-black.svg
+  s_88937bb338b062::t_41da08a196f11e 1-7
+docs/brand/mono/acta-symbol-mono-3b36c9.svg
+  s_88937bb338b062::t_73b37ad455b382 1-7
+docs/brand/mono/acta-symbol-white.svg
+  s_88937bb338b062::t_ccc906a73540fa 1-7
+docs/brand/presentation-spec.json
+  s_88937bb338b062::t_7f39de61b1774b 1-33
+docs/brand/presentation.html
+  s_88937bb338b062::t_25d62b9433d6a2 1-86
+docs/brand/source/gen.py
+  s_88937bb338b062::t_62a5a980d51574 1-113
+docs/brand/web/favicon.svg
+  s_88937bb338b062::t_62d957eeb67f6d 1-5
+docs/brand/web/head-snippet.html
+  s_88937bb338b062::t_28cba12e302b26 1-5
+docs/brand/web/site.webmanifest
+  s_88937bb338b062::t_85dee0dd752765 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "e514b6b97c9298409e3e9915c3c77bb10f6760d9",
+  "prompts": {},
+  "sessions": {
+    "s_88937bb338b062": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "175c5126-cb28-4b5c-97dc-76d9d48ff457",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
