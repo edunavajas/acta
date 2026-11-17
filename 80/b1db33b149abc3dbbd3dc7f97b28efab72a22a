@@ -1,0 +1,51 @@
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_c2abacb5e184e6 68-69,119,128-129,152,717-805
+apps/desktop/src-tauri/src/commands.rs
+  s_8eb0f68c1f71c0::t_9cd66828e14a54 61-63
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_4759e4d66b111b 215-216
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_a2d76479355b38 46-52,508,527,529
+apps/desktop/src-tauri/tests/wave4.rs
+  s_8eb0f68c1f71c0::t_322e7a2c27c613 73,289-354
+crates/acta-audio/src/lib.rs
+  s_8eb0f68c1f71c0::t_7bbe50529c8b7f 24
+crates/acta-audio/src/live/mod.rs
+  s_8eb0f68c1f71c0::t_2d7f5ff9cc8406 1-540
+crates/acta-audio/src/processing/mod.rs
+  s_8eb0f68c1f71c0::t_bea4141fc868fd 206-215,396,407
+crates/acta-audio/src/supervisor/actor.rs
+  s_8eb0f68c1f71c0::t_99d91db58fd7b2 325-329,666-671,762-773
+crates/acta-audio/src/supervisor/mod.rs
+  s_8eb0f68c1f71c0::t_d85a5356c56e2e 32,56-57,60-63,78-81,125
+crates/acta-audio/src/writer/mod.rs
+  s_8eb0f68c1f71c0::t_ba8b0258c76ced 103-104,168,172-177,279-281
+crates/acta-audio/tests/pipeline.rs
+  s_8eb0f68c1f71c0::t_fab8ba849c2fc7 340-374
+crates/acta-audio/tests/support/mod.rs
+  s_8eb0f68c1f71c0::t_9b5d83b1c0e120 418-419
+crates/acta-audio/tests/writer.rs
+  s_8eb0f68c1f71c0::t_73bbeef7d24ac4 630-647
+crates/acta-core/src/layout.rs
+  s_8eb0f68c1f71c0::t_c32f2b1bd5154e 124-132
+crates/acta-llm/prompts/live_ask.system.md
+  s_8eb0f68c1f71c0::t_bfec01f2012b1a 1-3
+crates/acta-llm/src/lib.rs
+  s_8eb0f68c1f71c0::t_159c35c5a39290 12,17,41
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "80b1db33b149abc3dbbd3dc7f97b28efab72a22a",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
