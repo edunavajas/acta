@@ -1,0 +1,27 @@
+crates/acta-llm/src/local/provider.rs
+  s_8eb0f68c1f71c0::t_3c436c8f664cc6 47-48
+crates/acta-llm/src/providers/claude.rs
+  s_8eb0f68c1f71c0::t_cc4c66786bc7b6 80-85,216-221
+crates/acta-llm/src/providers/openai.rs
+  s_8eb0f68c1f71c0::t_51ccff18099a68 13-21,30,42,46-52,67,120-162,166,169,191,304-342
+crates/acta-llm/src/structured.rs
+  s_8eb0f68c1f71c0::t_e8f20910e83def 64-68,84-98,224-238
+crates/acta-llm/tests/real_cli.rs
+  s_8eb0f68c1f71c0::t_56028949df677a 122-150
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "c6d3ce961568fb83312405e245e8c1873be82929",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
