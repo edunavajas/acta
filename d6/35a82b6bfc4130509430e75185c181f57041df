@@ -1,0 +1,39 @@
+apps/desktop/src/app/styles.css
+  s_8eb0f68c1f71c0::t_70be041a2e0bbc 8
+apps/desktop/src/features/meetings/MeetingDetailContainer.tsx
+  s_8eb0f68c1f71c0::t_7b2a7a2d2f66fb 290
+apps/desktop/src/features/timeline/Timeline.test.tsx
+  s_8eb0f68c1f71c0::t_430817b022c7f2 1-2,4-5,15-39,43,48,51-52,60-309
+apps/desktop/src/features/timeline/TimelineMarkers.tsx
+  s_8eb0f68c1f71c0::t_1f6cf595e72d71 1-257
+apps/desktop/src/features/timeline/TimelineRuler.tsx
+  s_8eb0f68c1f71c0::t_a642f61cc4d720 1-100
+apps/desktop/src/features/timeline/TimelineTab.tsx
+  s_8eb0f68c1f71c0::t_d9e08658ed4abd 2-4,6-8,10-21,26,28-30,34-35,38-79,81-99,102-110,113,115-123,125-126,132-170,172,174,177-217,223-263
+apps/desktop/src/features/timeline/model.test.ts
+  s_8eb0f68c1f71c0::t_000a060bfe625c 1-80
+apps/desktop/src/features/timeline/model.ts
+  s_8eb0f68c1f71c0::t_03db784f7295db 1-113
+apps/desktop/src/features/timeline/node-fs.d.ts
+  s_8eb0f68c1f71c0::t_ca91b4b8570249 1-4
+apps/desktop/src/styles/detail.css
+  s_8eb0f68c1f71c0::t_0910097b574691 110
+apps/desktop/src/styles/timeline.css
+  s_8eb0f68c1f71c0::t_e1fd1ddfc56e79 1-140
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "d635a82b6bfc4130509430e75185c181f57041df",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
