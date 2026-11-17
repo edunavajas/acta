@@ -1,0 +1,33 @@
+apps/desktop/src/features/onboarding/AboutStep.tsx
+  s_8eb0f68c1f71c0::t_c18f0fcc2d6c64 1-78
+apps/desktop/src/features/onboarding/AiStep.tsx
+  s_8eb0f68c1f71c0::t_5f2a8d307326e7 23-24,76-100,108,119,131,164,230-235
+apps/desktop/src/features/onboarding/Onboarding.test.tsx
+  s_8eb0f68c1f71c0::t_4f179cb8113beb 5-6,9,13,15,22,28,44,67,78,102,115,121-124,126-154,159,172,182,203,216-219,227,242-245,255-402,405
+apps/desktop/src/features/onboarding/Onboarding.tsx
+  s_8eb0f68c1f71c0::t_f1d67d44c53f5e 11,16-21,30-33,35,43-44,50,56-84,86-87,89,93,117-137,144,185-196,224-234,245,248-249
+apps/desktop/src/features/onboarding/aiChoice.test.ts
+  s_8eb0f68c1f71c0::t_c7f6e0cd7bed97 3,17-26
+apps/desktop/src/features/onboarding/steps.tsx
+  s_8eb0f68c1f71c0::t_e494ab736cf150 55-56,59,101-107,120-122,125,135-146
+apps/desktop/src/features/providers/BuiltIn.test.tsx
+  s_8eb0f68c1f71c0::t_8aae602e4ef24b 6,172,176-177
+apps/desktop/src/styles/onboarding.css
+  s_8eb0f68c1f71c0::t_1dada57f8906ac 29-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "f17354632f3d9309fd36414c2aa1d4e68261b9cf",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
