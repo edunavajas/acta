@@ -1,0 +1,25 @@
+apps/desktop/src/api/contract.ts
+  s_8eb0f68c1f71c0::t_f49d86ae56b822 81-83,193-194,233-236
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_8b8e9b3ea65315 45-50,358-368,622-623,674-675,694,723-728
+apps/desktop/src/api/tauri.ts
+  s_8eb0f68c1f71c0::t_7c23a845e72072 66,94-95
+apps/desktop/src/api/types.ts
+  s_8eb0f68c1f71c0::t_1197f4719fbf95 619-642
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "83eab0a92743152be37e62b87a811f542560aa5d",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
