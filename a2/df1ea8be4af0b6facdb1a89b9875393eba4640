@@ -1,0 +1,25 @@
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_28a057a4cd29ac 1019-1030
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_9b95f1f7bb34ee 127-130
+apps/desktop/src-tauri/tests/e2e_real.rs
+  s_8eb0f68c1f71c0::t_915a8e6f080906 513-524
+apps/desktop/src-tauri/tests/wave4.rs
+  s_8eb0f68c1f71c0::t_6f9d42abcb16ca 355-384
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a2df1ea8be4af0b6facdb1a89b9875393eba4640",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
