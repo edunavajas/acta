@@ -1,0 +1,59 @@
+apps/desktop/src/api/demo.ts
+  s_8eb0f68c1f71c0::t_bf6bae1f63cd72 6,210-217,219-222,313-314,318,321
+apps/desktop/src/api/mock.ts
+  s_8eb0f68c1f71c0::t_dabdfdba67d8ef 162-165,168,197,220-231,376
+apps/desktop/src/features/providers/BuiltInModels.tsx
+  s_8eb0f68c1f71c0::t_5aa0ef9eafa539 16-18,35-46,59-60,67,237-250
+apps/desktop/src/features/providers/LocalModels.tsx
+  s_8eb0f68c1f71c0::t_c824dafb279ff2 6,12,15,18-23,26,37,51-52,128,136-142
+apps/desktop/src/features/providers/Providers.test.tsx
+  s_8eb0f68c1f71c0::t_af0f2da3925d5e 117,166-208
+apps/desktop/src/features/providers/presets.test.ts
+  s_8eb0f68c1f71c0::t_e54d2fb5ae7748 9,62
+apps/desktop/src/features/providers/presets.ts
+  s_8eb0f68c1f71c0::t_5162d17822a590 13
+apps/desktop/src/features/settings/AboutSection.tsx
+  s_8eb0f68c1f71c0::t_ca13ad80a7c20d 18,30
+apps/desktop/src/features/settings/GeneralSections.tsx
+  s_8eb0f68c1f71c0::t_586feab76985f0 1-2,4-8,10,38-40,45,49-51,53-59,63-69,88-103,214-245,247-250,252-254,256-257,259-263,271-286,288-302,311-312,332
+apps/desktop/src/features/settings/ModelsSection.tsx
+  s_8eb0f68c1f71c0::t_319b0341d620ff 29-31,34,37-48
+apps/desktop/src/features/settings/PermissionsSection.tsx
+  s_8eb0f68c1f71c0::t_adbe85677b1839 59-60,63,104,108-112
+apps/desktop/src/features/settings/ProvidersSection.tsx
+  s_8eb0f68c1f71c0::t_3370b6d5fb7752 1,12,41,64-65,72-75,83,125,249,251,253,256-261,277-280,304-321,349,352,363,381-386,388
+apps/desktop/src/features/settings/Settings.test.tsx
+  s_8eb0f68c1f71c0::t_1d314ca69e2e9e 5,65,68,70,72-73,75-109,146-167,169-308,371,378-425,631-663
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_8eb0f68c1f71c0::t_1ae39cf07d5abf 2-3,12-13,36,42-47,49-66,68-84,95,103-114,145-153,160,173-181,214-216,222,231-232,237,239-245
+apps/desktop/src/features/settings/appRules.ts
+  s_8eb0f68c1f71c0::t_22fff8ec44288b 1-51
+apps/desktop/src/features/settings/dictationApps.test.ts
+  s_8eb0f68c1f71c0::t_e755df26c5c3ac 1-67
+apps/desktop/src/features/settings/dictationApps.ts
+  s_8eb0f68c1f71c0::t_0aceb05cfa3efa 1-45
+apps/desktop/src/features/settings/languages.ts
+  s_8eb0f68c1f71c0::t_6b4a7ee1ec95cd 1-18
+apps/desktop/src/features/settings/personalData.test.ts
+  s_8eb0f68c1f71c0::t_0634e85922cc75 1-44
+apps/desktop/src/features/settings/useInstalledApps.ts
+  s_8eb0f68c1f71c0::t_63c6fc90e04693 1-33
+apps/desktop/src/features/settings/usePermissions.ts
+  s_8eb0f68c1f71c0::t_ea81ef77c57416 4,18-19,22-27,63
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "deb31176226a9a5e0b4e6460d1a0222765af27e6",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
