@@ -1,0 +1,53 @@
+apps/desktop/src-tauri/Info.plist
+  s_8eb0f68c1f71c0::t_a921a07a9199bf 20-23
+apps/desktop/src-tauri/src/app.rs
+  s_8eb0f68c1f71c0::t_5582332741723d 1019-1051
+apps/desktop/src-tauri/src/lib.rs
+  s_8eb0f68c1f71c0::t_8f0e4a3ae7b883 128-149
+apps/desktop/src-tauri/src/native.rs
+  s_8eb0f68c1f71c0::t_fcb32fdd47cd6a 21-34,53,76,103-133,189
+apps/desktop/src-tauri/src/unavailable.rs
+  s_8eb0f68c1f71c0::t_1895cd41ebe85d 5,113-127
+apps/desktop/src-tauri/tests/wave4.rs
+  s_8eb0f68c1f71c0::t_bc39ed4160e756 104,386-449
+crates/acta-core/src/library/mod.rs
+  s_8eb0f68c1f71c0::t_ce1f31c8007bfb 6
+crates/acta-core/src/library/titles.rs
+  s_8eb0f68c1f71c0::t_fca52386f6dd3a 1-101
+crates/acta-mac-bridge/src/protocol.rs
+  s_8eb0f68c1f71c0::t_d721bc1dc97280 90-130
+crates/acta-mac-bridge/tests/client.rs
+  s_8eb0f68c1f71c0::t_6209adf3a761d0 260-271
+crates/acta-store/migrations/0006_title_source.sql
+  s_8eb0f68c1f71c0::t_84009b7b5eb844 1-4
+crates/acta-store/src/db/mod.rs
+  s_8eb0f68c1f71c0::t_51c0019800cc97 20
+crates/acta-store/src/meetings/mod.rs
+  s_8eb0f68c1f71c0::t_81a1329941d599 669,856-867
+crates/acta-store/tests/store.rs
+  s_8eb0f68c1f71c0::t_7b4f09a0a40fd3 709-725
+sidecars/acta-mac/Sources/ActaMacCore/Detection/MeetingTitles.swift
+  s_8eb0f68c1f71c0::t_8310f6c1b9cc44 1-55
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Dispatcher.swift
+  s_8eb0f68c1f71c0::t_ffe6af1553926a 166-169
+sidecars/acta-mac/Sources/ActaMacProtocol/Protocol.swift
+  s_8eb0f68c1f71c0::t_26004db62e22a5 317-366,418-419
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_8eb0f68c1f71c0::t_10ad19662a8192 38-44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "7ced61fd0ada6496259d4f1c2d1204ac9566860c",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
