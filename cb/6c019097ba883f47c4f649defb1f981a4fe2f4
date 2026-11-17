@@ -1,0 +1,37 @@
+apps/desktop/src-tauri/src/overlay.rs
+  s_8eb0f68c1f71c0::t_2a693153e010c2 46,145
+crates/acta-audio/src/processing/merge.rs
+  s_8eb0f68c1f71c0::t_a0927788c8b5f6 10
+crates/acta-core/src/detection/model.rs
+  s_8eb0f68c1f71c0::t_ddbfcc816676c7 88
+crates/acta-core/src/minutes/model.rs
+  s_8eb0f68c1f71c0::t_0137159a00d0cb 17,108-109,111,138
+crates/acta-core/src/processing/pipeline.rs
+  s_8eb0f68c1f71c0::t_56e2abddd20235 12
+crates/acta-core/src/recording/model.rs
+  s_8eb0f68c1f71c0::t_105cda89a40f29 6
+crates/acta-llm/src/minutes/convert.rs
+  s_8eb0f68c1f71c0::t_70391dfc10700d 25,126
+crates/acta-llm/src/providers/detect.rs
+  s_8eb0f68c1f71c0::t_71f4b5e9df877c 214,230
+docs/01-arquitectura.md
+  s_8eb0f68c1f71c0::t_2c470a765d06ed 23,29,185-186,294,312-313,344,385-386,399,438,440,497,520
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ScreenShareCapture.swift
+  s_8eb0f68c1f71c0::t_716a477a2d0f09 171,421
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "cb6c019097ba883f47c4f649defb1f981a4fe2f4",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
