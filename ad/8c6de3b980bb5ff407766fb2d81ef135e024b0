@@ -1,0 +1,29 @@
+.github/workflows/ci.yml
+  s_88937bb338b062::t_3df7dc713c39cd 1-44
+.github/workflows/release.yml
+  s_88937bb338b062::t_692e778944fd87 1-140
+README.md
+  s_88937bb338b062::t_f791cc8fc78370 60-61,123
+docs/RELEASING.md
+  s_88937bb338b062::t_053239f47bf44b 1-87
+packaging/homebrew/acta.rb.tmpl
+  s_88937bb338b062::t_9f8daff5b58c01 1-33
+packaging/homebrew/render-cask.sh
+  s_88937bb338b062::t_f451eb492672cf 1-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "ad8c6de3b980bb5ff407766fb2d81ef135e024b0",
+  "prompts": {},
+  "sessions": {
+    "s_88937bb338b062": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "175c5126-cb28-4b5c-97dc-76d9d48ff457",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
