@@ -1,0 +1,37 @@
+apps/desktop/src/features/chat/Chat.test.tsx
+  s_8eb0f68c1f71c0::t_faaee8fc4ba9c1 1,3,9-10,178,271-565
+apps/desktop/src/features/chat/ChatContainer.tsx
+  s_8eb0f68c1f71c0::t_78416c75cbab02 6,23,27-28,74,77-78,80-86,93-99,104-109,112,135-138
+apps/desktop/src/features/chat/ChatView.tsx
+  s_8eb0f68c1f71c0::t_c913a102cd0436 3,6-7,21-25,84-86,242
+apps/desktop/src/features/chat/ModelPicker.tsx
+  s_8eb0f68c1f71c0::t_37db09604f32d8 1-229
+apps/desktop/src/features/chat/useChatModel.test.ts
+  s_8eb0f68c1f71c0::t_ed03f4b3a1e23b 1-100
+apps/desktop/src/features/chat/useChatModel.ts
+  s_8eb0f68c1f71c0::t_408cf72ff059a3 1-117
+apps/desktop/src/features/live/Live.test.tsx
+  s_8eb0f68c1f71c0::t_0af61097584fff 3,9-10,132-178
+apps/desktop/src/features/live/LiveAsk.tsx
+  s_8eb0f68c1f71c0::t_0b78924ab60cd6 6,18,20-21,28-29,62,65-71,78-83,88-95,115-117
+apps/desktop/src/features/live/LiveContainer.tsx
+  s_8eb0f68c1f71c0::t_116367c9ad6add 68
+apps/desktop/src/styles/chat.css
+  s_8eb0f68c1f71c0::t_4e836026188bc7 58-92,130-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "543f198a001a2a86fcb7804d2ad32ceae03a724a",
+  "prompts": {},
+  "sessions": {
+    "s_8eb0f68c1f71c0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "3613d2ed-a52a-47ea-b30a-53b7f9943afe",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
