@@ -1,0 +1,25 @@
+Cargo.lock
+  s_e0e88499b48c99::t_fea13ac12b7d43 7,25,39,65,87,106
+Cargo.toml
+  s_e0e88499b48c99::t_c08104628fa5c8 21
+apps/desktop/package.json
+  s_e0e88499b48c99::t_410d5ff3d6ebf8 5
+apps/desktop/src-tauri/tauri.conf.json
+  s_e0e88499b48c99::t_85e194b97fb077 4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "0643f994bec0b8f721d15f8d755634ee6689ece5",
+  "prompts": {},
+  "sessions": {
+    "s_e0e88499b48c99": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a48448bfc7de3f295",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
