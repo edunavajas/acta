@@ -1,0 +1,63 @@
+apps/desktop/src-tauri/src/native.rs
+  s_e0e88499b48c99::t_afb9bf7c5e8da4 8,59,85,111,220
+apps/desktop/src-tauri/src/system.rs
+  s_e0e88499b48c99::t_3a2b3a87c2be73 68-81,204-217
+crates/acta-audio/src/supervisor/actor.rs
+  s_e0e88499b48c99::t_7747b6a47837d9 66-69,95-98,321-332,416,708-709,744-777,779,813-856,882-886
+crates/acta-audio/src/supervisor/mod.rs
+  s_e0e88499b48c99::t_97bede18790445 29,77-78,126
+crates/acta-audio/src/watchdog/mod.rs
+  s_e0e88499b48c99::t_ba9399c216036c 69-72
+crates/acta-audio/tests/supervisor.rs
+  s_e0e88499b48c99::t_6e2136f5c53cfa 217-295
+crates/acta-audio/tests/support/mod.rs
+  s_e0e88499b48c99::t_e4bacf19175d35 168-171,180-181,204-211,230-263,432,453,467
+crates/acta-core/src/recording/health.rs
+  s_e0e88499b48c99::t_4e85d3a0c2a7e2 14,89-91,102-104,132,205-206,209,216-221,281-283
+crates/acta-core/src/screen/mod.rs
+  s_e0e88499b48c99::t_81fdf88e7a6c93 83-85,117-127
+crates/acta-core/tests/autostop_health.rs
+  s_e0e88499b48c99::t_d1c0a5f67f4eb0 404-456
+crates/acta-mac-bridge/src/protocol.rs
+  s_e0e88499b48c99::t_8f9e8a4794f758 74-78,273,299-305,432-434
+crates/acta-mac-bridge/src/screen/mod.rs
+  s_e0e88499b48c99::t_ec2ecad048651c 8,12-13,16-17,72-74,155-211
+crates/acta-mac-bridge/tests/ports.rs
+  s_e0e88499b48c99::t_cb8fcf6e20d9cf 11,16,111,166-223
+sidecars/acta-mac/Sources/ActaMacCore/Runtime/Dispatcher.swift
+  s_e0e88499b48c99::t_d50e4e888e569a 13,25,32,145-150,192
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ClipboardImport.swift
+  s_5a1da456169290::t_e6a2e23f6c83ae 1-123
+sidecars/acta-mac/Sources/ActaMacCore/Screen/ScreenShareCapture.swift
+  s_e0e88499b48c99::t_7b0065462cd00b 11-14,89-95,103-135,292-307,376-378,399-408,413,423-451,453,523-546,548,552-559,562-564,573,605-607
+sidecars/acta-mac/Sources/ActaMacProtocol/Protocol.swift
+  s_e0e88499b48c99::t_a7c0ca4d3bdd59 198-208,320-321,472-473,902-903,922,960
+sidecars/acta-mac/Tests/ActaMacCoreTests/ScreenTests.swift
+  s_e0e88499b48c99::t_c10266b21e4c6c 4,120-182
+sidecars/acta-mac/Tests/ActaMacProtocolTests/ProtocolTests.swift
+  s_e0e88499b48c99::t_862de4d512eda9 72-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "a67b32270a03d5864683be2e9756084bccd64965",
+  "prompts": {},
+  "sessions": {
+    "s_5a1da456169290": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a9d7fc79fd027650e",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_e0e88499b48c99": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a48448bfc7de3f295",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
