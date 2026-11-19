@@ -1,0 +1,73 @@
+apps/desktop/src-tauri/src/app.rs
+  s_e0e88499b48c99::t_77860a38f5d3e8 130,730-733,738-740,744,746,748,750,755-773,775,1147-1148,1151,1153-1168
+apps/desktop/src-tauri/src/commands.rs
+  s_e0e88499b48c99::t_9aec958eef4008 22
+apps/desktop/src-tauri/src/commands/downloads.rs
+  s_a8cf5b5906be9e::t_5c4c46f29ef57d 1-50
+apps/desktop/src-tauri/src/export.rs
+  s_a8cf5b5906be9e::t_3ca95c00808f49 1-133
+apps/desktop/src-tauri/src/lib.rs
+  s_e0e88499b48c99::t_1f17f09dfb7a7e 21,320-323
+apps/desktop/src-tauri/tests/chat_persist.rs
+  s_5a1da456169290::t_4b444426351726 1-115
+apps/desktop/src-tauri/tests/downloads.rs
+  s_a8cf5b5906be9e::t_dd1fff9919fa7c 1-151
+apps/desktop/src/api/contract.ts
+  s_e0e88499b48c99::t_de255df7484b2a 62-66,244-251
+apps/desktop/src/api/mock.ts
+  s_e0e88499b48c99::t_14f2808e369728 33-35,371-372,852-865
+apps/desktop/src/api/tauri.ts
+  s_e0e88499b48c99::t_b098c26dd1c234 97-100
+apps/desktop/src/api/types.ts
+  s_e0e88499b48c99::t_27af8597003dfa 260-261,834-840
+apps/desktop/src/app/App.test.tsx
+  s_e0e88499b48c99::t_4e6f3ae44ff8ed 1,50-61
+apps/desktop/src/app/Sidebar.tsx
+  s_e0e88499b48c99::t_1a655db8b169ca 32-40,93-108,117,129-133,164
+apps/desktop/src/features/meetings/Downloads.test.tsx
+  s_a8cf5b5906be9e::t_147f6ae888066b 1-81
+apps/desktop/src/features/meetings/MeetingDetailContainer.tsx
+  s_e0e88499b48c99::t_3ac37801fae885 19,88,178-186,265
+apps/desktop/src/features/meetings/MeetingFilesMenu.tsx
+  s_a8cf5b5906be9e::t_b4a2a652f7b190 1-54
+apps/desktop/src/features/settings/AboutSection.tsx
+  s_e0e88499b48c99::t_7d678bcb79181d 3,6,20-24
+apps/desktop/src/features/settings/SettingsContainer.tsx
+  s_e0e88499b48c99::t_947e432da930ad 247
+apps/desktop/src/styles/shell.css
+  s_e0e88499b48c99::t_30110adeae1da4 103-104
+crates/acta-core/src/api/commands.rs
+  s_e0e88499b48c99::t_5dc8f89c3d80cc 128-131
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "243db07c9bf68439f6ff5ec8505ccb34e45f0c5c",
+  "prompts": {},
+  "sessions": {
+    "s_5a1da456169290": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a9d7fc79fd027650e",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_a8cf5b5906be9e": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-ad3779151c56f63f2",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_e0e88499b48c99": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a48448bfc7de3f295",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
