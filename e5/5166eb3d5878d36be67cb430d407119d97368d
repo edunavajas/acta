@@ -1,0 +1,51 @@
+apps/desktop/src-tauri/src/pipeline.rs
+  s_e0e88499b48c99::t_ff253c30925141 19,21,116-122,137
+apps/desktop/src/features/transcript/Transcript.test.tsx
+  s_e0e88499b48c99::t_8012570314e0ac 66-74
+apps/desktop/src/features/transcript/TranscriptTab.tsx
+  s_e0e88499b48c99::t_2bb1cf674f67c8 73
+crates/acta-audio/src/processing/merge.rs
+  s_e0e88499b48c99::t_e95de2b6913d97 8-9
+crates/acta-audio/src/processing/mod.rs
+  s_e0e88499b48c99::t_d9267f43250f95 12,37-40,57-59,266-280,310,317,322,326-380
+crates/acta-audio/tests/pipeline.rs
+  s_e0e88499b48c99::t_b06ee56756c194 146,403-476
+crates/acta-core/src/transcription/model.rs
+  s_e0e88499b48c99::t_70d73357d2b4b2 83-84,170-195
+crates/acta-core/src/transcription/ports.rs
+  s_e0e88499b48c99::t_cab8be3caa7aa0 40-47
+crates/acta-llm/prompts/speaker_names.system.md
+  s_df21924a754db1::t_2ad53fa69a8288 1-18
+crates/acta-llm/schemas/speaker_names.v1.json
+  s_df21924a754db1::t_a77c15e99520e0 1-22
+crates/acta-llm/src/lib.rs
+  s_e0e88499b48c99::t_2030db95185c61 11-12,34,44,53
+crates/acta-llm/src/naming/mod.rs
+  s_e0e88499b48c99::t_d2d7c47df7f67e 2-4
+crates/acta-llm/src/naming/speakers.rs
+  s_df21924a754db1::t_976089cf8df491 1-401
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.6",
+  "base_commit_sha": "e55166eb3d5878d36be67cb430d407119d97368d",
+  "prompts": {},
+  "sessions": {
+    "s_df21924a754db1": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a68b7af0b2c2fde47",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    },
+    "s_e0e88499b48c99": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "agent-a48448bfc7de3f295",
+        "model": "unknown"
+      },
+      "human_author": "Edu Navajas <eduardonco@ext.inditex.com>"
+    }
+  }
+}
