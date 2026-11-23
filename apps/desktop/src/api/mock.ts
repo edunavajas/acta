@@ -197,7 +197,7 @@ export function defaultSettings(): T.Settings {
       keywords: ["importante", "apuntad", "esto es clave", "deadline", "fecha"],
       pruneCandidates: true,
     },
-    transcription: { language: "auto", diarization: true, livePreview: true, voiceprintMinSimilarityPct: 75, glossary: [] },
+    transcription: { language: "auto", diarization: true, livePreview: true, voiceprintMinSimilarityPct: 75, glossary: [], llmCleanup: true },
     llm: {
       providers: [
         {

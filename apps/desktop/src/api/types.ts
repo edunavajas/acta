@@ -812,6 +812,8 @@ export interface Settings {
     livePreview: boolean;
     voiceprintMinSimilarityPct: number;
     glossary: string[];
+    /** Pasada del LLM sobre el transcript (jerga, puntuación); solo actúa si hay proveedor. */
+    llmCleanup: boolean;
   };
   llm: {
     providers: ProviderConfig[];
