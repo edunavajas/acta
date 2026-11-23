@@ -18,6 +18,7 @@
 //! buscable y la reunión acaba en `failed` con el error para reintentar.
 
 pub mod captures;
+pub mod energy;
 pub mod merge;
 pub mod voiceprints;
 
@@ -255,6 +256,22 @@ impl DefaultPipeline {
         write_json(&self.layout.diarization_cache_json(id), &result)
     }
 
+    /// Envolventes de energía de mic y system para separar voz propia de bleed.
+    /// Sin una de las pistas (o si falla la lectura) → `None` y la fusión
+    /// resuelve los duplicados a favor del sistema.
+    async fn track_levels(&self, id: MeetingId) -> Option<energy::TrackLevels> {
+        let mic = self.layout.track_wav(id, Track::Mic);
+        let system = self.layout.track_wav(id, Track::System);
+        if !mic.exists() || !system.exists() {
+            return None;
+        }
+        let r = blocking(move || {
+            Ok(energy::TrackLevels { mic: energy::Envelope::from_wav(&mic)?, system: energy::Envelope::from_wav(&system)? })
+        })
+        .await;
+        r.map_err(|e| tracing::warn!("envolventes de energía no disponibles: {e}")).ok()
+    }
+
     async fn name_speakers(&self, id: MeetingId) -> PortResult<()> {
         let mic: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::Mic)).unwrap_or_default();
         let system: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::System)).unwrap_or_default();
@@ -307,6 +324,7 @@ impl DefaultPipeline {
             }
         }
         let previous = self.store.get_transcript(id).await?;
+        let levels = self.track_levels(id).await;
         let mut transcript = merge_transcript(
             id,
             MergeInput {
@@ -317,6 +335,7 @@ impl DefaultPipeline {
                 self_names: self_names.clone(),
                 voiceprints,
                 previous,
+                levels,
             },
         );
         self.names_from_conversation(&mut transcript, self_names, participants).await;
