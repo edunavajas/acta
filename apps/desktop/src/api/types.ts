@@ -809,6 +809,7 @@ export interface Settings {
     diarization: boolean;
     livePreview: boolean;
     voiceprintMinSimilarityPct: number;
+    glossary: string[];
   };
   llm: {
     providers: ProviderConfig[];

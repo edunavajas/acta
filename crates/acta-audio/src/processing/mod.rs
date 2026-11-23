@@ -19,6 +19,7 @@
 
 pub mod captures;
 pub mod energy;
+pub mod glossary;
 pub mod merge;
 pub mod voiceprints;
 
@@ -273,8 +274,12 @@ impl DefaultPipeline {
     }
 
     async fn name_speakers(&self, id: MeetingId) -> PortResult<()> {
-        let mic: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::Mic)).unwrap_or_default();
-        let system: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::System)).unwrap_or_default();
+        let mut mic: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::Mic)).unwrap_or_default();
+        let mut system: Vec<AsrSegment> = read_json(&self.layout.asr_cache_json(id, Track::System)).unwrap_or_default();
+        // La caché ASR queda cruda: el glosario se aplica aquí, así que
+        // reprocesar el paso con un glosario nuevo basta.
+        glossary::apply(&mut mic, &self.settings.transcription.glossary);
+        glossary::apply(&mut system, &self.settings.transcription.glossary);
         let diarization: Option<DiarizationResult> = read_json(&self.layout.diarization_cache_json(id));
         let signals: Vec<SpeakerSignal> = read_jsonl(&self.layout.live_speakers_path(id));
         let active = read_manifest(&self.layout, id)

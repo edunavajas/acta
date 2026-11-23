@@ -120,6 +120,9 @@ pub struct TranscriptionSettings {
     pub live_preview: bool,
     /// Umbral coseno para reconocer una huella de voz.
     pub voiceprint_min_similarity_pct: u32,
+    /// Jerga/nombres propios que el ASR suele escribir mal (una palabra por
+    /// entrada). Se corrigen a posteriori con coincidencia aproximada.
+    pub glossary: Vec<String>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
@@ -237,6 +240,7 @@ impl Default for TranscriptionSettings {
             diarization: true,
             live_preview: true,
             voiceprint_min_similarity_pct: 75,
+            glossary: Vec::new(),
         }
     }
 }
