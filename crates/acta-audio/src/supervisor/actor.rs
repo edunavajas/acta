@@ -520,7 +520,7 @@ impl Actor {
     /// Renombra la captura a tiempo media, la guarda y la anuncia.
     async fn save_frame(&mut self, frame: CapturedFrame) -> Option<Capture> {
         let rec = self.rec.as_mut()?;
-        if !rec.gate.admit(frame.reason, frame.at, &frame.phash, rec.screen_sharing) {
+        if !rec.gate.admit(frame.reason, frame.at, &frame.phash, frame.thumb.as_deref(), rec.screen_sharing) {
             let _ = std::fs::remove_file(&frame.path);
             return None;
         }
