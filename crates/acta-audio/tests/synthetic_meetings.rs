@@ -95,7 +95,11 @@ fn my_voice_with_echo_in_the_system_track_stays_me_once() {
 #[test]
 fn alternating_turns_keep_each_voice_in_its_place() {
     let t = merged("c");
-    assert_eq!(speakers_seen(&t), vec!["Otro", "Yo", "Otro", "Yo"], "{:?}", who(&t));
+    // Turnos, no frases: Parakeet puede partir un turno en dos segmentos
+    // ("Buenas tardes a todos." / "Hoy vamos…") y ambos son del mismo hablante.
+    let mut turns = speakers_seen(&t);
+    turns.dedup();
+    assert_eq!(turns, vec!["Otro", "Yo", "Otro", "Yo"], "{:?}", who(&t));
 }
 
 /// Hablo encima del remoto: mi frase se queda como "Yo" y el bleed del remoto
