@@ -21,18 +21,41 @@ fn child_holds_the_lock() {
     std::io::stdin().read_to_end(&mut sink).unwrap();
 }
 
-fn spawn_child(dir: &Path) -> Child {
-    Command::new(std::env::current_exe().unwrap())
-        .args(["child_holds_the_lock", "--exact", "--nocapture", "--test-threads=1"])
-        .env(DIR_VAR, dir)
-        .stdin(Stdio::piped())
-        .stdout(Stdio::piped())
-        .spawn()
-        .unwrap()
+/// Mata y espera al hijo en todos los caminos (también si un assert falla).
+struct ChildGuard(Child);
+impl Drop for ChildGuard {
+    fn drop(&mut self) {
+        let _ = self.0.kill();
+        let _ = self.0.wait();
+    }
+}
+impl std::ops::Deref for ChildGuard {
+    type Target = Child;
+    fn deref(&self) -> &Child {
+        &self.0
+    }
+}
+impl std::ops::DerefMut for ChildGuard {
+    fn deref_mut(&mut self) -> &mut Child {
+        &mut self.0
+    }
+}
+
+#[allow(clippy::disallowed_methods)] // el ChildGuard garantiza kill() + wait()
+fn spawn_child(dir: &Path) -> ChildGuard {
+    ChildGuard(
+        Command::new(std::env::current_exe().unwrap())
+            .args(["child_holds_the_lock", "--exact", "--nocapture", "--test-threads=1"])
+            .env(DIR_VAR, dir)
+            .stdin(Stdio::piped())
+            .stdout(Stdio::piped())
+            .spawn()
+            .unwrap(),
+    )
 }
 
 /// Devuelve el lector: hay que mantenerlo vivo o el hijo muere con SIGPIPE al escribir.
-fn wait_for_line(child: &mut Child, wanted: &str) -> BufReader<std::process::ChildStdout> {
+fn wait_for_line(child: &mut ChildGuard, wanted: &str) -> BufReader<std::process::ChildStdout> {
     let mut reader = BufReader::new(child.stdout.take().unwrap());
     let mut line = String::new();
     while reader.read_line(&mut line).unwrap() > 0 {
