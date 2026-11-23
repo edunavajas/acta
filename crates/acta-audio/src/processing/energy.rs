@@ -3,6 +3,7 @@
 //! por los altavoces (bleed). Lógica PURA salvo `from_wav`.
 
 use acta_core::{PortError, PortResult};
+use serde::{Deserialize, Serialize};
 use std::path::Path;
 
 /// Tamaño de frame de la envolvente.
@@ -11,7 +12,7 @@ pub const FRAME_MS: u64 = 100;
 pub const SILENCE_DB: f32 = -120.0;
 
 /// Potencia media (muestras normalizadas al cuadrado) por frame de `frame_ms`.
-#[derive(Debug, Clone, Default, PartialEq)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct Envelope {
     pub frame_ms: u64,
     pub power: Vec<f32>,
@@ -76,7 +77,7 @@ impl Envelope {
 }
 
 /// Envolventes de ambas pistas.
-#[derive(Debug, Clone, Default, PartialEq)]
+#[derive(Debug, Clone, Default, PartialEq, Serialize, Deserialize)]
 pub struct TrackLevels {
     pub mic: Envelope,
     pub system: Envelope,
