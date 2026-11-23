@@ -25,6 +25,7 @@ pub mod native;
 pub mod overlay;
 pub mod pipeline;
 pub mod system;
+mod instance;
 mod tray;
 pub mod unavailable;
 
@@ -165,6 +166,11 @@ pub fn run() {
         let _ = std::fs::create_dir_all(dir);
     }
     let _log_guard = init_logging(&layout);
+    // Una segunda acta crearía un segundo icono en la barra de menús.
+    let Some(_instance) = instance::InstanceLock::acquire(layout.root()) else {
+        tracing::warn!("acta ya está abierta: se cierra esta segunda instancia");
+        return;
+    };
 
     let positions_file = layout.root().join("overlay-positions.json");
     let builder = tauri::Builder::default().plugin(tauri_plugin_opener::init());
