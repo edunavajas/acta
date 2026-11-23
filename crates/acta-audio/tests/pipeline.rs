@@ -150,6 +150,7 @@ async fn world_with_levels(mic_amp: i16, system_amp: i16) -> World {
         diarizer: Arc::new(FakeDiar),
         minutes: minutes.clone(),
         speaker_namer: None,
+        cleaner: None,
     };
     World { _dir: dir, layout, store, minutes, pipeline, id }
 }
@@ -517,4 +518,140 @@ async fn a_guessed_name_never_duplicates_another_speaker_or_replaces_a_confirmed
     assert!(namer.inputs.lock().unwrap().is_empty(), "sin hablantes genéricos no se llama al LLM");
     let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
     assert_eq!(t.speakers.iter().find(|s| s.id == s2.id).unwrap().display_name.as_deref(), Some("Marta"));
+}
+
+
+/// Limpiador falso: aplica `f` a cada texto (`None` = esa tanda falló) y guarda lo que recibe.
+struct FakeCleaner {
+    f: fn(&str) -> Option<String>,
+    inputs: Mutex<Vec<CleanupInput>>,
+}
+impl FakeCleaner {
+    fn new(f: fn(&str) -> Option<String>) -> Arc<Self> {
+        Arc::new(Self { f, inputs: Mutex::new(vec![]) })
+    }
+    fn calls(&self) -> usize {
+        self.inputs.lock().unwrap().len()
+    }
+}
+#[async_trait]
+impl TranscriptCleaner for FakeCleaner {
+    async fn clean(&self, input: CleanupInput) -> Vec<Option<String>> {
+        self.inputs.lock().unwrap().push(input.clone());
+        input.texts.iter().map(|t| (self.f)(t)).collect()
+    }
+}
+
+fn jira(t: &str) -> Option<String> {
+    Some(t.replace("informe", "informe de Jira"))
+}
+
+fn texts(t: &Transcript) -> Vec<String> {
+    t.utterances.iter().map(|u| u.text.clone()).collect()
+}
+
+async fn run_all(w: &World) {
+    w.pipeline.run(w.id, &ProcessingStep::ORDER, &Sink(Mutex::new(vec![]))).await.unwrap();
+}
+
+#[tokio::test]
+async fn llm_cleanup_rewrites_the_text_before_the_minutes_without_touching_anything_else() {
+    let w = world().await;
+    run_all(&w).await;
+    let raw = w.store.get_transcript(w.id).await.unwrap().unwrap();
+
+    let mut w = world().await;
+    let cleaner = FakeCleaner::new(jira);
+    w.pipeline.cleaner = Some(cleaner.clone());
+    w.pipeline.settings.transcription.glossary = vec!["Jira".into()];
+    run_all(&w).await;
+    let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
+
+    assert!(texts(&t).contains(&"Yo me encargo del informe de Jira".to_string()), "{:?}", texts(&t));
+    // Mismas intervenciones, mismos hablantes, mismos tiempos.
+    assert_eq!(t.utterances.len(), raw.utterances.len());
+    for (a, b) in t.utterances.iter().zip(&raw.utterances) {
+        assert_eq!((a.idx, a.track, a.start, a.end), (b.idx, b.track, b.start, b.end));
+    }
+    assert_eq!(t.speakers.len(), raw.speakers.len());
+    // El acta se genera con el texto limpio.
+    let m = w.minutes.inputs.lock().unwrap()[0].clone();
+    assert!(m.utterances.iter().any(|u| u.text.ends_with("informe de Jira")));
+    // Recibe el glosario y el idioma de la reunión.
+    let input = cleaner.inputs.lock().unwrap()[0].clone();
+    assert_eq!(input.glossary, vec!["Jira".to_string()]);
+    assert_eq!(input.language, "auto");
+    assert_eq!(input.texts.len(), raw.utterances.len());
+    // La caché del ASR sigue cruda.
+    let asr: Vec<AsrSegment> = serde_json::from_slice(&std::fs::read(w.layout.asr_cache_json(w.id, Track::System)).unwrap()).unwrap();
+    assert!(asr.iter().all(|s| !s.text.contains("Jira")));
+}
+
+#[tokio::test]
+async fn reprocessing_reuses_the_cleanup_cache_and_asks_the_llm_only_for_what_is_new() {
+    let mut w = world().await;
+    let cleaner = FakeCleaner::new(jira);
+    w.pipeline.cleaner = Some(cleaner.clone());
+    run_all(&w).await;
+    assert_eq!(cleaner.calls(), 1);
+    assert!(w.layout.cleanup_cache_json(w.id).exists());
+
+    w.pipeline.run(w.id, &[ProcessingStep::NamingSpeakers], &Sink(Mutex::new(vec![]))).await.unwrap();
+    assert_eq!(cleaner.calls(), 1, "mismo texto, mismo glosario: todo sale de la caché");
+    let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
+    assert!(texts(&t).iter().any(|x| x.ends_with("informe de Jira")));
+}
+
+#[tokio::test]
+async fn a_new_glossary_invalidates_the_cleanup_cache() {
+    let mut w = world().await;
+    let cleaner = FakeCleaner::new(jira);
+    w.pipeline.cleaner = Some(cleaner.clone());
+    run_all(&w).await;
+    w.pipeline.settings.transcription.glossary = vec!["Terraform".into()];
+    w.pipeline.run(w.id, &[ProcessingStep::NamingSpeakers], &Sink(Mutex::new(vec![]))).await.unwrap();
+    assert_eq!(cleaner.calls(), 2);
+}
+
+#[tokio::test]
+async fn a_failed_batch_keeps_the_raw_text_and_is_retried_next_time() {
+    let mut w = world().await;
+    let cleaner = FakeCleaner::new(|_| None);
+    w.pipeline.cleaner = Some(cleaner.clone());
+    run_all(&w).await; // no falla la reunión
+    let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
+    assert!(texts(&t).contains(&"Yo me encargo del informe".to_string()));
+    // Lo que falló NO se cachea: el siguiente procesado lo vuelve a pedir.
+    w.pipeline.run(w.id, &[ProcessingStep::NamingSpeakers], &Sink(Mutex::new(vec![]))).await.unwrap();
+    assert_eq!(cleaner.calls(), 2);
+}
+
+#[tokio::test]
+async fn a_cleaner_that_returns_the_wrong_number_of_texts_is_ignored() {
+    struct Broken;
+    #[async_trait]
+    impl TranscriptCleaner for Broken {
+        async fn clean(&self, _input: CleanupInput) -> Vec<Option<String>> {
+            vec![Some("solo uno".into())]
+        }
+    }
+    let mut w = world().await;
+    w.pipeline.cleaner = Some(Arc::new(Broken));
+    run_all(&w).await;
+    let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
+    assert!(texts(&t).iter().all(|x| x != "solo uno"), "{:?}", texts(&t));
+    assert!(texts(&t).contains(&"Perfecto, gracias".to_string()));
+}
+
+#[tokio::test]
+async fn the_setting_turns_the_cleanup_off() {
+    let mut w = world().await;
+    let cleaner = FakeCleaner::new(jira);
+    w.pipeline.cleaner = Some(cleaner.clone());
+    w.pipeline.settings.transcription.llm_cleanup = false;
+    run_all(&w).await;
+    assert_eq!(cleaner.calls(), 0);
+    assert!(!w.layout.cleanup_cache_json(w.id).exists());
+    let t = w.store.get_transcript(w.id).await.unwrap().unwrap();
+    assert!(texts(&t).iter().all(|x| !x.contains("Jira")));
 }
