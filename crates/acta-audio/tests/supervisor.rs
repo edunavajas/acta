@@ -246,6 +246,36 @@ async fn automatic_captures_are_dropped_unless_someone_shares_and_the_frame_chan
     assert!(!same.path.exists());
 }
 
+/// Compartiendo: una diapositiva distinta pero a menos de 8 s de la anterior
+/// se descarta (animaciones, transiciones); pasados los 8 s se conserva.
+#[tokio::test]
+async fn slide_changes_closer_than_eight_seconds_are_dropped_through_the_actor() {
+    let rig = Rig::new();
+    let mut settings = Settings::default();
+    settings.screen.enabled = true;
+    let h = start(&rig, settings).await;
+    let mut rx = h.subscribe();
+    let id = detect_and_accept(&rig, &h, &mut rx).await;
+    rig.screen.push(ScreenEvent::ShareStarted { presenter: None, at: T0.plus_ms(500) });
+
+    let frame = |at: u64, hash: &str| {
+        let mut f = rig.screen.write_frame(id, T0.plus_ms(at as i64), CaptureReason::SlideChange);
+        f.phash = hash.into();
+        f
+    };
+    let first = frame(10_000, "0000000000000000");
+    rig.screen.push(ScreenEvent::FrameSaved { frame: first });
+    eventually(|| rig.store.captures.lock().unwrap().len() == 1).await;
+    let too_soon = frame(13_000, "ffffffffffffffff");
+    rig.screen.push(ScreenEvent::FrameSaved { frame: too_soon.clone() });
+    let later = frame(18_500, "ffffffffffffffff");
+    rig.screen.push(ScreenEvent::FrameSaved { frame: later });
+    eventually(|| rig.store.captures.lock().unwrap().len() == 2).await;
+    tokio::time::sleep(Duration::from_millis(150)).await;
+    assert_eq!(rig.store.captures.lock().unwrap().len(), 2, "la de +3 s sobra, la de +8,5 s entra");
+    assert!(!too_soon.path.exists());
+}
+
 /// Real (19-nov-2026): las grabaciones manuales (sin app detectada) no
 /// intentaban capturar nada. Ahora se captura la pantalla principal.
 #[tokio::test]
