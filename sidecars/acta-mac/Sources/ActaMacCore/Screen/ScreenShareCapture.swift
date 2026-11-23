@@ -557,6 +557,9 @@ public actor ScreenService {
     private func evaluate(_ frame: RingFrame, changed: Bool, lowJpeg: Data?) async {
         guard let a = args else { return }
         let at = frame.atUnixMs
+        // Pantalla entera (sin app): no hay "alguien comparte", así que no se
+        // guardan capturas automáticas (solo el anillo para botón/palabra clave).
+        guard ScreenTarget(pid: a.pid) != .display else { return }
         // Con AX diciendo "no comparte" no buscamos diapositivas.
         guard axSharing != false else { return }
         if changed ? detector.observe(frame.phash) : detector.observeUnchanged() {
