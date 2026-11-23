@@ -123,6 +123,12 @@ struct World {
 }
 
 async fn world() -> World {
+    world_with_levels(500, 500).await
+}
+
+/// Como `world()` pero con amplitud constante distinta en cada pista (para
+/// ejercitar las envolventes de energía con audio concatenado de verdad).
+async fn world_with_levels(mic_amp: i16, system_amp: i16) -> World {
     let dir = tempfile::tempdir().unwrap();
     let layout = DataLayout::new(dir.path());
     let store = Arc::new(
@@ -132,7 +138,7 @@ async fn world() -> World {
             .with_embedder(Arc::new(HashEmbedder)),
     );
     let id = MeetingId::from_u128(5);
-    seed(&layout, &store, id).await;
+    seed(&layout, &store, id, mic_amp, system_amp).await;
     let minutes = Arc::new(FakeMinutes::default());
     let pipeline = DefaultPipeline {
         layout: layout.clone(),
@@ -148,7 +154,7 @@ async fn world() -> World {
     World { _dir: dir, layout, store, minutes, pipeline, id }
 }
 
-async fn seed(layout: &DataLayout, store: &SqliteStore, id: MeetingId) {
+async fn seed(layout: &DataLayout, store: &SqliteStore, id: MeetingId, mic_amp: i16, system_amp: i16) {
     store
         .create_meeting(NewMeeting {
             id,
@@ -165,7 +171,8 @@ async fn seed(layout: &DataLayout, store: &SqliteStore, id: MeetingId) {
     let mut w = SegmentWriter::create(cfg, T0).unwrap();
     for n in 0..60u64 {
         for track in Track::ALL {
-            w.push(&AudioFrame { track, seq: n, pts_us: n * 100_000, sample_rate: 16_000, samples: vec![500; 1600] }).unwrap();
+            let amp = if track == Track::Mic { mic_amp } else { system_amp };
+            w.push(&AudioFrame { track, seq: n, pts_us: n * 100_000, sample_rate: 16_000, samples: vec![amp; 1600] }).unwrap();
         }
     }
     w.finish(StopReason::User, T0.plus_ms(6_000)).unwrap();
@@ -239,6 +246,30 @@ async fn full_run_builds_transcript_minutes_index_and_captures() {
     assert!(input.speakers.iter().any(|s| s.is_me));
 }
 
+/// Bleed de punta a punta: audio real concatenado, envolventes leídas de los
+/// WAV de la reunión y fusión. El micro lleva el remoto a -30 dB y el ASR lo
+/// escribe distinto (sin gemelo textual): no puede salir ningún "Yo".
+#[tokio::test]
+async fn quiet_mic_with_loud_system_is_bleed_not_me() {
+    let w = world_with_levels(160, 5_000).await;
+    let sink = Sink(Mutex::new(vec![]));
+    w.pipeline.run(w.id, &ProcessingStep::ORDER, &sink).await.unwrap();
+    let d = w.store.get_meeting_detail(w.id).await.unwrap().unwrap();
+    assert!(d.transcript.speakers.iter().all(|s| !s.is_me), "el bleed salió como 'Yo'");
+    assert_eq!(d.transcript.utterances.len(), 2, "solo las del sistema");
+}
+
+/// Lo contrario: el micro domina (hablo yo) y el sistema casi calla.
+#[tokio::test]
+async fn loud_mic_with_quiet_system_stays_me() {
+    let w = world_with_levels(5_000, 160).await;
+    let sink = Sink(Mutex::new(vec![]));
+    w.pipeline.run(w.id, &ProcessingStep::ORDER, &sink).await.unwrap();
+    let d = w.store.get_meeting_detail(w.id).await.unwrap().unwrap();
+    let me = d.transcript.speakers.iter().find(|s| s.is_me).expect("Yo");
+    assert!(d.transcript.utterances.iter().any(|u| u.speaker_id == me.id));
+}
+
 #[tokio::test]
 async fn failed_summary_still_indexes_and_reports_the_step() {
     let w = world().await;
@@ -276,7 +307,7 @@ async fn confirmed_name_becomes_a_voiceprint_that_names_the_next_meeting() {
 
     // Una reunión nueva con la misma voz se sugiere como Marta (sin confirmar).
     let id2 = MeetingId::from_u128(6);
-    seed(&w.layout, &w.store, id2).await;
+    seed(&w.layout, &w.store, id2, 500, 500).await;
     w.pipeline.run(id2, &ProcessingStep::ORDER, &sink).await.unwrap();
     let t2 = w.store.get_transcript(id2).await.unwrap().unwrap();
     let sug = t2.speakers.iter().find(|s| s.diarization_label.as_deref() == Some("S1")).unwrap();
