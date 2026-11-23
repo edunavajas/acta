@@ -153,7 +153,31 @@ fn user_prompt(input: &MinutesInput, transcript: &str, captures: &str, note: Opt
     if let Some(n) = note {
         p = format!("{n}\n\n{p}");
     }
-    p
+    match user_note(input) {
+        Some(n) => format!("{}\n\n{p}", private_note_block(input, n)),
+        None => p,
+    }
+}
+
+/// Nota personal del usuario, si tiene contenido.
+fn user_note(input: &MinutesInput) -> Option<&str> {
+    input.user_note.as_deref().map(str::trim).filter(|n| !n.is_empty())
+}
+
+fn private_note_block(input: &MinutesInput, note: &str) -> String {
+    let owner = if input.me.display_name.trim().is_empty() { "el usuario".to_owned() } else { input.me.display_name.trim().to_owned() };
+    format!(
+        "NOTA PERSONAL de {owner} (privada: la escribió {owner} para sí; NO la dijo ningún participante ni sale en la transcripción). \
+         Úsala solo como contexto de lo que le importa. No se la atribuyas a nadie ni la repitas en el resumen: se añade aparte.\n«{note}»"
+    )
+}
+
+/// Añade la nota al final del resumen, en su propia sección y tal cual.
+fn with_note_section(mut out: MinutesOutput, input: &MinutesInput) -> MinutesOutput {
+    if let Some(n) = user_note(input) {
+        out.minutes.summary_md = format!("{}\n\n## Nota personal\n\n{n}", out.minutes.summary_md.trim_end());
+    }
+    out
 }
 
 const REDUCE_INSTRUCTIONS: &str = "\
@@ -183,7 +207,7 @@ impl MinutesGenerator for LlmMinutesGenerator {
         };
 
         let ctx = ConvertCtx { input: &input, provider: self.provider.id().clone(), model: self.model.clone(), now: self.clock.now() };
-        Ok(convert(&ctx, v1))
+        Ok(with_note_section(convert(&ctx, v1), &input))
     }
 }
 
@@ -330,6 +354,33 @@ mod tests {
             input.language = code.into();
             let sys = system_prompt(&input);
             assert!(sys.contains(&format!("Escribe en {name}")), "{code}: {sys}");
+        }
+    }
+
+    /// La nota personal es contexto privado del usuario: va al LLM marcada como
+    /// tal y sale en el acta en su propia sección (nunca dicha por alguien).
+    #[tokio::test]
+    async fn the_users_private_note_is_context_for_the_llm_and_its_own_section_in_the_summary() {
+        let p = Arc::new(FakeProvider::new(vec![GOOD]));
+        let mut input = sample_input();
+        input.user_note = Some("Pedir descuento a Ana".into());
+        let out = make_gen(p.clone()).generate(input).await.expect("generate");
+        let user = p.requests.lock().unwrap()[0].messages[0].content.clone();
+        assert!(user.contains("NOTA PERSONAL") && user.contains("Pedir descuento a Ana"), "{user}");
+        assert!(user.contains("NO la dijo ningún participante"), "{user}");
+        assert!(out.minutes.summary_md.ends_with("## Nota personal\n\nPedir descuento a Ana"), "{}", out.minutes.summary_md);
+        assert!(out.minutes.summary_md.starts_with("- Resumen"));
+    }
+
+    #[tokio::test]
+    async fn without_a_note_the_prompt_and_summary_have_no_note_section() {
+        for note in [None, Some("   ".to_owned())] {
+            let p = Arc::new(FakeProvider::new(vec![GOOD]));
+            let mut input = sample_input();
+            input.user_note = note;
+            let out = make_gen(p.clone()).generate(input).await.expect("generate");
+            assert!(!p.requests.lock().unwrap()[0].messages[0].content.contains("NOTA PERSONAL"));
+            assert!(!out.minutes.summary_md.contains("Nota personal"));
         }
     }
 

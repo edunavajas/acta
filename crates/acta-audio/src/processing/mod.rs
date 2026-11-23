@@ -446,6 +446,7 @@ impl DefaultPipeline {
             utterances: transcript.utterances,
             captures: refs,
             language: acta_core::settings::language::normalize(&self.settings.transcription.language),
+            user_note: meeting.user_note.clone(),
         };
         let output: MinutesOutput = self.minutes.generate(input).await?;
         write_json(&self.layout.minutes_json(id), &output)?;

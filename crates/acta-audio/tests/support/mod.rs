@@ -327,6 +327,7 @@ impl MeetingStore for FakeStore {
             favourite: false,
             error_provider: None,
             error_model: None,
+            user_note: None,
         };
         lock(&self.meetings).insert(m.id, meeting.clone());
         Ok(meeting)

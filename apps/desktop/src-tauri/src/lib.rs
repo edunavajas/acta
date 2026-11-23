@@ -261,6 +261,7 @@ pub fn run() {
             commands::meetings_list,
             commands::meeting_get,
             commands::meeting_update,
+            commands::meeting_set_note,
             commands::meeting_delete,
             commands::meeting_set_favourite,
             commands::group_set_favourite,

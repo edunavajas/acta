@@ -301,6 +301,19 @@ async fn empty_steps_reprocess_everything_from_transcribing() {
     }
 }
 
+/// La nota personal del usuario llega al generador de actas como contexto.
+#[tokio::test]
+async fn the_users_note_reaches_the_minutes_generator() {
+    let w = world().await;
+    w.pipeline
+        .store
+        .patch_meeting(w.id, MeetingPatch { user_note: Some(Some("Pedir descuento".into())), ..Default::default() })
+        .await
+        .unwrap();
+    w.pipeline.run(w.id, &ProcessingStep::ORDER, &Sink(Mutex::new(vec![]))).await.unwrap();
+    assert_eq!(w.minutes.inputs.lock().unwrap()[0].user_note.as_deref(), Some("Pedir descuento"));
+}
+
 /// Caso real (16-nov-2026, app recién reinstalada): el permiso de micro/audio
 /// del sistema estaba «sin decidir», `capture.start` no respondió y la reunión
 /// quedó como «Lista» sin nada dentro y sin explicar por qué.
