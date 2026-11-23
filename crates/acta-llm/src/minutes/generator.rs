@@ -460,6 +460,37 @@ mod tests {
         assert!(reqs.last().expect("last").messages[0].content.contains("TAREA DE FUSIÓN"));
     }
 
+    /// Reunión larga + nota: la nota viaja en cada fragmento (el LLM sabe qué le
+    /// importa al usuario) pero la sección «Nota personal» sale UNA sola vez.
+    #[tokio::test]
+    async fn the_note_survives_map_reduce_and_appears_once() {
+        let mut input = long_input(70);
+        input.user_note = Some("Vigilar el presupuesto".into());
+        let mut fp = FakeProvider::new(std::iter::repeat_n(GOOD, 600).collect());
+        fp.context_tokens = 10_000;
+        let p = Arc::new(fp);
+        let out = make_gen(p.clone()).generate(input).await.expect("generate");
+        let reqs = p.requests.lock().unwrap();
+        let fragments: Vec<_> = reqs.iter().filter(|r| r.messages[0].content.contains("FRAGMENTO ")).collect();
+        assert!(fragments.len() >= 3);
+        assert!(fragments.iter().all(|r| r.messages[0].content.contains("Vigilar el presupuesto")));
+        assert_eq!(out.minutes.summary_md.matches("## Nota personal").count(), 1);
+        assert!(out.minutes.summary_md.ends_with("Vigilar el presupuesto"));
+    }
+
+    /// Una reunión sin contenido (acta neutra, sin llamar al LLM) conserva la nota.
+    #[tokio::test]
+    async fn the_note_is_kept_when_the_transcript_is_too_short_for_the_llm() {
+        let p = Arc::new(FakeProvider::new(vec![]));
+        let mut input = sample_input();
+        input.utterances.truncate(1);
+        input.utterances[0].text = "Hola".into();
+        input.user_note = Some("Llamar a Ana".into());
+        let out = make_gen(p.clone()).generate(input).await.expect("generate");
+        assert_eq!(p.calls(), 0);
+        assert!(out.minutes.summary_md.ends_with("## Nota personal\n\nLlamar a Ana"), "{}", out.minutes.summary_md);
+    }
+
     #[tokio::test]
     async fn short_transcript_never_map_reduces() {
         let p = Arc::new(FakeProvider::new(vec![GOOD]));
