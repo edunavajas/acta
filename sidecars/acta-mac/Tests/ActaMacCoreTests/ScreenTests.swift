@@ -148,6 +148,14 @@ private func win(_ id: UInt32, _ title: String, _ w: Double, _ h: Double, scale:
     #expect(ScreenTarget(pid: 4242) == .window(pid: 4242))
 }
 
+@Test func `whole screen mode never saves automatic captures`() {
+    #expect(!ScreenTarget.display.savesAutomaticCaptures(axSharing: nil))
+    #expect(!ScreenTarget.display.savesAutomaticCaptures(axSharing: true), "ni aunque AX diga que comparte")
+    #expect(ScreenTarget.window(pid: 42).savesAutomaticCaptures(axSharing: nil))
+    #expect(ScreenTarget.window(pid: 42).savesAutomaticCaptures(axSharing: true))
+    #expect(!ScreenTarget.window(pid: 42).savesAutomaticCaptures(axSharing: false), "AX dice que no comparte")
+}
+
 @Test func `acta itself is excluded from display captures`() {
     #expect(ScreenTarget.excludedPids(selfPid: 10, parentPid: 9) == [10, 9])
     #expect(ScreenTarget.excludedPids(selfPid: 10, parentPid: 1) == [10], "launchd no es acta")

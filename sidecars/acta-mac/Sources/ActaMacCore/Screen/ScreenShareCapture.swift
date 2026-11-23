@@ -119,6 +119,14 @@ enum ScreenTarget: Equatable, Sendable {
 
     init(pid: Int32) { self = pid > 0 ? .window(pid: pid) : .display }
 
+    /// ¿Se guardan capturas automáticas (cambio de diapositiva, candidatas)?
+    /// Pantalla entera: nunca, no hay "alguien comparte" (solo el anillo para
+    /// botón/palabra clave). Ventana: salvo que AX diga que no se comparte.
+    func savesAutomaticCaptures(axSharing: Bool?) -> Bool {
+        if case .display = self { return false }
+        return axSharing != false
+    }
+
     /// acta-mac y la app que lo lanzó (acta.app); launchd (1) no.
     static func excludedPids(selfPid: Int32, parentPid: Int32) -> [Int32] {
         parentPid > 1 ? [selfPid, parentPid] : [selfPid]
@@ -559,12 +567,10 @@ public actor ScreenService {
         let at = frame.atUnixMs
         // Pantalla entera (sin app): no hay "alguien comparte", así que no se
         // guardan capturas automáticas (solo el anillo para botón/palabra clave).
-        guard ScreenTarget(pid: a.pid) != .display else { return }
-        // Con AX diciendo "no comparte" no buscamos diapositivas.
-        guard axSharing != false else { return }
+        // Con AX diciendo "no comparte" tampoco se buscan diapositivas.
+        guard ScreenTarget(pid: a.pid).savesAutomaticCaptures(axSharing: axSharing) else { return }
         if changed ? detector.observe(frame.phash) : detector.observeUnchanged() {
-            // En modo pantalla (sin app) no hay "alguien comparte": solo capturas.
-            if !sharing, axSharing == nil, ScreenTarget(pid: a.pid) != .display {
+            if !sharing, axSharing == nil {
                 sharing = true
                 await output.emit(.screenShareState(ScreenShareStateEvent(sharing: true, presenter: nil, source: "frame")))
             }
