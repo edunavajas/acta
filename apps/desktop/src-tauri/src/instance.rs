@@ -12,13 +12,31 @@ pub struct InstanceLock {
     _file: File,
 }
 
+/// Resultado de intentar tomar el candado.
+#[derive(Debug)]
+pub enum Acquire {
+    /// Somos la única instancia.
+    Owned(InstanceLock),
+    /// Otra acta ya tiene el candado.
+    AlreadyRunning,
+    /// No se pudo abrir/bloquear el fichero (carpeta ilegible, sistema de
+    /// ficheros sin flock): no es "otra acta", hay que arrancar igualmente.
+    Unavailable,
+}
+
 impl InstanceLock {
-    /// `None` si otra acta ya tiene el candado.
-    pub fn acquire(root: &Path) -> Option<Self> {
-        let file = File::options().create(true).truncate(false).write(true).open(root.join("acta.lock")).ok()?;
+    pub fn acquire(root: &Path) -> Acquire {
+        let Ok(file) = File::options().create(true).truncate(false).write(true).open(root.join("acta.lock")) else {
+            return Acquire::Unavailable;
+        };
         // SAFETY: `flock` sobre un descriptor abierto que vive tanto como `file`.
-        let rc = unsafe { libc::flock(file.as_raw_fd(), libc::LOCK_EX | libc::LOCK_NB) };
-        (rc == 0).then_some(Self { _file: file })
+        if unsafe { libc::flock(file.as_raw_fd(), libc::LOCK_EX | libc::LOCK_NB) } == 0 {
+            return Acquire::Owned(Self { _file: file });
+        }
+        match std::io::Error::last_os_error().kind() {
+            std::io::ErrorKind::WouldBlock => Acquire::AlreadyRunning,
+            _ => Acquire::Unavailable,
+        }
     }
 }
 
@@ -30,9 +48,9 @@ mod tests {
     fn a_second_instance_cannot_take_the_lock_until_the_first_is_gone() {
         let dir = tempfile::tempdir().unwrap();
         let first = InstanceLock::acquire(dir.path());
-        assert!(first.is_some());
-        assert!(InstanceLock::acquire(dir.path()).is_none(), "segunda instancia");
+        assert!(matches!(first, Acquire::Owned(_)));
+        assert!(matches!(InstanceLock::acquire(dir.path()), Acquire::AlreadyRunning), "segunda instancia");
         drop(first);
-        assert!(InstanceLock::acquire(dir.path()).is_some());
+        assert!(matches!(InstanceLock::acquire(dir.path()), Acquire::Owned(_)));
     }
 }

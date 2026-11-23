@@ -25,7 +25,7 @@ pub mod native;
 pub mod overlay;
 pub mod pipeline;
 pub mod system;
-mod instance;
+pub mod instance;
 mod tray;
 pub mod unavailable;
 
@@ -167,9 +167,16 @@ pub fn run() {
     }
     let _log_guard = init_logging(&layout);
     // Una segunda acta crearía un segundo icono en la barra de menús.
-    let Some(_instance) = instance::InstanceLock::acquire(layout.root()) else {
-        tracing::warn!("acta ya está abierta: se cierra esta segunda instancia");
-        return;
+    let _instance = match instance::InstanceLock::acquire(layout.root()) {
+        instance::Acquire::Owned(lock) => Some(lock),
+        instance::Acquire::AlreadyRunning => {
+            tracing::warn!("acta ya está abierta: se cierra esta segunda instancia");
+            return;
+        }
+        instance::Acquire::Unavailable => {
+            tracing::warn!("no se pudo tomar el candado de instancia única: se arranca sin él");
+            None
+        }
     };
 
     let positions_file = layout.root().join("overlay-positions.json");
