@@ -483,6 +483,11 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       m.meeting = { ...m.meeting, title, updatedAt: now() };
       return m.meeting;
     },
+    async meetingSetNote(id, note) {
+      const m = findMeeting(id);
+      m.meeting = { ...m.meeting, userNote: note.trim() || null, updatedAt: now() };
+      return m.meeting;
+    },
     async meetingDelete(id) {
       state.meetings = state.meetings.filter((m) => m.meeting.id !== id);
     },

@@ -404,6 +404,8 @@ export interface Meeting {
   /** Si falló el resumen: proveedor y modelo que fallaron (el texto de `error` también los nombra). */
   errorProvider?: string | null;
   errorModel?: string | null;
+  /** Nota personal del usuario («nota para mí»): privada, va al LLM como contexto y sale en el acta en su sección. */
+  userNote?: string | null;
 }
 
 export interface MeetingSummary {
