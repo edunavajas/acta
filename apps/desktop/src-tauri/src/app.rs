@@ -923,6 +923,7 @@ impl AppCore {
             let (kind, mut models): (&str, Vec<String>) = match &cfg.kind {
                 ProviderKind::ClaudeCli { .. } => ("claudeCli", ["sonnet", "opus", "haiku"].map(String::from).to_vec()),
                 ProviderKind::CodexCli { .. } => ("codexCli", vec![]),
+                ProviderKind::OpenCodeCli { .. } => ("opencodeCli", vec![]),
                 ProviderKind::Anthropic { .. } => ("anthropic", vec![]),
                 ProviderKind::BuiltIn { .. } => (
                     "builtIn",
@@ -956,11 +957,23 @@ impl AppCore {
     pub async fn llm_cli_detect(&self) -> PortResult<CliDetection> {
         let claude = detect_cli_any(&self.shell, "claude", &self.home).await?;
         let codex = detect_cli_any(&self.shell, "codex", &self.home).await?;
+        let mut opencode = detect_cli_any(&self.shell, "opencode", &self.home).await?;
+        if opencode.is_none() {
+            let candidate = self.home.join(".opencode/bin/opencode");
+            if tokio::fs::metadata(&candidate).await.is_ok_and(|m| m.is_file()) {
+                opencode = Some(acta_llm::providers::detect::DetectedCli {
+                    path: candidate,
+                    env: std::collections::BTreeMap::new(),
+                });
+            }
+        }
         Ok(CliDetection {
             claude: claude.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
             codex: codex.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
+            opencode: opencode.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
             claude_env: claude.map(|d| d.env).unwrap_or_default(),
             codex_env: codex.map(|d| d.env).unwrap_or_default(),
+            opencode_env: opencode.map(|d| d.env).unwrap_or_default(),
         })
     }
 

@@ -37,13 +37,22 @@ pub async fn detect_cli(shell: &Path, name: &str) -> PortResult<Option<DetectedC
 /// también esté en el PATH. Si falla, un shell de login (`-lc`).
 /// `$HOME`, `${HOME}` y `~` se expanden con `home`.
 pub async fn detect_cli_any(shell: &Path, name: &str, home: &Path) -> PortResult<Option<DetectedCli>> {
-    for (flag, timeout) in [("-ic", INTERACTIVE_SHELL_TIMEOUT), ("-lc", LOGIN_SHELL_TIMEOUT)] {
+    // 1. `command -v` en shell interactiva ve alias con variables de entorno.
+    // 2. `whence -p` en shell interactiva resuelve el ejecutable real en PATH aunque
+    //    el usuario envuelva el comando en una función de shell (p. ej. `opencode()`).
+    // 3. `command -v` en login shell como respaldo rápido.
+    let probes = [
+        ("-ic", format!("command -v {name}"), INTERACTIVE_SHELL_TIMEOUT),
+        ("-ic", format!("whence -p {name}"), INTERACTIVE_SHELL_TIMEOUT),
+        ("-lc", format!("command -v {name}"), LOGIN_SHELL_TIMEOUT),
+    ];
+    for (flag, expr, timeout) in probes {
         let mut cmd = Command::new(shell);
-        cmd.arg(flag).arg(format!("command -v {name}"));
+        cmd.arg(flag).arg(&expr);
         let out = match run_supervised(cmd, None, timeout).await {
             Ok(o) => o,
             Err(e) => {
-                tracing::warn!("{shell:?} {flag}: {e}");
+                tracing::warn!("{shell:?} {flag} ({expr}): {e}");
                 continue;
             }
         };

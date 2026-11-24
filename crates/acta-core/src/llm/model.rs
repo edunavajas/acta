@@ -36,6 +36,13 @@ pub enum ProviderKind {
         model: Option<String>,
         extra_env: BTreeMap<String, String>,
     },
+    /// `opencode run --archived --format json`.
+    #[serde(rename = "opencodeCli", rename_all = "camelCase")]
+    OpenCodeCli {
+        binary_path: PathBuf,
+        model: Option<String>,
+        extra_env: BTreeMap<String, String>,
+    },
     /// Cualquier API compatible con OpenAI (Ollama, LM Studio, OpenRouter).
     #[serde(rename_all = "camelCase")]
     OpenAiCompatible {
@@ -127,4 +134,25 @@ pub struct ProviderTestResult {
     pub ok: bool,
     pub message: String,
     pub latency_ms: Option<u64>,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn opencode_cli_wire_tag_matches_typescript_contract() {
+        let json = r#"{"type":"opencodeCli","binaryPath":"/Users/a/.opencode/bin/opencode","model":"github-copilot/gemini-4-neon","extraEnv":{}}"#;
+        let kind: ProviderKind = serde_json::from_str(json).expect("deserialize opencodeCli");
+        assert_eq!(
+            kind,
+            ProviderKind::OpenCodeCli {
+                binary_path: PathBuf::from("/Users/a/.opencode/bin/opencode"),
+                model: Some("github-copilot/gemini-4-neon".into()),
+                extra_env: BTreeMap::new(),
+            }
+        );
+        let serialized = serde_json::to_value(&kind).expect("serialize");
+        assert_eq!(serialized["type"], "opencodeCli");
+    }
 }

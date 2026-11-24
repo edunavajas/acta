@@ -37,7 +37,9 @@ pub fn with_override(mut settings: Settings, o: &LlmOverride) -> Settings {
         cfg.enabled = true;
         if let Some(m) = o.model.clone().filter(|m| !m.trim().is_empty()) {
             match &mut cfg.kind {
-                ProviderKind::ClaudeCli { model, .. } | ProviderKind::CodexCli { model, .. } => *model = Some(m),
+                ProviderKind::ClaudeCli { model, .. }
+                | ProviderKind::CodexCli { model, .. }
+                | ProviderKind::OpenCodeCli { model, .. } => *model = Some(m),
                 ProviderKind::OpenAiCompatible { model, .. } | ProviderKind::Anthropic { model, .. } => *model = m,
                 ProviderKind::BuiltIn { model_id } => *model_id = m,
             }

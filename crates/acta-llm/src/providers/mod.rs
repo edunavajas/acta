@@ -14,6 +14,7 @@ pub mod detect;
 pub(crate) mod http;
 pub mod models;
 pub mod openai;
+pub mod opencode;
 pub mod presets;
 pub mod sse;
 
@@ -21,6 +22,7 @@ pub use anthropic::AnthropicProvider;
 pub use claude::ClaudeCliProvider;
 pub use codex::CodexCliProvider;
 pub use openai::OpenAiCompatibleProvider;
+pub use opencode::OpenCodeCliProvider;
 
 use acta_core::llm::*;
 use acta_core::{PortError, PortResult};
@@ -79,6 +81,13 @@ impl LlmProviderFactory for DefaultProviderFactory {
                     .with_effort(effort.clone()),
             ),
             ProviderKind::CodexCli { binary_path, model, extra_env } => Arc::new(CodexCliProvider::new(
+                id,
+                binary_path.clone(),
+                model.clone(),
+                extra_env.clone(),
+                timeout,
+            )),
+            ProviderKind::OpenCodeCli { binary_path, model, extra_env } => Arc::new(OpenCodeCliProvider::new(
                 id,
                 binary_path.clone(),
                 model.clone(),
@@ -160,7 +169,8 @@ mod tests {
         let bin = std::path::PathBuf::from("/bin/claude");
         let kinds = vec![
             ProviderKind::ClaudeCli { binary_path: bin.clone(), model: None, effort: Some("high".into()), extra_env: BTreeMap::new() },
-            ProviderKind::CodexCli { binary_path: bin, model: None, extra_env: BTreeMap::new() },
+            ProviderKind::CodexCli { binary_path: bin.clone(), model: None, extra_env: BTreeMap::new() },
+            ProviderKind::OpenCodeCli { binary_path: bin, model: None, extra_env: BTreeMap::new() },
             ProviderKind::OpenAiCompatible { base_url: "http://localhost:11434/v1".into(), model: "m".into(), api_key: None },
             ProviderKind::Anthropic { model: "m".into(), api_key: secret() },
         ];

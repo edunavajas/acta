@@ -5,7 +5,7 @@ import type { CliDetection, SecretRef, Settings } from "../../api";
 import type { LocalKind } from "../providers/LocalModels";
 import { PRESETS, assignAll, presetOf, upsertPreset, type PresetId } from "../providers/presets";
 
-export type AiChoice = "claudeCode" | "codex" | "builtIn" | "local" | "nan" | "own";
+export type AiChoice = "claudeCode" | "codex" | "openCode" | "builtIn" | "local" | "nan" | "own";
 export type OwnService = "openAi" | "anthropic" | "openRouter" | "custom";
 type Llm = Settings["llm"];
 
@@ -21,6 +21,7 @@ export interface AiState {
 const CHOICE_OF: Record<PresetId, AiChoice> = {
   claudeCode: "claudeCode",
   codex: "codex",
+  openCode: "openCode",
   builtIn: "builtIn",
   ollama: "local",
   lmStudio: "local",
@@ -55,6 +56,7 @@ function presetFor(ai: AiState): PresetId | null {
   switch (ai.choice) {
     case "claudeCode":
     case "codex":
+    case "openCode":
     case "builtIn":
     case "nan":
       return ai.choice;
@@ -80,6 +82,7 @@ export function applyAi(llm: Llm, ai: AiState, cli: CliDetection | null): Llm {
   let next: ReturnType<typeof upsertPreset>;
   if (preset === "claudeCode") next = upsertPreset(llm, preset, cli?.claude ? { binaryPath: cli.claude, extraEnv: cli.claudeEnv } : {});
   else if (preset === "codex") next = upsertPreset(llm, preset, cli?.codex ? { binaryPath: cli.codex, extraEnv: cli.codexEnv } : {});
+  else if (preset === "openCode") next = upsertPreset(llm, preset, cli?.opencode ? { binaryPath: cli.opencode, extraEnv: cli.opencodeEnv } : {});
   else if (ai.choice === "builtIn") next = upsertPreset(llm, preset, ai.builtIn ? { model: ai.builtIn.modelId } : {});
   else if (ai.choice === "local" && ai.local) next = upsertPreset(llm, preset, { model: ai.local.model, baseUrl: ai.local.baseUrl });
   else if (ai.choice === "nan") next = upsertPreset(llm, preset, { model: ai.nan.model, apiKey: ai.nan.apiKey });
@@ -96,6 +99,8 @@ export function aiProblem(ai: AiState, cli: CliDetection | null, cliPending: boo
       return cliPending || cli?.claude ? null : "Claude Code no está instalado en este Mac. Elige otra opción o instálalo y vuelve a buscar.";
     case "codex":
       return cliPending || cli?.codex ? null : "Codex no está instalado en este Mac. Elige otra opción o instálalo y vuelve a buscar.";
+    case "openCode":
+      return cliPending || cli?.opencode ? null : "OpenCode no está instalado en este Mac. Elige otra opción o instálalo y vuelve a buscar.";
     case "builtIn":
       return ai.builtIn ? null : "Descarga un modelo y pulsa «Elegir» para continuar.";
     case "local":

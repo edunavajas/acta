@@ -598,6 +598,7 @@ export interface SecretRef {
 export type ProviderKind =
   | { type: "claudeCli"; binaryPath: string; model: string | null; effort: string | null; extraEnv: Record<string, string> }
   | { type: "codexCli"; binaryPath: string; model: string | null; extraEnv: Record<string, string> }
+  | { type: "opencodeCli"; binaryPath: string; model: string | null; extraEnv: Record<string, string> }
   | { type: "openAiCompatible"; baseUrl: string; model: string; apiKey: SecretRef | null }
   | { type: "anthropic"; model: string; apiKey: SecretRef }
   /** Modelo local integrado: acta lo descarga y lo ejecuta (sin Ollama). */
@@ -644,8 +645,10 @@ export interface InstalledApp {
 export interface CliDetection {
   claude: string | null;
   codex: string | null;
+  opencode: string | null;
   claudeEnv: Record<string, string>;
   codexEnv: Record<string, string>;
+  opencodeEnv: Record<string, string>;
 }
 
 /** Un servidor local de modelos (Ollama, LM Studio). */

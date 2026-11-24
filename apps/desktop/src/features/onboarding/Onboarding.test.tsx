@@ -110,7 +110,7 @@ describe("bienvenida de primer arranque", () => {
 
   it("IA: reconoce el Claude Code de este Mac y lo deja configurado", async () => {
     const { dialog, controls } = await firstRun({}, (api) => {
-      vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: null, claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.c" }, codexEnv: {} });
+      vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: null, opencode: null, claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.c" }, codexEnv: {}, opencodeEnv: {} });
     });
     await goToStep(5);
     expect(within(dialog).getByRole("heading", { name: "¿Quién escribe tus actas?" })).toBeInTheDocument();

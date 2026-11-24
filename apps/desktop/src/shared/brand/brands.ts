@@ -10,11 +10,12 @@ import microsoftteams from "../../assets/logos/microsoftteams.svg";
 import nanbuilders from "../../assets/logos/nanbuilders.png";
 import ollama from "../../assets/logos/ollama.svg";
 import openai from "../../assets/logos/openai.svg";
+import opencode from "../../assets/logos/opencode.svg";
 import openrouter from "../../assets/logos/openrouter.svg";
 import slack from "../../assets/logos/slack.svg";
 import zoom from "../../assets/logos/zoom.svg";
 
-export type BrandId = "teams" | "meet" | "zoom" | "slack" | "claude" | "anthropic" | "openai" | "ollama" | "lmstudio" | "openrouter" | "nan";
+export type BrandId = "teams" | "meet" | "zoom" | "slack" | "claude" | "anthropic" | "openai" | "opencode" | "ollama" | "lmstudio" | "openrouter" | "nan";
 
 export interface Brand {
   name: string;
@@ -38,6 +39,7 @@ export const BRANDS: Record<BrandId, Brand> = {
   claude: { name: "Claude", src: claude, color: "#d97757" },
   anthropic: { name: "Anthropic", src: anthropic, color: "#191919", ink: "#faf9f5" },
   openai: { name: "OpenAI", src: openai, color: "#0d0d0d" },
+  opencode: { name: "OpenCode", src: opencode, color: "#0c0c0c", image: true, scale: 0.62 },
   ollama: { name: "Ollama", src: ollama, color: "#ffffff", ink: "#111111", scale: 0.66 },
   lmstudio: { name: "LM Studio", src: lmstudio, color: "#ffffff", ink: "#5b48e8", scale: 0.74 },
   openrouter: { name: "OpenRouter", src: openrouter, color: "#6467f2" },

@@ -1,4 +1,4 @@
-import { CircleAlert, Cpu, Plus, ScanSearch, Server, Trash2, X } from "lucide-react";
+import { CircleAlert, Cpu, Plus, ScanSearch, Server, Terminal, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ProviderConfig, ProviderKind, ProviderTestResult, SecretRef, Settings } from "../../api";
 import { useApi } from "../../app/ApiContext";
@@ -78,7 +78,7 @@ interface Props {
 }
 
 /** Presets de los que solo tiene sentido tener uno. */
-const SINGLE: PresetId[] = ["claudeCode", "codex", "builtIn", "ollama", "lmStudio", "nan"];
+const SINGLE: PresetId[] = ["claudeCode", "codex", "openCode", "builtIn", "ollama", "lmStudio", "nan"];
 
 function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSecretDelete, onOpenUrl }: { p: ProviderConfig; result: ProviderTestResult | "pending" | undefined; onChange(p: ProviderConfig): void; onRemove(): void; onTest(): void; onSecretSet: Props["onSecretSet"]; onSecretDelete: Props["onSecretDelete"]; onOpenUrl(url: string): void }) {
   const api = useApi();
@@ -87,7 +87,7 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
   const preset = PRESETS[presetOf(p)];
   const brand = brandOf(p);
   const setKind = (kind: ProviderKind) => onChange({ ...p, kind });
-  const isCli = k.type === "claudeCli" || k.type === "codexCli";
+  const isCli = k.type === "claudeCli" || k.type === "codexCli" || k.type === "opencodeCli";
   const located = isCli && k.binaryPath.trim() !== "";
   const isCustom = preset.id === "custom";
   const urlField =
@@ -103,7 +103,7 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
           <BrandLogo brand={brand} size="lg" />
         ) : (
           <span className="brand-tile brand-lg brand-generic" aria-hidden>
-            {k.type === "builtIn" ? <Cpu strokeWidth={1.9} /> : <Server strokeWidth={1.9} />}
+            {k.type === "builtIn" ? <Cpu strokeWidth={1.9} /> : isCli ? <Terminal strokeWidth={1.9} /> : <Server strokeWidth={1.9} />}
           </span>
         )}
         <div className="provider-title">
@@ -152,8 +152,8 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
       <div className={`provider-fields${k.type === "openAiCompatible" && !isCustom ? " provider-fields-one" : ""}`}>
         {isCli ? (
           <>
-            <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
-              <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
+            <Field label="Modelo" hint={k.type === "opencodeCli" ? "Formato proveedor/modelo (p. ej. github-copilot/gemini-4-neon). Vacío: el por defecto de OpenCode." : "Vacío: el que tenga configurado el CLI."}>
+              <input aria-label={`Modelo de ${p.label}`} placeholder={k.type === "opencodeCli" ? "github-copilot/gemini-4-neon" : "Por defecto"} spellCheck={false} value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
             </Field>
             {k.type === "claudeCli" ? (
               <Field label="Esfuerzo" hint="Cuánto piensa antes de responder.">
@@ -227,7 +227,7 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
         {isCli ? (
           <>
             <Field label="Ruta del programa" hint="Las apps no heredan el PATH de tu terminal: hace falta la ruta completa. «Detectar» la rellena sola.">
-              <input className="input-mono" aria-label={`Ruta del binario de ${p.label}`} value={k.binaryPath} placeholder="/opt/homebrew/bin/claude" spellCheck={false} onChange={(e) => setKind({ ...k, binaryPath: e.target.value })} />
+              <input className="input-mono" aria-label={`Ruta del binario de ${p.label}`} value={k.binaryPath} placeholder={k.type === "opencodeCli" ? "~/.opencode/bin/opencode" : "/opt/homebrew/bin/claude"} spellCheck={false} onChange={(e) => setKind({ ...k, binaryPath: e.target.value })} />
             </Field>
             <EnvEditor label={p.label} env={k.extraEnv} onChange={(extraEnv) => setKind({ ...k, extraEnv })} />
           </>
@@ -279,7 +279,7 @@ export function ProvidersSection({ llm, tests, onChange, onTest, onDetect, detec
     const active = (task: string | null) => (enabled.some((p) => p.id === task) ? task : created.id);
     onChange({ ...llm, providers: [...llm.providers, created], minutesProvider: active(llm.minutesProvider), chatProvider: active(llm.chatProvider), namingProvider: active(llm.namingProvider) });
     // Los CLI necesitan su ruta: se busca sola.
-    if (id === "claudeCode" || id === "codex") onDetect();
+    if (id === "claudeCode" || id === "codex" || id === "openCode") onDetect();
   };
   const useLocal = (kind: LocalKind, model: string, baseUrl: string) => {
     const next = upsertPreset(llm, kind, { model, baseUrl });

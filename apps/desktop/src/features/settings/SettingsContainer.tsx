@@ -149,18 +149,22 @@ export function SettingsContainer({ onReplayOnboarding }: { onReplayOnboarding?:
     } catch (e) {
       return setDetecting({ ok: false, text: `No se ha podido buscar en este Mac: ${errorMessage(e)}` });
     }
-    const names = [found.claude ? "Claude Code" : null, found.codex ? "Codex" : null].filter((n): n is string => n !== null);
-    setDetecting(names.length > 0 ? { ok: true, text: `Detectado en este Mac: ${names.join(" y ")}.` } : { ok: false, text: "No se ha encontrado Claude Code ni Codex en este Mac. Si los tienes en una carpeta poco habitual, pon su ruta en «Avanzado»." });
+    const names = [found.claude ? "Claude Code" : null, found.codex ? "Codex" : null, found.opencode ? "OpenCode" : null].filter((n): n is string => n !== null);
+    setDetecting(names.length > 0 ? { ok: true, text: `Detectado en este Mac: ${names.join(", ")}.` } : { ok: false, text: "No se ha encontrado Claude Code, Codex ni OpenCode en este Mac. Si los tienes en una carpeta poco habitual, pon su ruta en «Avanzado»." });
     setDraft((d) => {
       if (!d) return d;
       let providers = d.llm.providers.map((p) => ({ ...p, kind: { ...p.kind } })) as Settings["llm"]["providers"];
-      for (const [type, path] of [["claudeCli", found.claude], ["codexCli", found.codex]] as const) {
+      const entries = [
+        ["claudeCli", found.claude, found.claudeEnv, "claudeCode"],
+        ["codexCli", found.codex, found.codexEnv, "codex"],
+        ["opencodeCli", found.opencode, found.opencodeEnv, "openCode"],
+      ] as const;
+      for (const [type, path, env, presetId] of entries) {
         if (!path) continue;
         const existing = providers.find((p) => p.kind.type === type);
         // Las variables que usa el CLI en la terminal de esta persona: se detectan en su Mac, no vienen puestas.
-        const env = type === "claudeCli" ? found.claudeEnv : found.codexEnv;
-        const target = existing ?? createFromPreset(type === "claudeCli" ? "claudeCode" : "codex", providers);
-        if (target.kind.type === "claudeCli" || target.kind.type === "codexCli") {
+        const target = existing ?? createFromPreset(presetId, providers);
+        if (target.kind.type === "claudeCli" || target.kind.type === "codexCli" || target.kind.type === "opencodeCli") {
           target.kind.binaryPath = path;
           target.kind.extraEnv = { ...target.kind.extraEnv, ...env };
         }

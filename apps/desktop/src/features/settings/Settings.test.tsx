@@ -368,11 +368,13 @@ describe("SettingsContainer", () => {
   it("detecta los CLI y añade Codex", async () => {
     const { api } = setup();
     await goTo("Proveedores de IA");
-    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {} });
+    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", opencode: "/x/opencode", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {}, opencodeEnv: {} });
     await userEvent.click(await screen.findByRole("button", { name: "Detectar CLI instalados" }));
     await userEvent.click(await screen.findByRole("button", { name: "Avanzado de Codex (CLI)" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Avanzado de OpenCode (CLI)" }));
     await advanced("Avanzado de Claude Code (CLI)");
     expect(await screen.findByDisplayValue("/x/codex")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("/x/opencode")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/x/claude")).toBeInTheDocument();
     expect(screen.getByDisplayValue("CLAUDE_CONFIG_DIR")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/h/.config/claude")).toBeInTheDocument();
@@ -385,9 +387,9 @@ describe("SettingsContainer", () => {
     const button = await screen.findByRole("button", { name: "Detectar CLI instalados" });
     await userEvent.click(button);
     expect(await screen.findByText("Detectado en este Mac: Claude Code.")).toBeInTheDocument();
-    detect.mockResolvedValueOnce({ claude: null, codex: null, claudeEnv: {}, codexEnv: {} });
+    detect.mockResolvedValueOnce({ claude: null, codex: null, opencode: null, claudeEnv: {}, codexEnv: {}, opencodeEnv: {} });
     await userEvent.click(button);
-    expect(await screen.findByRole("alert")).toHaveTextContent(/No se ha encontrado Claude Code ni Codex/);
+    expect(await screen.findByRole("alert")).toHaveTextContent(/No se ha encontrado Claude Code, Codex ni OpenCode/);
     detect.mockRejectedValueOnce({ code: "io", message: "no hay shell" });
     await userEvent.click(button);
     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("No se ha podido buscar en este Mac: no hay shell"));

@@ -42,6 +42,7 @@ describe("presets de proveedores", () => {
     const of = (kind: ProviderConfig["kind"]) => presetOf({ id: "x", label: "X", enabled: true, timeoutS: 600, kind });
     expect(of({ type: "claudeCli", binaryPath: "", model: null, effort: null, extraEnv: {} })).toBe("claudeCode");
     expect(of({ type: "codexCli", binaryPath: "", model: null, extraEnv: {} })).toBe("codex");
+    expect(of({ type: "opencodeCli", binaryPath: "", model: null, extraEnv: {} })).toBe("openCode");
     expect(of({ type: "openAiCompatible", baseUrl: "http://localhost:11434/v1/", model: "m", apiKey: null })).toBe("ollama");
     expect(of({ type: "openAiCompatible", baseUrl: "http://127.0.0.1:1234/v1", model: "m", apiKey: null })).toBe("lmStudio");
     expect(of({ type: "openAiCompatible", baseUrl: "https://API.nan.builders/v1", model: "m", apiKey: null })).toBe("nan");
@@ -52,6 +53,7 @@ describe("presets de proveedores", () => {
   it("cada proveedor tiene su logo; el compatible genérico, ninguno", () => {
     expect(brandOf(createFromPreset("claudeCode", []))).toBe("claude");
     expect(brandOf(createFromPreset("codex", []))).toBe("openai");
+    expect(brandOf(createFromPreset("openCode", []))).toBe("opencode");
     expect(brandOf(createFromPreset("nan", []))).toBe("nan");
     expect(brandOf(createFromPreset("lmStudio", []))).toBe("lmstudio");
     expect(brandOf(createFromPreset("custom", []))).toBeNull();
