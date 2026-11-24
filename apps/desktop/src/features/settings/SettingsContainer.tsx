@@ -167,6 +167,9 @@ export function SettingsContainer({ onReplayOnboarding }: { onReplayOnboarding?:
         if (target.kind.type === "claudeCli" || target.kind.type === "codexCli" || target.kind.type === "opencodeCli") {
           target.kind.binaryPath = path;
           target.kind.extraEnv = { ...target.kind.extraEnv, ...env };
+          if (target.kind.type === "opencodeCli" && !target.kind.model && found.opencodeModel) {
+            target.kind.model = found.opencodeModel;
+          }
         }
         if (!existing) providers = [...providers, target];
       }

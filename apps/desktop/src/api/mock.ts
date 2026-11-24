@@ -749,7 +749,7 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       return structuredClone(state.apps);
     },
     async llmCliDetect() {
-      return { claude: "/opt/homebrew/bin/claude", codex: null, opencode: null, claudeEnv: {}, codexEnv: {}, opencodeEnv: {} };
+      return { claude: "/opt/homebrew/bin/claude", codex: null, opencode: null, claudeEnv: {}, codexEnv: {}, opencodeEnv: {}, opencodeModel: null };
     },
     async llmListModels(baseUrl) {
       const key = baseUrl.trim().replace(/\/+$/, "");

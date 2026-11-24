@@ -149,12 +149,23 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
         />
       ) : null}
 
-      <div className={`provider-fields${k.type === "openAiCompatible" && !isCustom ? " provider-fields-one" : ""}`}>
+      <div className={`provider-fields${(k.type === "openAiCompatible" && !isCustom) || k.type === "opencodeCli" ? " provider-fields-one" : ""}`}>
         {isCli ? (
           <>
-            <Field label="Modelo" hint={k.type === "opencodeCli" ? "Formato proveedor/modelo (p. ej. github-copilot/gemini-4-neon). Vacío: el por defecto de OpenCode." : "Vacío: el que tenga configurado el CLI."}>
-              <input aria-label={`Modelo de ${p.label}`} placeholder={k.type === "opencodeCli" ? "github-copilot/gemini-4-neon" : "Por defecto"} spellCheck={false} value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
-            </Field>
+            {k.type === "opencodeCli" ? (
+              <ModelField
+                label={p.label}
+                value={k.model ?? ""}
+                placeholder="github-copilot/gemini-4-neon"
+                hint="Pulsa «Ver modelos» para elegir uno de OpenCode. Si lo dejas vacío, acta usa el modelo por defecto o el último usado en OpenCode."
+                onChange={(model) => setKind({ ...k, model: model.trim() || null })}
+                load={() => api.llmListModels(`opencode:${k.binaryPath}`, p.id)}
+              />
+            ) : (
+              <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
+                <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" spellCheck={false} value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
+              </Field>
+            )}
             {k.type === "claudeCli" ? (
               <Field label="Esfuerzo" hint="Cuánto piensa antes de responder.">
                 <Select label={`Esfuerzo de ${p.label}`} value={k.effort ?? ""} onChange={(e) => setKind({ ...k, effort: e.target.value || null })}>

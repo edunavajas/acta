@@ -923,7 +923,15 @@ impl AppCore {
             let (kind, mut models): (&str, Vec<String>) = match &cfg.kind {
                 ProviderKind::ClaudeCli { .. } => ("claudeCli", ["sonnet", "opus", "haiku"].map(String::from).to_vec()),
                 ProviderKind::CodexCli { .. } => ("codexCli", vec![]),
-                ProviderKind::OpenCodeCli { .. } => ("opencodeCli", vec![]),
+                ProviderKind::OpenCodeCli { binary_path, extra_env, .. } => {
+                    let listed = acta_llm::providers::opencode::list_models(
+                        binary_path,
+                        extra_env,
+                        std::time::Duration::from_secs(5),
+                    )
+                    .await;
+                    ("opencodeCli", listed.unwrap_or_default())
+                }
                 ProviderKind::Anthropic { .. } => ("anthropic", vec![]),
                 ProviderKind::BuiltIn { .. } => (
                     "builtIn",
@@ -967,6 +975,7 @@ impl AppCore {
                 });
             }
         }
+        let opencode_model = opencode.as_ref().and_then(|_| acta_llm::providers::opencode::resolve_default_model(&self.home));
         Ok(CliDetection {
             claude: claude.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
             codex: codex.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
@@ -974,6 +983,7 @@ impl AppCore {
             claude_env: claude.map(|d| d.env).unwrap_or_default(),
             codex_env: codex.map(|d| d.env).unwrap_or_default(),
             opencode_env: opencode.map(|d| d.env).unwrap_or_default(),
+            opencode_model,
         })
     }
 

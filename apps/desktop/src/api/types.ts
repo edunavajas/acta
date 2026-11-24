@@ -649,6 +649,7 @@ export interface CliDetection {
   claudeEnv: Record<string, string>;
   codexEnv: Record<string, string>;
   opencodeEnv: Record<string, string>;
+  opencodeModel?: string | null;
 }
 
 /** Un servidor local de modelos (Ollama, LM Studio). */

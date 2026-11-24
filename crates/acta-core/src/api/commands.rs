@@ -194,6 +194,9 @@ pub struct CliDetection {
     pub codex_env: BTreeMap<String, String>,
     #[serde(default)]
     pub opencode_env: BTreeMap<String, String>,
+    /// Modelo por defecto o reciente detectado en la configuración/estado de OpenCode.
+    #[serde(default)]
+    pub opencode_model: Option<String>,
 }
 
 /// Micrófono disponible. `uid` es lo que se guarda en

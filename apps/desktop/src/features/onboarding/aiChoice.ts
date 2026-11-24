@@ -82,7 +82,14 @@ export function applyAi(llm: Llm, ai: AiState, cli: CliDetection | null): Llm {
   let next: ReturnType<typeof upsertPreset>;
   if (preset === "claudeCode") next = upsertPreset(llm, preset, cli?.claude ? { binaryPath: cli.claude, extraEnv: cli.claudeEnv } : {});
   else if (preset === "codex") next = upsertPreset(llm, preset, cli?.codex ? { binaryPath: cli.codex, extraEnv: cli.codexEnv } : {});
-  else if (preset === "openCode") next = upsertPreset(llm, preset, cli?.opencode ? { binaryPath: cli.opencode, extraEnv: cli.opencodeEnv } : {});
+  else if (preset === "openCode")
+    next = upsertPreset(
+      llm,
+      preset,
+      cli?.opencode
+        ? { binaryPath: cli.opencode, extraEnv: cli.opencodeEnv, ...(cli.opencodeModel ? { model: cli.opencodeModel } : {}) }
+        : {},
+    );
   else if (ai.choice === "builtIn") next = upsertPreset(llm, preset, ai.builtIn ? { model: ai.builtIn.modelId } : {});
   else if (ai.choice === "local" && ai.local) next = upsertPreset(llm, preset, { model: ai.local.model, baseUrl: ai.local.baseUrl });
   else if (ai.choice === "nan") next = upsertPreset(llm, preset, { model: ai.nan.model, apiKey: ai.nan.apiKey });

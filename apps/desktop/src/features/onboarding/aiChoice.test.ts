@@ -38,9 +38,9 @@ describe("elección de IA en la bienvenida", () => {
   });
 
   it("OpenCode: lo añade si no estaba y asigna las tareas", () => {
-    const out = applyAi(llm(), ai({ choice: "openCode" }), cli({ opencode: "/x/opencode" }));
+    const out = applyAi(llm(), ai({ choice: "openCode" }), cli({ opencode: "/x/opencode", opencodeModel: "github-copilot/gemini-4-neon" }));
     expect(out.providers.map((p) => p.id)).toEqual(["claude-cli", "opencode-cli"]);
-    expect(out.providers[1]!.kind).toMatchObject({ type: "opencodeCli", binaryPath: "/x/opencode" });
+    expect(out.providers[1]!.kind).toMatchObject({ type: "opencodeCli", binaryPath: "/x/opencode", model: "github-copilot/gemini-4-neon" });
     expect(out.minutesProvider).toBe("opencode-cli");
   });
 

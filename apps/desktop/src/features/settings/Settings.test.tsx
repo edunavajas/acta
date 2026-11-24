@@ -368,13 +368,14 @@ describe("SettingsContainer", () => {
   it("detecta los CLI y añade Codex", async () => {
     const { api } = setup();
     await goTo("Proveedores de IA");
-    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", opencode: "/x/opencode", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {}, opencodeEnv: {} });
+    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", opencode: "/x/opencode", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {}, opencodeEnv: {}, opencodeModel: "github-copilot/gemini-4-neon" });
     await userEvent.click(await screen.findByRole("button", { name: "Detectar CLI instalados" }));
     await userEvent.click(await screen.findByRole("button", { name: "Avanzado de Codex (CLI)" }));
     await userEvent.click(await screen.findByRole("button", { name: "Avanzado de OpenCode (CLI)" }));
     await advanced("Avanzado de Claude Code (CLI)");
     expect(await screen.findByDisplayValue("/x/codex")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/x/opencode")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("github-copilot/gemini-4-neon")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/x/claude")).toBeInTheDocument();
     expect(screen.getByDisplayValue("CLAUDE_CONFIG_DIR")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/h/.config/claude")).toBeInTheDocument();

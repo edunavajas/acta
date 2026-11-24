@@ -14,14 +14,36 @@ use tauri_plugin_opener::OpenerExt;
 /// Listar modelos es una consulta corta: si tarda más, el servidor no está.
 const LIST_TIMEOUT: Duration = Duration::from_secs(12);
 
-/// Modelos de texto de un servidor compatible con OpenAI. Si `provider_id`
-/// tiene una clave en el Llavero, se usa; la clave nunca pasa por la UI.
+/// Modelos de texto de un servidor compatible con OpenAI o del CLI de OpenCode
+/// (`base_url` con prefijo `opencode:<ruta>`). Si `provider_id` tiene una clave
+/// en el Llavero, se usa; la clave nunca pasa por la UI.
 #[tauri::command]
 pub async fn llm_list_models(
     state: State<'_, Core>,
     base_url: String,
     provider_id: Option<ProviderId>,
 ) -> ApiResult<Vec<String>> {
+    if let Some(bin_path) = base_url.strip_prefix("opencode:") {
+        let bin = bin_path.trim();
+        if bin.is_empty() {
+            return Err(ApiError {
+                code: ApiErrorCode::InvalidInput,
+                message: "Indica primero la ruta de OpenCode en «Avanzado» o pulsa «Detectar CLI instalados».".into(),
+            });
+        }
+        let extra_env = provider_id
+            .as_ref()
+            .and_then(|id| {
+                state.settings().llm.providers.into_iter().find_map(|p| match p.kind {
+                    acta_core::llm::ProviderKind::OpenCodeCli { extra_env, .. } if &p.id == id => Some(extra_env),
+                    _ => None,
+                })
+            })
+            .unwrap_or_default();
+        return acta_llm::providers::opencode::list_models(std::path::Path::new(bin), &extra_env, LIST_TIMEOUT)
+            .await
+            .map_err(ApiError::from);
+    }
     let key = match &provider_id {
         Some(id) => state.secrets.get(&secret_ref_for_provider(&id.0)).map_err(ApiError::from)?,
         None => None,

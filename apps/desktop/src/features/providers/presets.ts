@@ -113,7 +113,7 @@ function patched(p: ProviderConfig, patch: PresetPatch): ProviderConfig {
   if (k.type === "openAiCompatible") return { ...p, enabled: true, kind: { ...k, model: patch.model ?? k.model, baseUrl: patch.baseUrl ?? k.baseUrl, apiKey: patch.apiKey === undefined ? k.apiKey : patch.apiKey } };
   if (k.type === "anthropic") return { ...p, enabled: true, kind: { ...k, model: patch.model ?? k.model } };
   if (k.type === "builtIn") return { ...p, enabled: true, kind: { ...k, modelId: patch.model ?? k.modelId } };
-  const cli = { binaryPath: patch.binaryPath ?? k.binaryPath, extraEnv: { ...k.extraEnv, ...patch.extraEnv } };
+  const cli = { binaryPath: patch.binaryPath ?? k.binaryPath, model: patch.model ?? k.model, extraEnv: { ...k.extraEnv, ...patch.extraEnv } };
   return { ...p, enabled: true, kind: { ...k, ...cli } };
 }
 
