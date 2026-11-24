@@ -117,7 +117,7 @@ Script details, permissions and why it isn't signed: [docs/03-instalacion.md](do
 3. **Choose who writes the minutes** in Settings › Providers:
    - the built-in local model, [Ollama](https://ollama.com) or [LM Studio](https://lmstudio.ai), to send nothing out;
    - [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [OpenRouter](https://openrouter.ai) or any OpenAI-API-compatible server, with your key;
-   - the Claude Code or Codex CLI you already have installed. acta runs it as is, without touching its credentials: check that your provider's terms allow that use.
+   - the Claude Code, Codex or OpenCode CLI you already have installed. acta runs it as is, without touching its credentials: check that your provider's terms allow that use.
 
 ## How it's built
 
