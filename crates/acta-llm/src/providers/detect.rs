@@ -252,6 +252,22 @@ mod tests {
         assert!(d.env.is_empty());
     }
 
+    /// Caso real: `~/.zshrc` envuelve `opencode` en una función de shell, así que
+    /// `command -v opencode` devuelve solo el nombre `opencode` y no una ruta.
+    /// `whence -p` salta la función y resuelve el binario real del PATH.
+    #[tokio::test]
+    async fn shell_function_wrapper_resolves_to_the_real_binary_via_whence() {
+        let dir = tempfile::tempdir().expect("dir");
+        let shell = fake_script(
+            dir.path(),
+            "zsh",
+            "case \"$2\" in\n  'command -v opencode') echo opencode ;;\n  'whence -p opencode') echo /Users/e/.opencode/bin/opencode ;;\n  *) exit 1 ;;\nesac\n",
+        );
+        let d = detect_cli_any(&shell, "opencode", Path::new("/Users/e")).await.expect("ok").expect("found");
+        assert_eq!(d.path, PathBuf::from("/Users/e/.opencode/bin/opencode"));
+        assert!(d.env.is_empty());
+    }
+
     #[tokio::test]
     async fn runs_shell_supervised() {
         let dir = tempfile::tempdir().expect("dir");

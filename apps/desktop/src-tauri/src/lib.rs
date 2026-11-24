@@ -315,6 +315,7 @@ pub fn run() {
             commands::overlay_set_expanded,
             commands::main_window_show,
             commands::providers_ui::llm_list_models,
+            commands::providers_ui::llm_list_opencode_models,
             commands::providers_ui::llm_detect_local,
             commands::providers_ui::open_external_url,
             commands::downloads::meeting_export_transcript,

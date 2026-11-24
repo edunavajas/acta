@@ -352,6 +352,7 @@ async fn a_denied_permission_fails_fast_and_granted_ones_never_prompt() {
 fn provider_ui_commands_are_in_the_contract() {
     use acta_core::api::command_names as c;
     assert_eq!(c::LLM_LIST_MODELS, "llm_list_models");
+    assert_eq!(c::LLM_LIST_OPENCODE_MODELS, "llm_list_opencode_models");
     assert_eq!(c::LLM_DETECT_LOCAL, "llm_detect_local");
     assert_eq!(c::OPEN_EXTERNAL_URL, "open_external_url");
 }

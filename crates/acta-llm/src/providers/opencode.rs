@@ -423,4 +423,47 @@ printf '%s\n' '{"type":"step_finish","part":{"tokens":{"input":50,"output":5}}}'
         let cfg = std::fs::read_to_string(out.join("opencode.json")).expect("cfg");
         assert!(cfg.contains("\"effect\": \"deny\""));
     }
+
+    /// Caso real: en Ajustes el modelo está vacío y `opencode.json` no fija `model`;
+    /// sin `-m`, OpenCode cae al tier gratuito limitado. Debe pasarse el último
+    /// modelo no gratuito de `~/.local/state/opencode/model.json`.
+    #[tokio::test]
+    async fn empty_model_uses_recent_non_free_model_from_home() {
+        let dir = tempfile::tempdir().expect("dir");
+        let home = dir.path().join("home");
+        std::fs::create_dir_all(home.join(".local/state/opencode")).expect("state");
+        std::fs::write(
+            home.join(".local/state/opencode/model.json"),
+            r#"{"recent":[{"providerID":"opencode","modelID":"beam-free"},{"providerID":"github-copilot","modelID":"claude-sonnet-5.5"}]}"#,
+        )
+        .expect("write");
+        let args_out = dir.path().join("args.txt");
+        let bin = fake_script(
+            dir.path(),
+            "opencode",
+            r#"
+printf '%s\n' "$@" > "$ARGS_OUT"
+cat > /dev/null
+printf '%s\n' '{"type":"text","part":{"type":"text","text":"ok"}}'
+"#,
+        );
+        let p = provider(
+            bin,
+            None,
+            &[("HOME", home.to_str().expect("utf8")), ("ARGS_OUT", args_out.to_str().expect("utf8"))],
+        );
+        let r = p
+            .complete(LlmRequest {
+                system: None,
+                messages: vec![LlmMessage { role: Role::User, content: "di ok".into() }],
+                json_schema: None,
+                max_tokens: None,
+                temperature: None,
+            })
+            .await
+            .expect("complete");
+        assert_eq!(r.model.as_deref(), Some("github-copilot/claude-sonnet-5.5"));
+        let argv = std::fs::read_to_string(&args_out).expect("args");
+        assert!(argv.contains("-m\ngithub-copilot/claude-sonnet-5.5\n"), "{argv}");
+    }
 }

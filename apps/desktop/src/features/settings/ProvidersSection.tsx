@@ -1,4 +1,4 @@
-import { CircleAlert, Cpu, Plus, ScanSearch, Server, Terminal, Trash2, X } from "lucide-react";
+import { CircleAlert, Cpu, Plus, ScanSearch, Server, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { ProviderConfig, ProviderKind, ProviderTestResult, SecretRef, Settings } from "../../api";
 import { useApi } from "../../app/ApiContext";
@@ -103,7 +103,7 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
           <BrandLogo brand={brand} size="lg" />
         ) : (
           <span className="brand-tile brand-lg brand-generic" aria-hidden>
-            {k.type === "builtIn" ? <Cpu strokeWidth={1.9} /> : isCli ? <Terminal strokeWidth={1.9} /> : <Server strokeWidth={1.9} />}
+            {k.type === "builtIn" ? <Cpu strokeWidth={1.9} /> : <Server strokeWidth={1.9} />}
           </span>
         )}
         <div className="provider-title">
@@ -156,10 +156,10 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
               <ModelField
                 label={p.label}
                 value={k.model ?? ""}
-                placeholder="github-copilot/gemini-4-neon"
+                placeholder="proveedor/modelo"
                 hint="Pulsa «Ver modelos» para elegir uno de OpenCode. Si lo dejas vacío, acta usa el modelo por defecto o el último usado en OpenCode."
                 onChange={(model) => setKind({ ...k, model: model.trim() || null })}
-                load={() => api.llmListModels(`opencode:${k.binaryPath}`, p.id)}
+                load={() => api.llmListOpencodeModels(k.binaryPath, p.id)}
               />
             ) : (
               <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">

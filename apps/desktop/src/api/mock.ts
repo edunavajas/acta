@@ -28,6 +28,8 @@ export interface MockState {
   local: T.LocalDetection;
   /** Modelos por URL base (sin barra final) para `llmListModels`. */
   remoteModels: Record<string, string[]>;
+  /** Modelos devueltos por `llmListOpencodeModels`. */
+  opencodeModels: string[];
   /** Enlaces que se han pedido abrir en el navegador. */
   opened: string[];
   /** Descargas pedidas (transcripción / audio) y carpetas abiertas (`data`, `meeting:<id>`). */
@@ -368,6 +370,7 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
     ],
     local: noLocalRuntimes(),
     remoteModels: {},
+    opencodeModels: [],
     opened: [],
     exports: [],
     folders: [],
@@ -757,6 +760,12 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       const models = state.remoteModels[key] ?? local?.models;
       if (!models) throw { code: "unavailable", message: `no se pudo conectar con ${key}/models: ¿está el servidor en marcha?` } satisfies T.ApiError;
       return [...models];
+    },
+    async llmListOpencodeModels(binaryPath) {
+      if (!binaryPath.trim()) {
+        throw { code: "invalidInput", message: "Indica primero la ruta de OpenCode en «Avanzado» o pulsa «Detectar CLI instalados»." } satisfies T.ApiError;
+      }
+      return [...state.opencodeModels];
     },
     async llmDetectLocal() {
       return structuredClone(state.local);
