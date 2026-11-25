@@ -124,6 +124,7 @@ pub mod command_names {
     pub const OVERLAY_SET_EXPANDED: &str = "overlay_set_expanded";
     pub const MAIN_WINDOW_SHOW: &str = "main_window_show";
     pub const LLM_LIST_MODELS: &str = "llm_list_models";
+    pub const LLM_LIST_OPENCODE_MODELS: &str = "llm_list_opencode_models";
     pub const LLM_DETECT_LOCAL: &str = "llm_detect_local";
     pub const OPEN_EXTERNAL_URL: &str = "open_external_url";
     pub const MEETING_EXPORT_TRANSCRIPT: &str = "meeting_export_transcript";
@@ -186,12 +187,19 @@ pub struct CliDetection {
     /// Ruta absoluta de `claude` si se encontró (login shell `zsh -lc 'command -v claude'`).
     pub claude: Option<String>,
     pub codex: Option<String>,
+    #[serde(default)]
+    pub opencode: Option<String>,
     /// Variables que fija el alias de `claude` (p. ej. `CLAUDE_CONFIG_DIR`),
     /// con `$HOME` ya expandido. Van a `ProviderKind::ClaudeCli.extra_env`.
     #[serde(default)]
     pub claude_env: BTreeMap<String, String>,
     #[serde(default)]
     pub codex_env: BTreeMap<String, String>,
+    #[serde(default)]
+    pub opencode_env: BTreeMap<String, String>,
+    /// Modelo por defecto o reciente detectado en la configuración/estado de OpenCode.
+    #[serde(default)]
+    pub opencode_model: Option<String>,
 }
 
 /// Micrófono disponible. `uid` es lo que se guarda en

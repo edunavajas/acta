@@ -75,6 +75,7 @@ export function createTauriApi(): ActaApi {
     llmProviderTest: (providerId) => invoke(C.llmProviderTest, { providerId }),
     llmCliDetect: () => invoke(C.llmCliDetect),
     llmListModels: (baseUrl, providerId) => invoke(C.llmListModels, { baseUrl, providerId: providerId ?? null }),
+    llmListOpencodeModels: (binaryPath, providerId) => invoke(C.llmListOpencodeModels, { binaryPath, providerId: providerId ?? null }),
     llmDetectLocal: () => invoke(C.llmDetectLocal),
     llmProvidersAvailable: () => invoke(C.llmProvidersAvailable),
     localLlmStatus: () => invoke(C.localLlmStatus),

@@ -4,7 +4,7 @@ import { defaultSettings, freshSettings } from "../../api/mock";
 import { aiProblem, applyAi, initialAi, secretIdFor, type AiState } from "./aiChoice";
 
 const llm = () => defaultSettings().llm;
-const cli = (over: Partial<CliDetection> = {}): CliDetection => ({ claude: "/opt/homebrew/bin/claude", codex: null, claudeEnv: {}, codexEnv: {}, ...over });
+const cli = (over: Partial<CliDetection> = {}): CliDetection => ({ claude: "/opt/homebrew/bin/claude", codex: null, opencode: null, claudeEnv: {}, codexEnv: {}, opencodeEnv: {}, ...over });
 const ai = (over: Partial<AiState>): AiState => ({ ...initialAi(llm()), ...over });
 
 describe("elección de IA en la bienvenida", () => {
@@ -35,6 +35,13 @@ describe("elección de IA en la bienvenida", () => {
     const out = applyAi(llm(), ai({ choice: "codex" }), cli({ codex: "/x/codex" }));
     expect(out.providers.map((p) => p.id)).toEqual(["claude-cli", "codex-cli"]);
     expect(out.minutesProvider).toBe("codex-cli");
+  });
+
+  it("OpenCode: lo añade si no estaba y asigna las tareas", () => {
+    const out = applyAi(llm(), ai({ choice: "openCode" }), cli({ opencode: "/x/opencode", opencodeModel: "github-copilot/gemini-4-neon" }));
+    expect(out.providers.map((p) => p.id)).toEqual(["claude-cli", "opencode-cli"]);
+    expect(out.providers[1]!.kind).toMatchObject({ type: "opencodeCli", binaryPath: "/x/opencode", model: "github-copilot/gemini-4-neon" });
+    expect(out.minutesProvider).toBe("opencode-cli");
   });
 
   it("modelo local: el servidor y el modelo elegidos", () => {

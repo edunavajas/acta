@@ -98,6 +98,7 @@ open -a ~/Applications/acta.app --env ACTA_AX_DUMP_DIR="$HOME/Desktop/ax-dump"
 
 - [ ] Acta con **Claude CLI** (proveedor por defecto) → resumen, decisiones y tareas.
 - [ ] Acta con **Codex** → ídem.
+- [ ] Acta con **OpenCode** → ídem (modelo por defecto/reciente o elegido con «Ver modelos»).
 - [ ] Acta con **Ollama** → ídem.
 - [ ] Ajustes › Proveedores › Probar → OK con ruta `/opt/homebrew/bin/claude` y `CLAUDE_CONFIG_DIR`.
 - [ ] Búsqueda → encuentra por texto del transcript.

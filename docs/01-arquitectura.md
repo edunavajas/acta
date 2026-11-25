@@ -26,7 +26,7 @@ acta es un grabador de reuniones local para Mac. Está hecho en Rust con arquite
 | Procesos hijo | `tokio::process` + `kill_on_drop(true)` + `wait()` en **todos** los caminos. Además `#![deny(clippy::zombie_processes)]`, `disallowed-methods` sobre `std::process::Command::spawn` y `scripts/guards.sh`. | Es la lección de Meetily. |
 | Base de datos | **rusqlite 0.37 (bundled)** con FTS5 + sqlite-vec 0.1.x. Migraciones con `PRAGMA user_version`. | Es síncrono y simple (va con `spawn_blocking`). sqlx no aporta nada sin servidor. |
 | Embeddings | fastembed-rs con `intfloat/multilingual-e5-small` (384 dims), detrás del puerto `Embedder` y de la feature `local-embeddings`. | Es multilingüe y ligero. bge-m3 (1024) queda como opción futura con una migración. |
-| LLM | Puerto `LlmProvider` con cinco adaptadores: `claude -p`, `codex exec`, OpenAI-compatible, Anthropic y el **modelo local integrado** (§15, opcional). **De fábrica no hay ninguno activado**: la bienvenida detecta lo que hay en el Mac y el usuario elige. | Nada personal viaja como valor por defecto. Nunca se tocan las credenciales del CLI. |
+| LLM | Puerto `LlmProvider` con seis adaptadores: `claude -p`, `codex exec`, `opencode run`, OpenAI-compatible, Anthropic y el **modelo local integrado** (§15, opcional). **De fábrica no hay ninguno activado**: la bienvenida detecta lo que hay en el Mac y el usuario elige. | Nada personal viaja como valor por defecto. Nunca se tocan las credenciales del CLI. |
 | Procesado | Va en una cola de fondo y **no bloquea** una grabación nueva. | Así se pueden encadenar reuniones seguidas. |
 | Firma | **Ninguna**: `bundle.macOS.signingIdentity: null`, `hardenedRuntime: false`. El sidecar se compila con `swift build --disable-get-task-allow-entitlement`. | No hay certificado de Apple Developer; ver `docs/03-instalacion.md` §3. |
 
@@ -286,6 +286,7 @@ Durante la grabación, el supervisor guarda las `SpeakerSignal` (roster y hablan
 |---|---|
 | `claudeCli` | `<binary_path> -p --safe-mode --output-format json --json-schema '<schema>' --tools "" --strict-mcp-config --no-session-persistence --system-prompt '<sys>' [--model m]`. El prompt va **por stdin** y el `cwd` es un directorio temporal vacío. El resultado es `.result` del JSON. **No usar `--bare`**: ignora el login OAuth del usuario. |
 | `codexCli` | `<binary_path> exec --skip-git-repo-check --ephemeral --sandbox read-only --output-schema <fichero> -o <fichero_salida> [-m m] -`, con el prompt por stdin y `cwd` temporal. |
+| `opencodeCli` | `<binary_path> run --archived --format json [-m m]`, con el prompt por stdin (incluye el esquema JSON cuando aplica) y un `opencode.json` temporal que desactiva snapshots y deniega herramientas. Si `model` está vacío, resuelve el modelo de `~/.config/opencode/opencode.json(c)` o el último no gratuito de `~/.local/state/opencode/model.json`; `opencode models` pobla el selector de Ajustes y el reintento. |
 | `openAiCompatible` | `POST {base_url}/chat/completions` con `response_format: {type: json_schema, strict: true}` y streaming SSE. |
 | `builtIn` | `{modelId}`. acta arranca su propio `llama-server` y le habla por la misma API compatible con OpenAI (§15). |
 | `anthropic` | Messages API. La salida estructurada va con una herramienta cuyo `input_schema` es el esquema. La clave está en el Llavero (`SecretRef`). |

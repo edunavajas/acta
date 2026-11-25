@@ -29,6 +29,34 @@ pub async fn llm_list_models(
     models::list_models(&base_url, key.as_deref(), LIST_TIMEOUT).await.map_err(ApiError::from)
 }
 
+/// Modelos disponibles en el CLI de OpenCode (`opencode models`).
+#[tauri::command]
+pub async fn llm_list_opencode_models(
+    state: State<'_, Core>,
+    binary_path: String,
+    provider_id: Option<ProviderId>,
+) -> ApiResult<Vec<String>> {
+    let bin = binary_path.trim();
+    if bin.is_empty() {
+        return Err(ApiError {
+            code: ApiErrorCode::InvalidInput,
+            message: "Indica primero la ruta de OpenCode en «Avanzado» o pulsa «Detectar CLI instalados».".into(),
+        });
+    }
+    let extra_env = provider_id
+        .as_ref()
+        .and_then(|id| {
+            state.settings().llm.providers.into_iter().find_map(|p| match p.kind {
+                acta_core::llm::ProviderKind::OpenCodeCli { extra_env, .. } if &p.id == id => Some(extra_env),
+                _ => None,
+            })
+        })
+        .unwrap_or_default();
+    acta_llm::providers::opencode::list_models(std::path::Path::new(bin), &extra_env, LIST_TIMEOUT)
+        .await
+        .map_err(ApiError::from)
+}
+
 /// Ollama y LM Studio en sus puertos por defecto, con sus modelos.
 #[tauri::command]
 pub async fn llm_detect_local() -> ApiResult<LocalDetection> {

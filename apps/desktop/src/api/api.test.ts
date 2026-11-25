@@ -75,6 +75,13 @@ describe("mock api", () => {
     await expect(api.llmListModels("http://127.0.0.1:9/v1")).rejects.toMatchObject({ code: "unavailable" });
   });
 
+  it("lists OpenCode models via llm_list_opencode_models and rejects an empty path", async () => {
+    const { api } = createMockApi({ opencodeModels: ["provider/model-a", "provider/model-b"] });
+    expect(COMMANDS.llmListOpencodeModels).toBe("llm_list_opencode_models");
+    expect(await api.llmListOpencodeModels("/x/opencode", "opencode-cli")).toEqual(["provider/model-a", "provider/model-b"]);
+    await expect(api.llmListOpencodeModels("   ")).rejects.toMatchObject({ code: "invalidInput" });
+  });
+
   it("remembers the links it was asked to open in the browser", async () => {
     const { api, controls } = createMockApi();
     await api.openExternalUrl("https://cloud.nan.builders/r/YZ524NPK");

@@ -20,6 +20,7 @@ patrocinio ni afiliación.
 | `openrouter.svg` | OpenRouter | simple-icons 16.38.0 (`icons/openrouter.svg`) | CC0 1.0 |
 | `lmstudio.svg` | LM Studio | simple-icons 16.38.0 (`icons/lmstudio.svg`) | CC0 1.0 |
 | `nanbuilders.png` | NaN Builders | `https://nan.builders/apple-touch-icon.png` (descargado el 16-nov-2026) | Propiedad de NaN Builders; uso nominativo |
+| `opencode.svg` | OpenCode | `https://opencode.ai/brand/files/opencode-logo-transparent-dark.svg` (descargado el 23-nov-2026) | Marca de Anomaly; uso nominativo |
 
 simple-icons: <https://github.com/simple-icons/simple-icons> (CC0 1.0 Universal).
 Tres archivos vienen de una versión fijada más antigua (11.15.0). El archivo es

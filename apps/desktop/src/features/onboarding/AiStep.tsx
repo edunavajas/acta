@@ -124,6 +124,9 @@ export function AiStep({ ai, onAi, cli, onDetectCli, local, localError, builtIn,
         <Option id="codex" current={ai.choice} onPick={pick} logo={<BrandLogo brand="openai" />} title="Codex">
           <CliStatus path={cli?.codex} pending={pending} />
         </Option>
+        <Option id="openCode" current={ai.choice} onPick={pick} logo={<BrandLogo brand="opencode" />} title="OpenCode">
+          <CliStatus path={cli?.opencode} pending={pending} />
+        </Option>
         <Option id="builtIn" current={ai.choice} onPick={pick} logo={iconTile(<Cpu strokeWidth={1.9} />)} title="Modelo integrado" tag={<Badge tone="accent">Sin instalar nada</Badge>}>
           acta descarga un modelo y lo ejecuta en tu Mac.
         </Option>
@@ -138,10 +141,15 @@ export function AiStep({ ai, onAi, cli, onDetectCli, local, localError, builtIn,
         </Option>
       </div>
 
-      {ai.choice === "claudeCode" || ai.choice === "codex" ? (
+      {ai.choice === "claudeCode" || ai.choice === "codex" || ai.choice === "openCode" ? (
         <div className="ai-detail card">
           <p>
-            {ai.choice === "claudeCode" ? "acta usa el Claude Code que ya tienes, con tu suscripción." : "acta usa el Codex que ya tienes, con tu suscripción."} No lee ni copia tus credenciales: lo ejecuta como lo harías tú en la terminal.
+            {ai.choice === "claudeCode"
+              ? "acta usa el Claude Code que ya tienes, con tu suscripción."
+              : ai.choice === "codex"
+                ? "acta usa el Codex que ya tienes, con tu suscripción."
+                : "acta usa el OpenCode que ya tienes, con los proveedores configurados."}{" "}
+            No lee ni copia tus credenciales: lo ejecuta como lo harías tú en la terminal.
           </p>
           <div>
             <Button small capsule variant="ghost" disabled={pending} icon={<RotateCw size={12} strokeWidth={2.2} aria-hidden />} onClick={onDetectCli}>
