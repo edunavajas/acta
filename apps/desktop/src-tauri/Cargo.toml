@@ -38,6 +38,11 @@ tracing-appender = { workspace = true }
 dirs = { workspace = true }
 libc = { workspace = true }
 
+[target.'cfg(windows)'.dependencies]
+acta-win-bridge = { workspace = true }
+# El cliente del sidecar (spawn + supervision) vive en acta-mac-bridge y compila
+# en Windows: lo consume la rama `cfg(windows)` de `native.rs` (T13 lo movera).
+acta-mac-bridge = { workspace = true }
 # Solo macOS: adaptadores nativos y la pastilla como NSPanel.
 [target.'cfg(target_os = "macos")'.dependencies]
 acta-mac-bridge = { workspace = true }
@@ -45,6 +50,8 @@ tauri-nspanel = { workspace = true }
 
 [dev-dependencies]
 tempfile = { workspace = true }
+# La aceptación de audio de Windows lee los WAV con hound (como acta-audio).
+hound = { workspace = true }
 
 # Lints propios (no workspace): las macros de Tauri/nspanel generan código con unsafe.
 [lints.clippy]

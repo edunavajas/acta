@@ -79,7 +79,9 @@ async fn build_core(layout: DataLayout, handle: AppHandle) -> PortResult<AppCore
     )));
     let native = native::start(&layout).await;
     if let Some(e) = &native.error {
-        tracing::error!("sidecar acta-mac no disponible: {e}");
+        // Neutro a propósito: en Windows el sidecar no es `acta-mac`, y el detalle
+        // de qué falta viaja en `e`.
+        tracing::error!("componente nativo no disponible: {e}");
     }
     AppCore::start(CoreDeps {
         layout,

@@ -66,9 +66,9 @@ Funcionalidades de `acta-core/src/`:
 
 Adaptador de cada puerto:
 
-| Puerto | macOS (ahora) | Windows (después, NO ahora) |
+| Puerto | macOS (ahora) | Windows (port en curso) |
 |---|---|---|
-| `AudioSource` | `acta-mac-bridge::audio` (process tap + mic en Swift) | cpal + WASAPI process loopback |
+| `AudioSource` | `acta-mac-bridge::audio` (process tap + mic en Swift) | `acta-win-bridge::audio` + sidecar `acta-win` (WASAPI process loopback y micrófono) — **hecho** |
 | `MeetingDetector` | `acta-mac-bridge::detection` | CapabilityAccessManager + UI Automation |
 | `SpeakerNameSource` | `acta-mac-bridge::speakers` (AX Teams) | UI Automation |
 | `ScreenCapturer` | `acta-mac-bridge::screen` (ScreenCaptureKit) | Windows.Graphics.Capture |

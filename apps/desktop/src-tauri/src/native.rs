@@ -237,8 +237,64 @@ mod mac {
 #[cfg(target_os = "macos")]
 pub use mac::start;
 
-/// Windows y Linux (todavía) no tienen adaptadores nativos.
-#[cfg(not(target_os = "macos"))]
+#[cfg(target_os = "windows")]
+mod win {
+    use super::*;
+    use acta_core::layout::DataLayout;
+    use acta_mac_bridge::client::{SidecarClient, SidecarConfig};
+    use acta_win_bridge::audio::WinAudioSource;
+    use acta_win_bridge::locate::locate_sidecar;
+
+    /// Lanza el sidecar de Windows y monta SOLO el audio (M2): el sidecar usa
+    /// `hello` + `capture.*` del protocolo v1. Detección, hablantes, pantalla,
+    /// transcripción y permisos siguen sin adaptador (M3-M5) y quedan como
+    /// "no disponible" con su motivo (nunca en silencio).
+    ///
+    /// Si el sidecar no está o no arranca, no hay pánico: la app abre con el
+    /// componente nativo "no disponible" y el motivo dice qué faltó y dónde se
+    /// buscó.
+    pub async fn start(layout: &DataLayout) -> NativePorts {
+        let binary = match locate_sidecar(None) {
+            Ok(b) => b,
+            Err(e) => return NativePorts::unavailable(e.to_string()),
+        };
+        let config = SidecarConfig {
+            binary,
+            log_file: Some(layout.logs_dir().join("acta-win.log")),
+            ..SidecarConfig::default()
+        };
+        let client = match SidecarClient::start(config).await {
+            Ok(c) => c,
+            Err(e) => return NativePorts::unavailable(e.to_string()),
+        };
+        let hello = client.hello_info();
+        let sin_adaptador = Arc::new(Unavailable("sin adaptador todavía en Windows (M3-M5)".to_owned()));
+        NativePorts {
+            audio: Arc::new(WinAudioSource::new(client.clone())),
+            detector: sin_adaptador.clone(),
+            speakers: sin_adaptador.clone(),
+            screen: None,
+            clipboard: None,
+            live: None,
+            transcriber: sin_adaptador.clone(),
+            diarizer: sin_adaptador.clone(),
+            permissions: sin_adaptador.clone(),
+            models: sin_adaptador.clone(),
+            meeting_info: sin_adaptador.clone(),
+            system: sin_adaptador.clone(),
+            devices: sin_adaptador.clone(),
+            sidecar_version: hello.as_ref().map(|h| h.sidecar_version.clone()),
+            macos_version: hello.map(|h| h.macos_version),
+            error: None,
+        }
+    }
+}
+
+#[cfg(target_os = "windows")]
+pub use win::start;
+
+/// Sistema sin adaptadores nativos todavía (Linux).
+#[cfg(not(any(target_os = "macos", target_os = "windows")))]
 pub async fn start(_layout: &acta_core::layout::DataLayout) -> NativePorts {
     NativePorts::unavailable("plataforma no soportada todavía")
 }

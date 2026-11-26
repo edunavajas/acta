@@ -1,0 +1,25 @@
+[package]
+name = "acta-win-bridge"
+description = "Adaptador del sidecar acta-win: AudioSource sobre el protocolo v1 (hello + capture.*) reutilizando el cliente de acta-mac-bridge."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+publish.workspace = true
+authors.workspace = true
+
+[dependencies]
+acta-core = { workspace = true }
+# El cliente del sidecar (spawn + supervisión + protocolo JSON por líneas) vive
+# en acta-mac-bridge y compila en Windows: el crate compartido es trabajo futuro
+# (T13); el nombre es herencia del crate de macOS, no un anclaje a su plataforma.
+acta-mac-bridge = { workspace = true }
+tokio = { workspace = true }
+tokio-stream = { workspace = true }
+futures = { workspace = true }
+base64 = { workspace = true }
+tracing = { workspace = true }
+async-trait = { workspace = true }
+
+[lints]
+workspace = true

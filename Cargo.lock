@@ -43,9 +43,11 @@ dependencies = [
  "acta-llm",
  "acta-mac-bridge",
  "acta-store",
+ "acta-win-bridge",
  "async-trait",
  "dirs 6.0.0",
  "futures",
+ "hound",
  "libc",
  "serde",
  "serde_json",
@@ -120,6 +122,32 @@ dependencies = [
  "tokio",
  "tracing",
  "uuid",
+]
+
+[[package]]
+name = "acta-win"
+version = "0.1.2"
+dependencies = [
+ "anyhow",
+ "base64 0.22.1",
+ "serde",
+ "serde_json",
+ "windows",
+ "windows-core",
+]
+
+[[package]]
+name = "acta-win-bridge"
+version = "0.1.2"
+dependencies = [
+ "acta-core",
+ "acta-mac-bridge",
+ "async-trait",
+ "base64 0.22.1",
+ "futures",
+ "tokio",
+ "tokio-stream",
+ "tracing",
 ]
 
 [[package]]

@@ -14,7 +14,9 @@ members = [
   "crates/acta-store",
   "crates/acta-llm",
   "crates/acta-mac-bridge",
+  "crates/acta-win-bridge",
   "apps/desktop/src-tauri",
+  "sidecars/acta-win",
 ]
 
 [workspace.package]
@@ -32,6 +34,7 @@ acta-audio = { path = "crates/acta-audio" }
 acta-store = { path = "crates/acta-store" }
 acta-llm = { path = "crates/acta-llm" }
 acta-mac-bridge = { path = "crates/acta-mac-bridge" }
+acta-win-bridge = { path = "crates/acta-win-bridge" }
 
 # --- base ---
 serde = { version = "1.0.228", features = ["derive"] }
@@ -53,6 +56,27 @@ libc = "0.2.177"
 
 # --- audio (WP1) ---
 hound = "3.5.1"
+# --- audio Windows (T14, experimento WASAPI: loopback por proceso + micrófono) ---
+# Features mínimas: Media_Audio (IAudioClient/captura/activación por proceso),
+# KernelStreaming (GUID de subtype PCM y WAVE_FORMAT_EXTENSIBLE), System_Com
+# (CoInitializeEx/CoCreateInstance/BLOB) y System_Variant (PROPVARIANT/VT_BLOB).
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_Media_Audio",
+  "Win32_Media_KernelStreaming",
+  "Win32_System_Com",
+  "Win32_System_Com_StructuredStorage",
+  "Win32_System_Variant",
+  # OSVERSIONINFOW: la versión real del SO para el campo `macos_version` del
+  # resultado de `hello` (el nombre del campo lo fija el contrato; sin
+  # manifiesto, GetVersionExW miente y devolvería 6.2).
+  "Wdk_System_SystemServices",
+  "Win32_System_SystemInformation",
+] }
+# La macro `#[implement]` de windows-rs expande rutas `::windows_core::…`, así
+# que el crate que la usa necesita la dependencia directa. Misma pila (0.62),
+# ya presente en el lock como dependencia transitiva del propio `windows`.
+windows-core = { version = "0.62", default-features = false, features = ["std"] }
 
 # --- storage + search (WP2) ---
 # rusqlite "bundled" compila SQLite con FTS5 activado.
