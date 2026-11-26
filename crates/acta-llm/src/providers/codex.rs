@@ -163,6 +163,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn reads_last_message_file_and_pipes_system_plus_prompt() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(
@@ -192,6 +193,7 @@ echo "ruido de progreso en stdout"
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn output_schema_file_never_carries_meta_schema() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(
@@ -225,6 +227,7 @@ printf '{"a": 1}' > "$OUTFILE"
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn falls_back_to_stdout_when_no_output_file() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(dir.path(), "codex", "cat > /dev/null\necho 'hola desde stdout'\n");
@@ -235,6 +238,7 @@ printf '{"a": 1}' > "$OUTFILE"
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn failure_and_missing_binary_are_clear() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(dir.path(), "codex", "echo 'not logged in' >&2\nexit 1\n");

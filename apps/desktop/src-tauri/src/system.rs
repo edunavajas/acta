@@ -4,6 +4,7 @@ use acta_core::permissions::PermissionKind;
 use std::path::Path;
 
 /// Bytes libres para el usuario en el volumen de `path` (`statvfs`).
+#[cfg(not(windows))]
 #[allow(unsafe_code)]
 pub fn disk_free(path: &Path) -> Option<u64> {
     use std::os::unix::ffi::OsStrExt;
@@ -19,6 +20,17 @@ pub fn disk_free(path: &Path) -> Option<u64> {
     let st = unsafe { st.assume_init() };
     #[allow(clippy::unnecessary_cast)]
     Some((st.f_bavail as u64).saturating_mul(st.f_frsize as u64))
+}
+
+#[cfg(windows)]
+/// Bytes libres para el usuario en el volumen de `path` (fs4: `GetDiskFreeSpaceExW`).
+pub fn disk_free(path: &Path) -> Option<u64> {
+    // statvfs falla si `path` no existe; el `GetVolumePathNameW` de fs4 resuelve
+    // el volumen igualmente, así que se replica aquí el mismo contrato.
+    if !path.exists() {
+        return None;
+    }
+    fs4::free_space(path).ok()
 }
 
 /// Accesibilidad y Grabación de pantalla vistas desde ESTE proceso (acta.app,
@@ -159,8 +171,12 @@ mod tests {
 
     #[test]
     fn disk_free_of_root_is_known() {
-        assert!(disk_free(Path::new("/")).is_some_and(|b| b > 0));
-        assert_eq!(disk_free(Path::new("/definitely/not/here")), None);
+        #[cfg(windows)]
+        let (root, miss) = (Path::new(r"C:\"), Path::new(r"C:\definitely\not\here"));
+        #[cfg(not(windows))]
+        let (root, miss) = (Path::new("/"), Path::new("/definitely/not/here"));
+        assert!(disk_free(root).is_some_and(|b| b > 0));
+        assert_eq!(disk_free(miss), None);
     }
 
     #[test]

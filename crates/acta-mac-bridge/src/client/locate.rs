@@ -52,6 +52,7 @@ mod tests {
     use super::*;
 
     #[test]
+    #[cfg_attr(not(target_os = "macos"), ignore = "compara rutas con separador POSIX")]
     fn explicit_then_env_then_exe_dir_then_repo() {
         let c = candidates(
             Some(Path::new("/x/acta-mac")),

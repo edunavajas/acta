@@ -1,6 +1,7 @@
 //! Contra el sidecar Swift REAL (solo comandos de lectura: sin captura ni
 //! diálogos TCC). Necesita `swift build --disable-get-task-allow-entitlement`
 //! en sidecars/acta-mac. Ejecutar: `cargo test -p acta-mac-bridge -- --ignored`.
+#![cfg(target_os = "macos")]
 #![allow(clippy::unwrap_used, clippy::expect_used)]
 
 mod support;

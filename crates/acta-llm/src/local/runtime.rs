@@ -9,6 +9,11 @@
 //! Orden de búsqueda: `ACTA_LLAMA_SERVER` → junto al ejecutable de la app →
 //! el descargado → Homebrew (`brew install llama.cpp`), que sirve de respaldo
 //! si la red de la empresa bloquea GitHub.
+//!
+//! La extracción es portable (fuera de unix no crea enlaces ni fija el bit de
+//! ejecución), pero el binario fijado es de macOS arm64: en otras plataformas
+//! `pinned()` sigue apuntando a ese artefacto y el servidor no arrancará. Dar
+//! soporte real al runtime integrado en Windows es trabajo aparte.
 
 use super::download::{CancelFlag, DownloadSpec, Progress, download};
 use acta_core::llm::local::RuntimeSource;
@@ -96,6 +101,7 @@ fn wanted(name: &str) -> bool {
 /// Los nombres se reducen a su último componente: una entrada nunca escribe
 /// fuera de `dest`.
 pub fn extract_runtime(tarball: &Path, dest: &Path) -> PortResult<()> {
+    #[cfg(unix)]
     use std::os::unix::fs::PermissionsExt;
     std::fs::create_dir_all(dest)?;
     let file = std::fs::File::open(tarball)?;
@@ -112,14 +118,23 @@ pub fn extract_runtime(tarball: &Path, dest: &Path) -> PortResult<()> {
         let kind = entry.header().entry_type();
         if kind.is_symlink() {
             // `libllama.dylib -> libllama.1.dylib`: solo enlaces a un vecino.
-            let Some(target) = entry.link_name().map_err(bad)?.and_then(|t| t.file_name().map(|n| n.to_os_string())) else { continue };
-            let _ = std::fs::remove_file(&out);
-            std::os::unix::fs::symlink(target, &out)?;
+            // Fuera de unix no se crean: los paquetes de Windows no los traen y
+            // crearlos requiere privilegios que la app no pide.
+            #[cfg(unix)]
+            {
+                let Some(target) = entry.link_name().map_err(bad)?.and_then(|t| t.file_name().map(|n| n.to_os_string())) else { continue };
+                let _ = std::fs::remove_file(&out);
+                std::os::unix::fs::symlink(target, &out)?;
+            }
         } else if kind.is_file() {
             let mut f = std::fs::File::create(&out)?;
             std::io::copy(&mut entry, &mut f).map_err(bad)?;
-            let mode = if name == SERVER_BINARY { 0o755 } else { 0o644 };
-            f.set_permissions(std::fs::Permissions::from_mode(mode))?;
+            // En Windows no hay bit de ejecución que fijar.
+            #[cfg(unix)]
+            {
+                let mode = if name == SERVER_BINARY { 0o755 } else { 0o644 };
+                f.set_permissions(std::fs::Permissions::from_mode(mode))?;
+            }
             f.sync_all()?;
         }
     }
@@ -218,10 +233,13 @@ pub(crate) mod testing {
     }
 
     pub fn touch_executable(path: &Path) {
-        use std::os::unix::fs::PermissionsExt;
         std::fs::create_dir_all(path.parent().expect("parent")).expect("mkdir");
         std::fs::write(path, b"#!/bin/sh\n").expect("write");
-        std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o755)).expect("chmod");
+        #[cfg(unix)]
+        {
+            use std::os::unix::fs::PermissionsExt;
+            std::fs::set_permissions(path, std::fs::Permissions::from_mode(0o755)).expect("chmod");
+        }
     }
 }
 
@@ -230,6 +248,7 @@ mod tests {
     use super::testing::*;
     use super::*;
     use crate::local::download::testing::{FileServer, FileServerOptions, sha256_hex};
+    #[cfg(unix)]
     use std::os::unix::fs::PermissionsExt;
 
     fn search(root: &Path) -> RuntimeSearch {
@@ -295,10 +314,17 @@ mod tests {
         let mut names: Vec<String> =
             std::fs::read_dir(&dest).expect("ls").flatten().map(|e| e.file_name().to_string_lossy().into_owned()).collect();
         names.sort();
+        // Fuera de unix no se crean enlaces: falta el nombre sin versión.
+        #[cfg(unix)]
         assert_eq!(names, ["LICENSE", "libllama.1.dylib", "libllama.dylib", "llama-server"]);
-        let mode = std::fs::metadata(dest.join("llama-server")).expect("meta").permissions().mode();
-        assert_eq!(mode & 0o111, 0o111, "ejecutable");
-        assert_eq!(std::fs::read_link(dest.join("libllama.dylib")).expect("link"), Path::new("libllama.1.dylib"));
+        #[cfg(not(unix))]
+        assert_eq!(names, ["LICENSE", "libllama.1.dylib", "llama-server"]);
+        #[cfg(unix)]
+        {
+            let mode = std::fs::metadata(dest.join("llama-server")).expect("meta").permissions().mode();
+            assert_eq!(mode & 0o111, 0o111, "ejecutable");
+            assert_eq!(std::fs::read_link(dest.join("libllama.dylib")).expect("link"), Path::new("libllama.1.dylib"));
+        }
     }
 
     #[test]

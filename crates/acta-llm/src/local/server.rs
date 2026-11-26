@@ -318,11 +318,14 @@ while (my $c = $srv->accept) {
 
     pub fn write_executable(path: &Path, body: &str) -> PathBuf {
         use std::io::Write;
-        use std::os::unix::fs::PermissionsExt;
         std::fs::create_dir_all(path.parent().expect("parent")).expect("mkdir");
         let mut f = std::fs::File::create(path).expect("create");
         f.write_all(body.as_bytes()).expect("write");
-        f.set_permissions(std::fs::Permissions::from_mode(0o755)).expect("chmod");
+        #[cfg(unix)]
+        {
+            use std::os::unix::fs::PermissionsExt;
+            f.set_permissions(std::fs::Permissions::from_mode(0o755)).expect("chmod");
+        }
         f.sync_all().expect("sync");
         path.to_path_buf()
     }
@@ -389,6 +392,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn starts_lazily_waits_for_health_and_reuses_the_same_process() {
         let d = tempfile::tempdir().expect("tmp");
         let sup = quick();
@@ -414,6 +418,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn changing_the_model_replaces_the_process() {
         let d = tempfile::tempdir().expect("tmp");
         let sup = quick();
@@ -430,6 +435,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn a_server_that_dies_is_restarted_on_the_next_request() {
         let d = tempfile::tempdir().expect("tmp");
         let sup = quick();
@@ -456,6 +462,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn a_binary_that_exits_at_once_is_an_error_with_its_log() {
         let d = tempfile::tempdir().expect("tmp");
         let bin = write_executable(&d.path().join("llama-server"), "#!/bin/sh\necho 'error: unknown model architecture' >&2\nexit 1\n");
@@ -467,6 +474,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn a_server_that_never_gets_healthy_times_out_and_is_killed() {
         let d = tempfile::tempdir().expect("tmp");
         let bin = write_executable(&d.path().join("llama-server"), "#!/bin/sh\necho $$ > \"$0.mypid\"\nexec /bin/sleep 30\n");
@@ -496,6 +504,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn idle_stop_waits_for_requests_in_flight() {
         let d = tempfile::tempdir().expect("tmp");
         let sup = quick();
@@ -511,6 +520,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn an_orphan_from_a_previous_run_is_killed_but_never_an_unrelated_process() {
         let d = tempfile::tempdir().expect("tmp");
         // Huérfano: un llama-server lanzado por "otra sesión" (otro supervisor que se olvida).

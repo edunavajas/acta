@@ -10,6 +10,17 @@ use std::path::{Path, PathBuf};
 /// Cabecera RIFF/WAVE de hound para PCM s16 mono: siempre 44 bytes.
 pub const WAV_HEADER_LEN: u64 = 44;
 
+/// Sincroniza el directorio para que el rename sobreviva a un corte.
+///
+/// En Windows no existe una forma portable de sincronizar un directorio
+/// (`File::open` sobre una carpeta devuelve `ERROR_ACCESS_DENIED`), y el
+/// renombrado ya es atómico: el fichero se sincroniza antes de moverlo.
+#[cfg(windows)]
+pub fn fsync_dir(_dir: &Path) -> std::io::Result<()> {
+    Ok(())
+}
+
+#[cfg(not(windows))]
 pub fn fsync_dir(dir: &Path) -> std::io::Result<()> {
     File::open(dir)?.sync_all()
 }

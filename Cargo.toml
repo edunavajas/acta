@@ -50,6 +50,8 @@ tokio-util = { version = "0.7.16", features = ["codec", "rt"] }
 base64 = "0.22.1"
 dirs = "6.0.0"
 libc = "0.2.177"
+# Espacio libre en disco en Windows (equivalente seguro de statvfs, sin unsafe).
+fs4 = "0.13"
 
 # --- audio (WP1) ---
 hound = "3.5.1"
@@ -76,7 +78,7 @@ tauri = { version = "2.9", features = ["macos-private-api", "protocol-asset"] }
 tauri-build = { version = "2.5", features = [] }
 tauri-plugin-opener = "2.5"
 tauri-nspanel = "2.1"
-keyring = { version = "3.6", features = ["apple-native"] }
+keyring = { version = "3.6", features = ["apple-native", "windows-native"] }
 
 # --- tests ---
 tempfile = "3.23"

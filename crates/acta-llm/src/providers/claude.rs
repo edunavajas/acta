@@ -227,6 +227,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn runs_fake_binary_with_stdin_args_env_and_temp_cwd() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(
@@ -257,6 +258,7 @@ JSON
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn nonzero_exit_reports_code_and_stderr() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(dir.path(), "claude", "echo 'Invalid API key' >&2\nexit 2\n");
@@ -271,6 +273,7 @@ JSON
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn hanging_binary_times_out() {
         let dir = tempfile::tempdir().expect("dir");
         let bin = fake_script(dir.path(), "claude", "exec sleep 5\n");

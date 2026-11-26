@@ -410,13 +410,15 @@ async fn live_transcription_means_only_the_tail_is_transcribed_after_stopping() 
     w.pipeline.run(w.id, &ProcessingStep::ORDER, &sink).await.unwrap();
     let calls = rec.0.lock().unwrap().clone();
     assert_eq!(calls.len(), 2, "una cola por pista: {calls:?}");
-    assert!(calls.iter().all(|p| p.to_string_lossy().contains("/live/win-")), "{calls:?}");
+    // Por componentes y no por subcadena: el separador es `\` en Windows.
+    let en_live = |p: &std::path::Path| p.parent().and_then(|d| d.file_name()).is_some_and(|n| n.to_string_lossy() == "live");
+    assert!(calls.iter().all(|p| en_live(p) && p.file_name().is_some_and(|n| n.to_string_lossy().starts_with("win-"))), "{calls:?}");
     let mic: Vec<AsrSegment> = serde_json::from_slice(&std::fs::read(w.layout.asr_cache_json(w.id, Track::Mic)).unwrap()).unwrap();
     assert_eq!(mic.iter().map(|s| (s.start_ms, s.text.as_str())).collect::<Vec<_>>(), vec![(500, "en vivo mic"), (4_000, "y cerramos")]);
     // «Reintentar» transcribe la pista entera otra vez.
     rec.0.lock().unwrap().clear();
     w.pipeline.run(w.id, &[ProcessingStep::Transcribing], &sink).await.unwrap();
-    assert!(rec.0.lock().unwrap().iter().all(|p| !p.to_string_lossy().contains("/live/")));
+    assert!(rec.0.lock().unwrap().iter().all(|p| !en_live(p)));
 }
 
 /// El idioma de Ajustes dirige el ASR (pista) y el acta: `auto` deja que el

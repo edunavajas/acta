@@ -468,6 +468,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "Homebrew no existe en Windows")]
     async fn when_github_is_blocked_the_homebrew_llama_server_is_the_fallback() {
         let mut r = rig_with(FileServerOptions::default(), true).await;
         r.runtime_srv = FileServer::start(vec![], FileServerOptions { status: Some(503), ..Default::default() }).await;
@@ -494,6 +495,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el runtime integrado fijado es un binario de macOS")]
     async fn the_provider_runs_the_downloaded_model_end_to_end_and_delete_frees_everything() {
         let r = rig().await;
         download(&r).await.expect("download");

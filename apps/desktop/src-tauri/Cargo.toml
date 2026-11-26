@@ -36,7 +36,13 @@ tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
 tracing-appender = { workspace = true }
 dirs = { workspace = true }
+
+# libc solo en unix (`statvfs`); en Windows el espacio libre lo da fs4.
+[target.'cfg(unix)'.dependencies]
 libc = { workspace = true }
+
+[target.'cfg(windows)'.dependencies]
+fs4 = { workspace = true }
 
 # Solo macOS: adaptadores nativos y la pastilla como NSPanel.
 [target.'cfg(target_os = "macos")'.dependencies]

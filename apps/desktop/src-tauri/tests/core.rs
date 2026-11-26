@@ -236,6 +236,7 @@ async fn provider_test_and_unknown_provider() {
 }
 
 #[tokio::test]
+#[cfg_attr(not(unix), ignore = "el shell falso es un script #!/bin/sh")]
 async fn cli_detection_reads_alias_env_from_an_interactive_shell() {
     let mut r = rig().await;
     let dir = tempfile::tempdir().unwrap();
@@ -245,8 +246,11 @@ async fn cli_detection_reads_alias_env_from_an_interactive_shell() {
         "#!/bin/sh\nif [ \"$1\" = \"-ic\" ]; then case \"$2\" in *claude*) echo \"alias claude='CLAUDE_CONFIG_DIR=\\\"\\$HOME/.claude-personal\\\" /opt/homebrew/bin/claude'\";; *) exit 1;; esac; else exit 1; fi\n",
     )
     .unwrap();
-    use std::os::unix::fs::PermissionsExt;
-    std::fs::set_permissions(&shell, std::fs::Permissions::from_mode(0o755)).unwrap();
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        std::fs::set_permissions(&shell, std::fs::Permissions::from_mode(0o755)).unwrap();
+    }
     r.core.shell = shell;
     r.core.home = "/Users/edu".into();
     let d = r.core.llm_cli_detect().await.unwrap();
@@ -532,13 +536,16 @@ const TINY: &str = "qwen3.5-2b-q4_k_m";
 
 /// Core con un modelo "ya descargado" y un llama-server falso (sin red).
 async fn rig_with_local_model() -> Rig {
-    use std::os::unix::fs::PermissionsExt;
     let dir = tempfile::tempdir().unwrap();
     let layout = DataLayout::new(dir.path());
     let server = dir.path().join("fake/llama-server");
     std::fs::create_dir_all(server.parent().unwrap()).unwrap();
     std::fs::write(&server, FAKE_LLAMA_SERVER).unwrap();
-    std::fs::set_permissions(&server, std::fs::Permissions::from_mode(0o755)).unwrap();
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        std::fs::set_permissions(&server, std::fs::Permissions::from_mode(0o755)).unwrap();
+    }
     let mut cfg = LocalLlmConfig::for_layout(&layout);
     cfg.search.env_override = Some(server);
     cfg.search.exe_dir = None;
@@ -598,6 +605,7 @@ async fn a_model_that_does_not_fit_this_mac_is_never_downloaded() {
 }
 
 #[tokio::test]
+#[cfg_attr(not(unix), ignore = "lanza un llama-server falso que es un script #!/bin/sh")]
 async fn the_built_in_model_downloads_tests_runs_as_a_provider_and_deletes() {
     let r = rig_with_local_model().await;
     let s = r.core.local_llm_status().await.unwrap();

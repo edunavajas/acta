@@ -91,6 +91,7 @@ mod tests {
     use super::*;
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "lanza /bin/cat, /bin/sh y /bin/sleep")]
     async fn pipes_stdin_to_stdout() {
         let out = run_supervised(Command::new("/bin/cat"), Some(b"hola".to_vec()), Duration::from_secs(5))
             .await
@@ -100,6 +101,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "lanza /bin/cat, /bin/sh y /bin/sleep")]
     async fn child_that_exits_early_is_still_reaped() {
         // El hijo sale sin leer stdin: la escritura puede dar broken pipe,
         // pero se recoge su estado igualmente (nada de zombis).
@@ -112,6 +114,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "lanza /bin/cat, /bin/sh y /bin/sleep")]
     async fn timeout_kills_and_reaps() {
         let mut cmd = Command::new("/bin/sleep");
         cmd.arg("5");

@@ -1,5 +1,6 @@
 //! Supervisión del sidecar (docs/01-arquitectura.md §4.4) contra un sidecar
 //! falso en `/bin/sh`. Lo importante: NUNCA quedan zombis ni huérfanos.
+#![cfg(target_os = "macos")]
 #![allow(clippy::unwrap_used, clippy::expect_used)]
 
 mod support;

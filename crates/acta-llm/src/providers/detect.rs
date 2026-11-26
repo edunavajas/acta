@@ -198,6 +198,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn falls_back_to_interactive_shell_for_aliases() {
         let dir = tempfile::tempdir().expect("dir");
         // -lc no ve el alias (sale 1); -ic sí (lo define ~/.zshrc).
@@ -215,6 +216,7 @@ mod tests {
     /// shell de login, así que `-lc` encuentra el binario SIN el alias y se
     /// perdía `CLAUDE_CONFIG_DIR`. En su terminal manda el alias: gana `-ic`.
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn interactive_alias_wins_over_login_path() {
         let dir = tempfile::tempdir().expect("dir");
         let shell = fake_script(
@@ -235,6 +237,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn login_path_is_used_when_interactive_shell_fails() {
         let dir = tempfile::tempdir().expect("dir");
         let shell = fake_script(dir.path(), "zsh", "if [ \"$1\" = \"-ic\" ]; then exit 1; else echo /opt/y/codex; fi\n");
@@ -244,6 +247,7 @@ mod tests {
     }
 
     #[tokio::test]
+    #[cfg_attr(not(unix), ignore = "el binario falso es un script #!/bin/sh")]
     async fn runs_shell_supervised() {
         let dir = tempfile::tempdir().expect("dir");
         // Shell falso: ignora -lc y "encuentra" el binario.

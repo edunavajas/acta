@@ -9,11 +9,14 @@ use tokio::net::TcpListener;
 /// Crea un ejecutable `name` en `dir` con el cuerpo dado (`#!/bin/sh` implícito).
 pub fn fake_script(dir: &Path, name: &str, body: &str) -> PathBuf {
     use std::io::Write;
-    use std::os::unix::fs::PermissionsExt;
     let path = dir.join(name);
     let mut f = std::fs::File::create(&path).expect("create script");
     f.write_all(format!("#!/bin/sh\n{body}").as_bytes()).expect("write script");
-    f.set_permissions(std::fs::Permissions::from_mode(0o755)).expect("chmod");
+    #[cfg(unix)]
+    {
+        use std::os::unix::fs::PermissionsExt;
+        f.set_permissions(std::fs::Permissions::from_mode(0o755)).expect("chmod");
+    }
     f.sync_all().expect("sync");
     drop(f);
     path
