@@ -253,6 +253,7 @@ async fn cli_detection_reads_alias_env_from_an_interactive_shell() {
     assert_eq!(d.claude.as_deref(), Some("/opt/homebrew/bin/claude"));
     assert_eq!(d.claude_env.get("CLAUDE_CONFIG_DIR").map(String::as_str), Some("/Users/edu/.claude-personal"));
     assert_eq!(d.codex, None);
+    assert_eq!(d.cursor, None);
 }
 
 #[tokio::test]

@@ -375,14 +375,17 @@ describe("SettingsContainer", () => {
     });
   });
 
-  it("detecta los CLI y añade Codex", async () => {
+  it("detecta los CLI y añade Codex y Cursor", async () => {
     const { api } = setup();
     await goTo("Proveedores de IA");
-    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {} });
+    vi.spyOn(api, "llmCliDetect").mockResolvedValue({ claude: "/x/claude", codex: "/x/codex", cursor: "/x/cursor-agent", claudeEnv: { CLAUDE_CONFIG_DIR: "/h/.config/claude" }, codexEnv: {}, cursorEnv: {} });
     await userEvent.click(await screen.findByRole("button", { name: "Detectar CLI instalados" }));
+    expect(await screen.findByText("Detectado en este Mac: Claude Code, Codex y Cursor.")).toBeInTheDocument();
     await userEvent.click(await screen.findByRole("button", { name: "Avanzado de Codex (CLI)" }));
+    await userEvent.click(await screen.findByRole("button", { name: "Avanzado de Cursor (CLI)" }));
     await advanced("Avanzado de Claude Code (CLI)");
     expect(await screen.findByDisplayValue("/x/codex")).toBeInTheDocument();
+    expect(screen.getByDisplayValue("/x/cursor-agent")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/x/claude")).toBeInTheDocument();
     expect(screen.getByDisplayValue("CLAUDE_CONFIG_DIR")).toBeInTheDocument();
     expect(screen.getByDisplayValue("/h/.config/claude")).toBeInTheDocument();
@@ -395,9 +398,9 @@ describe("SettingsContainer", () => {
     const button = await screen.findByRole("button", { name: "Detectar CLI instalados" });
     await userEvent.click(button);
     expect(await screen.findByText("Detectado en este Mac: Claude Code.")).toBeInTheDocument();
-    detect.mockResolvedValueOnce({ claude: null, codex: null, claudeEnv: {}, codexEnv: {} });
+    detect.mockResolvedValueOnce({ claude: null, codex: null, cursor: null, claudeEnv: {}, codexEnv: {}, cursorEnv: {} });
     await userEvent.click(button);
-    expect(await screen.findByRole("alert")).toHaveTextContent(/No se ha encontrado Claude Code ni Codex/);
+    expect(await screen.findByRole("alert")).toHaveTextContent(/No se ha encontrado Claude Code, Codex ni Cursor/);
     detect.mockRejectedValueOnce({ code: "io", message: "no hay shell" });
     await userEvent.click(button);
     await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("No se ha podido buscar en este Mac: no hay shell"));
@@ -433,6 +436,24 @@ describe("SettingsContainer", () => {
     await goTo("Proveedores de IA");
     await userEvent.selectOptions(await screen.findByLabelText("Proveedor para el acta"), "");
     expect(screen.getByRole("note", { name: "Sin proveedor de IA" })).toHaveTextContent("Nadie se encarga de escribir las actas");
+  });
+
+  it("Cursor: elige el modelo de una lista con «Por defecto» primero", async () => {
+    const s = freshSettings();
+    s.llm.providers = [{ id: "cursor-cli", label: "Cursor (CLI)", enabled: true, timeoutS: 600, kind: { type: "cursorCli", binaryPath: "/x/cursor-agent", model: null, extraEnv: {} } }];
+    const { api, controls } = setup({ settings: s });
+    const list = vi.spyOn(api, "llmListCursorModels").mockResolvedValue(["auto", "gpt-5.2"]);
+    await goTo("Proveedores de IA");
+    const select = await screen.findByRole("combobox", { name: "Modelo de Cursor (CLI)" });
+    expect(list).toHaveBeenCalledWith("/x/cursor-agent", {});
+    expect(within(select).getAllByRole("option").map((o) => o.textContent)).toEqual(["Por defecto", "auto", "gpt-5.2"]);
+    expect(select).toHaveValue("");
+    await userEvent.selectOptions(select, "gpt-5.2");
+    await userEvent.click(screen.getByRole("button", { name: "Guardar cambios" }));
+    await waitFor(() => expect(controls.state.settings.llm.providers[0]!.kind).toMatchObject({ model: "gpt-5.2" }));
+    await userEvent.selectOptions(select, "");
+    await userEvent.click(screen.getByRole("button", { name: "Guardar cambios" }));
+    await waitFor(() => expect(controls.state.settings.llm.providers[0]!.kind).toMatchObject({ model: null }));
   });
 
   it("edita el esfuerzo y las variables de entorno de Claude", async () => {

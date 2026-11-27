@@ -1,6 +1,6 @@
 //! # acta-llm (WP3)
 //!
-//! - `providers`: impl de `LlmProvider` — `claude -p`, `codex exec`,
+//! - `providers`: impl de `LlmProvider` — `claude -p`, `codex exec`, `cursor-agent -p`,
 //!   OpenAI-compatible (Ollama/LM Studio/OpenRouter), Anthropic API — y la
 //!   `LlmProviderFactory`. Los CLI se lanzan con `process::run_supervised`.
 //! - `local`: modelo local integrado (descarga de GGUF + `llama-server` supervisado).

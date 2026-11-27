@@ -58,6 +58,7 @@ export const COMMANDS = {
   mainWindowShow: "main_window_show",
   // src-tauri/src/commands/providers_ui.rs
   llmListModels: "llm_list_models",
+  llmListCursorModels: "llm_list_cursor_models",
   llmDetectLocal: "llm_detect_local",
   openExternalUrl: "open_external_url",
   // src-tauri/src/commands/downloads.rs
@@ -214,6 +215,8 @@ export interface ActaApi {
   llmCliDetect(): Promise<T.CliDetection>;
   /** Modelos de texto de un servidor compatible con OpenAI. Con `providerId`, usa su clave del Llavero. */
   llmListModels(baseUrl: string, providerId?: T.ProviderId | null): Promise<string[]>;
+  /** Modelos de la cuenta de Cursor (`cursor-agent models`). */
+  llmListCursorModels(binaryPath: string, extraEnv: Record<string, string>): Promise<string[]>;
   /** Ollama y LM Studio en sus puertos por defecto. Que no estén no es un error. */
   llmDetectLocal(): Promise<T.LocalDetection>;
   /** Proveedores activados con sus modelos elegibles (menú «Reintentar con…»). */

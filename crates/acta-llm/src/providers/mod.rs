@@ -1,5 +1,5 @@
 //! Proveedores LLM (WP3). Ver docs/01-arquitectura.md §7.2 para las líneas de
-//! comando exactas de `claude` y `codex`.
+//! comando exactas de `claude`, `codex` y `cursor-agent`.
 //!
 //! Los CLI se lanzan SOLO con `process::run_supervised`, con el binario
 //! instalado por el usuario (ruta absoluta + `extra_env`). No se leen ni se
@@ -10,6 +10,7 @@ pub mod anthropic;
 pub mod claude;
 pub mod codex;
 pub mod common;
+pub mod cursor;
 pub mod detect;
 pub(crate) mod http;
 pub mod models;
@@ -20,6 +21,7 @@ pub mod sse;
 pub use anthropic::AnthropicProvider;
 pub use claude::ClaudeCliProvider;
 pub use codex::CodexCliProvider;
+pub use cursor::CursorCliProvider;
 pub use openai::OpenAiCompatibleProvider;
 
 use acta_core::llm::*;
@@ -79,6 +81,13 @@ impl LlmProviderFactory for DefaultProviderFactory {
                     .with_effort(effort.clone()),
             ),
             ProviderKind::CodexCli { binary_path, model, extra_env } => Arc::new(CodexCliProvider::new(
+                id,
+                binary_path.clone(),
+                model.clone(),
+                extra_env.clone(),
+                timeout,
+            )),
+            ProviderKind::CursorCli { binary_path, model, extra_env } => Arc::new(CursorCliProvider::new(
                 id,
                 binary_path.clone(),
                 model.clone(),
@@ -155,12 +164,13 @@ mod tests {
     }
 
     #[test]
-    fn builds_all_four_kinds() {
+    fn builds_every_kind() {
         let f = factory(true);
         let bin = std::path::PathBuf::from("/bin/claude");
         let kinds = vec![
             ProviderKind::ClaudeCli { binary_path: bin.clone(), model: None, effort: Some("high".into()), extra_env: BTreeMap::new() },
-            ProviderKind::CodexCli { binary_path: bin, model: None, extra_env: BTreeMap::new() },
+            ProviderKind::CodexCli { binary_path: bin.clone(), model: None, extra_env: BTreeMap::new() },
+            ProviderKind::CursorCli { binary_path: bin, model: None, extra_env: BTreeMap::new() },
             ProviderKind::OpenAiCompatible { base_url: "http://localhost:11434/v1".into(), model: "m".into(), api_key: None },
             ProviderKind::Anthropic { model: "m".into(), api_key: secret() },
         ];

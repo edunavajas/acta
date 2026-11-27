@@ -18,6 +18,7 @@ patrocinio ni afiliación.
 | `claude.svg` | Claude | simple-icons 16.38.0 (`icons/claude.svg`) | CC0 1.0 |
 | `ollama.svg` | Ollama | simple-icons 16.38.0 (`icons/ollama.svg`) | CC0 1.0 |
 | `openrouter.svg` | OpenRouter | simple-icons 16.38.0 (`icons/openrouter.svg`) | CC0 1.0 |
+| `cursor.svg` | Cursor | simple-icons 16.38.0 (`icons/cursor.svg`) | CC0 1.0 |
 | `lmstudio.svg` | LM Studio | simple-icons 16.38.0 (`icons/lmstudio.svg`) | CC0 1.0 |
 | `nanbuilders.png` | NaN Builders | `https://nan.builders/apple-touch-icon.png` (descargado el 16-nov-2026) | Propiedad de NaN Builders; uso nominativo |
 

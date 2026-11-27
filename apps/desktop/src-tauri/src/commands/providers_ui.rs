@@ -7,6 +7,8 @@ use acta_core::api::{ApiError, ApiErrorCode, ApiResult};
 use acta_core::ids::ProviderId;
 use acta_llm::providers::models::{self, LocalDetection};
 use acta_store::secrets::secret_ref_for_provider;
+use std::collections::BTreeMap;
+use std::path::PathBuf;
 use std::time::Duration;
 use tauri::{AppHandle, State};
 use tauri_plugin_opener::OpenerExt;
@@ -27,6 +29,13 @@ pub async fn llm_list_models(
         None => None,
     };
     models::list_models(&base_url, key.as_deref(), LIST_TIMEOUT).await.map_err(ApiError::from)
+}
+
+/// Modelos que la cuenta de Cursor permite usar (`cursor-agent models`).
+/// Recibe la ruta de la tarjeta para que funcione antes de guardar.
+#[tauri::command]
+pub async fn llm_list_cursor_models(binary_path: PathBuf, extra_env: BTreeMap<String, String>) -> ApiResult<Vec<String>> {
+    acta_llm::providers::cursor::list_models(&binary_path, &extra_env, LIST_TIMEOUT).await.map_err(ApiError::from)
 }
 
 /// Ollama y LM Studio en sus puertos por defecto, con sus modelos.

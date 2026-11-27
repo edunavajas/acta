@@ -938,6 +938,10 @@ impl AppCore {
             let (kind, mut models): (&str, Vec<String>) = match &cfg.kind {
                 ProviderKind::ClaudeCli { .. } => ("claudeCli", ["sonnet", "opus", "haiku"].map(String::from).to_vec()),
                 ProviderKind::CodexCli { .. } => ("codexCli", vec![]),
+                ProviderKind::CursorCli { binary_path, extra_env, .. } => {
+                    let listed = acta_llm::providers::cursor::list_models(binary_path, extra_env, std::time::Duration::from_secs(5)).await;
+                    ("cursorCli", listed.inspect_err(|e| tracing::warn!("cursor-agent models: {e}")).unwrap_or_default())
+                }
                 ProviderKind::Anthropic { .. } => ("anthropic", vec![]),
                 ProviderKind::BuiltIn { .. } => (
                     "builtIn",
@@ -969,13 +973,19 @@ impl AppCore {
     }
 
     pub async fn llm_cli_detect(&self) -> PortResult<CliDetection> {
-        let claude = detect_cli_any(&self.shell, "claude", &self.home).await?;
-        let codex = detect_cli_any(&self.shell, "codex", &self.home).await?;
+        // A la vez: cada uno arranca un `zsh -ic`, que con un `~/.zshrc` pesado tarda segundos.
+        let (claude, codex, cursor) = tokio::try_join!(
+            detect_cli_any(&self.shell, "claude", &self.home),
+            detect_cli_any(&self.shell, "codex", &self.home),
+            detect_cli_any(&self.shell, "cursor-agent", &self.home),
+        )?;
         Ok(CliDetection {
             claude: claude.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
             codex: codex.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
+            cursor: cursor.as_ref().map(|d| d.path.to_string_lossy().into_owned()),
             claude_env: claude.map(|d| d.env).unwrap_or_default(),
             codex_env: codex.map(|d| d.env).unwrap_or_default(),
+            cursor_env: cursor.map(|d| d.env).unwrap_or_default(),
         })
     }
 

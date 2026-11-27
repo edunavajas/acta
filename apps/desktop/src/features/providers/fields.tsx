@@ -68,10 +68,12 @@ interface ModelFieldProps {
   prefer?: string[];
   hint?: ReactNode;
   placeholder?: string;
+  /** Si está, la primera opción es «vacío» con este texto (el modelo por defecto del proveedor) y la lista no cambia la elección. */
+  defaultLabel?: string;
 }
 
 /** Modelo de un servidor: un desplegable con lo que ofrece, o un campo de texto si no se puede preguntar. */
-export function ModelField({ label, value, onChange, load, reloadKey = 0, prefer = [], hint, placeholder }: ModelFieldProps) {
+export function ModelField({ label, value, onChange, load, reloadKey = 0, prefer = [], hint, placeholder, defaultLabel }: ModelFieldProps) {
   const [models, setModels] = useState<string[] | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -91,7 +93,7 @@ export function ModelField({ label, value, onChange, load, reloadKey = 0, prefer
       }
       setModels(list);
       const now = latest.current;
-      if (!list.includes(now.value)) now.onChange(now.prefer.find((m) => list.includes(m)) ?? list[0]!);
+      if (defaultLabel === undefined && !list.includes(now.value)) now.onChange(now.prefer.find((m) => list.includes(m)) ?? list[0]!);
     } catch (e) {
       setModels(null);
       setError(errorMessage(e));
@@ -110,7 +112,9 @@ export function ModelField({ label, value, onChange, load, reloadKey = 0, prefer
       <div className="field-line model-field">
         {models ? (
           <Select label={`Modelo de ${label}`} value={value} onChange={(e) => onChange(e.target.value)}>
-            {models.map((m) => (
+            {defaultLabel !== undefined ? <option value="">{defaultLabel}</option> : null}
+            {/* Un modelo guardado que ya no sale en la lista se conserva. */}
+            {(defaultLabel !== undefined && value && !models.includes(value) ? [value, ...models] : models).map((m) => (
               <option key={m} value={m}>
                 {m}
               </option>

@@ -4,7 +4,7 @@ import { defaultSettings, freshSettings } from "../../api/mock";
 import { aiProblem, applyAi, initialAi, secretIdFor, type AiState } from "./aiChoice";
 
 const llm = () => defaultSettings().llm;
-const cli = (over: Partial<CliDetection> = {}): CliDetection => ({ claude: "/opt/homebrew/bin/claude", codex: null, claudeEnv: {}, codexEnv: {}, ...over });
+const cli = (over: Partial<CliDetection> = {}): CliDetection => ({ claude: "/opt/homebrew/bin/claude", codex: null, cursor: null, claudeEnv: {}, codexEnv: {}, cursorEnv: {}, ...over });
 const ai = (over: Partial<AiState>): AiState => ({ ...initialAi(llm()), ...over });
 
 describe("elección de IA en la bienvenida", () => {
@@ -35,6 +35,13 @@ describe("elección de IA en la bienvenida", () => {
     const out = applyAi(llm(), ai({ choice: "codex" }), cli({ codex: "/x/codex" }));
     expect(out.providers.map((p) => p.id)).toEqual(["claude-cli", "codex-cli"]);
     expect(out.minutesProvider).toBe("codex-cli");
+  });
+
+  it("Cursor: lo añade con la ruta y las variables detectadas", () => {
+    const out = applyAi(llm(), ai({ choice: "cursor" }), cli({ cursor: "/x/cursor-agent", cursorEnv: { CURSOR_CONFIG_DIR: "/h/.cursor" } }));
+    expect(out.providers.map((p) => p.id)).toEqual(["claude-cli", "cursor-cli"]);
+    expect(out.providers[1]!.kind).toMatchObject({ type: "cursorCli", binaryPath: "/x/cursor-agent", extraEnv: { CURSOR_CONFIG_DIR: "/h/.cursor" } });
+    expect(out.minutesProvider).toBe("cursor-cli");
   });
 
   it("modelo local: el servidor y el modelo elegidos", () => {
@@ -70,6 +77,7 @@ describe("elección de IA en la bienvenida", () => {
     expect(aiProblem(ai({ choice: "claudeCode" }), null, true)).toBeNull();
     expect(aiProblem(ai({ choice: "claudeCode" }), cli({ claude: null }), false)).toMatch(/Claude Code no está instalado/);
     expect(aiProblem(ai({ choice: "codex" }), cli(), false)).toMatch(/Codex no está instalado/);
+    expect(aiProblem(ai({ choice: "cursor" }), cli(), false)).toMatch(/Cursor Agent no está instalado/);
     expect(aiProblem(ai({ choice: "local" }), null, false)).toMatch(/Elige un modelo/);
     expect(aiProblem(ai({ choice: "nan" }), null, false)).toMatch(/Guarda la clave/);
     expect(aiProblem(ai({ choice: "nan", nan: { apiKey: { service: "a", account: "b" }, model: "gemma4" } }), null, false)).toBeNull();

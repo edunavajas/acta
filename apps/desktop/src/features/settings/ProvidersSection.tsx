@@ -78,7 +78,7 @@ interface Props {
 }
 
 /** Presets de los que solo tiene sentido tener uno. */
-const SINGLE: PresetId[] = ["claudeCode", "codex", "builtIn", "ollama", "lmStudio", "nan"];
+const SINGLE: PresetId[] = ["claudeCode", "codex", "cursor", "builtIn", "ollama", "lmStudio", "nan"];
 
 function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSecretDelete, onOpenUrl }: { p: ProviderConfig; result: ProviderTestResult | "pending" | undefined; onChange(p: ProviderConfig): void; onRemove(): void; onTest(): void; onSecretSet: Props["onSecretSet"]; onSecretDelete: Props["onSecretDelete"]; onOpenUrl(url: string): void }) {
   const api = useApi();
@@ -87,7 +87,7 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
   const preset = PRESETS[presetOf(p)];
   const brand = brandOf(p);
   const setKind = (kind: ProviderKind) => onChange({ ...p, kind });
-  const isCli = k.type === "claudeCli" || k.type === "codexCli";
+  const isCli = k.type === "claudeCli" || k.type === "codexCli" || k.type === "cursorCli";
   const located = isCli && k.binaryPath.trim() !== "";
   const isCustom = preset.id === "custom";
   const urlField =
@@ -152,9 +152,21 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
       <div className={`provider-fields${k.type === "openAiCompatible" && !isCustom ? " provider-fields-one" : ""}`}>
         {isCli ? (
           <>
-            <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
-              <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
-            </Field>
+            {k.type === "cursorCli" ? (
+              <ModelField
+                label={p.label}
+                value={k.model ?? ""}
+                defaultLabel="Por defecto"
+                reloadKey={located ? 1 : 0}
+                hint="Los modelos que permite tu cuenta de Cursor. El esfuerzo va en el nombre (-low, -high…)."
+                onChange={(model) => setKind({ ...k, model: model || null })}
+                load={() => api.llmListCursorModels(k.binaryPath, k.extraEnv)}
+              />
+            ) : (
+              <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
+                <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
+              </Field>
+            )}
             {k.type === "claudeCli" ? (
               <Field label="Esfuerzo" hint="Cuánto piensa antes de responder.">
                 <Select label={`Esfuerzo de ${p.label}`} value={k.effort ?? ""} onChange={(e) => setKind({ ...k, effort: e.target.value || null })}>
@@ -279,7 +291,7 @@ export function ProvidersSection({ llm, tests, onChange, onTest, onDetect, detec
     const active = (task: string | null) => (enabled.some((p) => p.id === task) ? task : created.id);
     onChange({ ...llm, providers: [...llm.providers, created], minutesProvider: active(llm.minutesProvider), chatProvider: active(llm.chatProvider), namingProvider: active(llm.namingProvider) });
     // Los CLI necesitan su ruta: se busca sola.
-    if (id === "claudeCode" || id === "codex") onDetect();
+    if (id === "claudeCode" || id === "codex" || id === "cursor") onDetect();
   };
   const useLocal = (kind: LocalKind, model: string, baseUrl: string) => {
     const next = upsertPreset(llm, kind, { model, baseUrl });
@@ -385,7 +397,7 @@ export function ProvidersSection({ llm, tests, onChange, onTest, onDetect, detec
             </span>
           ) : null}
           <span className="spacer" />
-          <Button small variant="ghost" disabled={detecting === "pending"} title="Busca Claude Code y Codex en tu Mac y rellena su ruta" icon={detecting === "pending" ? <Spinner /> : <ScanSearch size={13} strokeWidth={2} aria-hidden />} onClick={onDetect}>
+          <Button small variant="ghost" disabled={detecting === "pending"} title="Busca Claude Code, Codex y Cursor en tu Mac y rellena su ruta" icon={detecting === "pending" ? <Spinner /> : <ScanSearch size={13} strokeWidth={2} aria-hidden />} onClick={onDetect}>
             Detectar CLI instalados
           </Button>
         </div>

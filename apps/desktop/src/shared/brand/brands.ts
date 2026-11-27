@@ -4,6 +4,7 @@
 import type { Platform } from "../../api";
 import anthropic from "../../assets/logos/anthropic.svg";
 import claude from "../../assets/logos/claude.svg";
+import cursor from "../../assets/logos/cursor.svg";
 import googlemeet from "../../assets/logos/googlemeet.svg";
 import lmstudio from "../../assets/logos/lmstudio.svg";
 import microsoftteams from "../../assets/logos/microsoftteams.svg";
@@ -14,7 +15,7 @@ import openrouter from "../../assets/logos/openrouter.svg";
 import slack from "../../assets/logos/slack.svg";
 import zoom from "../../assets/logos/zoom.svg";
 
-export type BrandId = "teams" | "meet" | "zoom" | "slack" | "claude" | "anthropic" | "openai" | "ollama" | "lmstudio" | "openrouter" | "nan";
+export type BrandId = "teams" | "meet" | "zoom" | "slack" | "claude" | "cursor" | "anthropic" | "openai" | "ollama" | "lmstudio" | "openrouter" | "nan";
 
 export interface Brand {
   name: string;
@@ -36,6 +37,7 @@ export const BRANDS: Record<BrandId, Brand> = {
   zoom: { name: "Zoom", src: zoom, color: "#0b5cff", scale: 0.72 },
   slack: { name: "Slack", src: slack, color: "#4a154b" },
   claude: { name: "Claude", src: claude, color: "#d97757" },
+  cursor: { name: "Cursor", src: cursor, color: "#14120b", ink: "#edecec" },
   anthropic: { name: "Anthropic", src: anthropic, color: "#191919", ink: "#faf9f5" },
   openai: { name: "OpenAI", src: openai, color: "#0d0d0d" },
   ollama: { name: "Ollama", src: ollama, color: "#ffffff", ink: "#111111", scale: 0.66 },

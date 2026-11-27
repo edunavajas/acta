@@ -80,7 +80,7 @@ pub struct LiveAnswer {
 pub struct AvailableProvider {
     pub provider_id: ProviderId,
     pub label: String,
-    /// `claudeCli` | `codexCli` | `openAiCompatible` | `anthropic` | `builtIn`.
+    /// `claudeCli` | `codexCli` | `cursorCli` | `openAiCompatible` | `anthropic` | `builtIn`.
     pub kind: String,
     /// Modelos elegibles. Puede estar vacío (el CLI usa el suyo por defecto).
     pub models: Vec<String>,
