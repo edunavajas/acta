@@ -56,6 +56,8 @@ export const COMMANDS = {
   appInfo: "app_info",
   overlaySetExpanded: "overlay_set_expanded",
   mainWindowShow: "main_window_show",
+  launchAtLoginGet: "launch_at_login_get",
+  launchAtLoginSet: "launch_at_login_set",
   // src-tauri/src/commands/providers_ui.rs
   llmListModels: "llm_list_models",
   llmDetectLocal: "llm_detect_local",
@@ -236,6 +238,10 @@ export interface ActaApi {
   permissionsStatus(): Promise<T.PermissionState[]>;
   permissionsRequest(kind: T.PermissionKind): Promise<T.PermissionStatus>;
   openSystemSettings(kind: T.PermissionKind): Promise<void>;
+  /** Si macOS abre acta al iniciar sesión. Se lee del sistema, no de los ajustes. */
+  launchAtLoginGet(): Promise<boolean>;
+  /** Se aplica al momento y devuelve el estado con el que queda macOS. */
+  launchAtLoginSet(enabled: boolean): Promise<boolean>;
   healthGet(): Promise<T.HealthWarning[]>;
   appInfo(): Promise<T.AppInfo>;
   /** Nombre de la cuenta e idiomas de macOS, para proponerlos en la bienvenida. */

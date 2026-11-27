@@ -180,7 +180,9 @@ pub fn run() {
     };
 
     let positions_file = layout.root().join("overlay-positions.json");
-    let builder = tauri::Builder::default().plugin(tauri_plugin_opener::init());
+    let builder = tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
+        .plugin(tauri_plugin_autostart::init(tauri_plugin_autostart::MacosLauncher::LaunchAgent, None));
     #[cfg(target_os = "macos")]
     let builder = builder.plugin(tauri_nspanel::init());
 
@@ -328,6 +330,8 @@ pub fn run() {
             commands::app_info,
             commands::overlay_set_expanded,
             commands::main_window_show,
+            commands::launch_at_login_get,
+            commands::launch_at_login_set,
             commands::providers_ui::llm_list_models,
             commands::providers_ui::llm_detect_local,
             commands::providers_ui::open_external_url,

@@ -40,9 +40,12 @@ interface GeneralProps {
   onRetryVoiceprints?: () => void;
   onForget(id: string): void;
   onReplayOnboarding?: () => void;
+  /** Se lee de macOS; `null` mientras no se sabe, y entonces el grupo no se enseña. */
+  launchAtLogin?: boolean | null;
+  onLaunchAtLogin?(v: boolean): void;
 }
 
-export function GeneralSection({ user, cleanup, onCleanup, transcription, titles, onTitles, onUser, onTranscription, voiceprints, voiceprintsError, onRetryVoiceprints, onForget, onReplayOnboarding }: GeneralProps) {
+export function GeneralSection({ user, cleanup, onCleanup, transcription, titles, onTitles, onUser, onTranscription, voiceprints, voiceprintsError, onRetryVoiceprints, onForget, onReplayOnboarding, launchAtLogin, onLaunchAtLogin }: GeneralProps) {
   const ages = CLEANUP_AGES.some((a) => a.days === cleanup.minAgeDays) ? CLEANUP_AGES : [...CLEANUP_AGES, { days: cleanup.minAgeDays, label: `${cleanup.minAgeDays} días` }].sort((a, b) => a.days - b.days);
   return (
     <Section title="General" hint="Todo se procesa en tu Mac. Lo único que sale es el texto que le mandas a tu proveedor de IA para escribir el acta.">
@@ -58,6 +61,12 @@ export function GeneralSection({ user, cleanup, onCleanup, transcription, titles
           <ChipsInput label="Otros nombres" placeholder="Álex, Alejandra" values={user.aliases} onChange={(aliases) => onUser({ ...user, aliases })} />
         </div>
       </Group>
+
+      {launchAtLogin != null && onLaunchAtLogin ? (
+        <Group title="Arranque" foot="Se aplica al momento. También puedes quitarlo en Ajustes del Sistema › General › Ítems de inicio.">
+          <ToggleRow label="Abrir acta al iniciar sesión" hint="Así detecta tus reuniones desde que enciendes el Mac." checked={launchAtLogin} onChange={onLaunchAtLogin} />
+        </Group>
+      ) : null}
 
       <Group title="Transcripción">
         <Row label="Idioma de las reuniones" hint="Dirige la transcripción y el idioma del acta. La interfaz de acta está, por ahora, en español.">

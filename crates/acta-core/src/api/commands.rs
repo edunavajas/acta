@@ -59,6 +59,8 @@
 //! | `app_info` | — | `AppInfo` |
 //! | `overlay_set_expanded` | `{ expanded }` | `null` |
 //! | `main_window_show` | `{ meetingId? }` | `null` |
+//! | `launch_at_login_get` | `{}` | `boolean` |
+//! | `launch_at_login_set` | `{ enabled }` | `boolean` (estado real tras el cambio) |
 //!
 //! Ola 4 (en vivo, reintento con otro proveedor, búsqueda en el transcript,
 //! título de grupos): ver [`super::live`]. Ola 5 (`system_profile`,
@@ -123,6 +125,8 @@ pub mod command_names {
     pub const APP_INFO: &str = "app_info";
     pub const OVERLAY_SET_EXPANDED: &str = "overlay_set_expanded";
     pub const MAIN_WINDOW_SHOW: &str = "main_window_show";
+    pub const LAUNCH_AT_LOGIN_GET: &str = "launch_at_login_get";
+    pub const LAUNCH_AT_LOGIN_SET: &str = "launch_at_login_set";
     pub const LLM_LIST_MODELS: &str = "llm_list_models";
     pub const LLM_DETECT_LOCAL: &str = "llm_detect_local";
     pub const OPEN_EXTERNAL_URL: &str = "open_external_url";

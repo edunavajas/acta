@@ -17,6 +17,7 @@ use acta_core::settings::Settings;
 use acta_core::transcription::VoiceprintSummary;
 use std::sync::Arc;
 use tauri::{AppHandle, Emitter, Manager, State};
+use tauri_plugin_autostart::ManagerExt;
 use tauri_plugin_opener::OpenerExt;
 
 pub mod downloads;
@@ -155,4 +156,18 @@ pub fn show_main(app: &AppHandle, meeting_id: Option<MeetingId>) -> tauri::Resul
 #[tauri::command]
 pub async fn main_window_show(app: AppHandle, meeting_id: Option<MeetingId>) -> ApiResult<()> {
     show_main(&app, meeting_id).map_err(internal)
+}
+
+/// Lo que vale es lo que tiene macOS (un LaunchAgent en ~/Library/LaunchAgents):
+/// el usuario lo puede quitar en Ajustes del Sistema, así que se lee siempre.
+#[tauri::command]
+pub async fn launch_at_login_get(app: AppHandle) -> ApiResult<bool> {
+    app.autolaunch().is_enabled().map_err(internal)
+}
+
+#[tauri::command]
+pub async fn launch_at_login_set(app: AppHandle, enabled: bool) -> ApiResult<bool> {
+    let manager = app.autolaunch();
+    if enabled { manager.enable() } else { manager.disable() }.map_err(internal)?;
+    manager.is_enabled().map_err(internal)
 }
