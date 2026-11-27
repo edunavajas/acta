@@ -90,6 +90,8 @@ export function createTauriApi(): ActaApi {
     permissionsStatus: () => invoke(C.permissionsStatus),
     permissionsRequest: (kind) => invoke(C.permissionsRequest, { kind }),
     openSystemSettings: (kind) => invoke(C.openSystemSettings, { kind }),
+    launchAtLoginGet: () => invoke(C.launchAtLoginGet),
+    launchAtLoginSet: (enabled) => invoke(C.launchAtLoginSet, { enabled }),
     healthGet: () => invoke(C.healthGet),
     appInfo: () => invoke(C.appInfo),
     systemProfile: () => invoke(C.systemProfile),

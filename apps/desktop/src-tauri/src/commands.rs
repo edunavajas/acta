@@ -15,6 +15,7 @@ use acta_core::recording::{HealthWarning, PromptAnswer};
 use acta_core::screen::Capture;
 use acta_core::settings::Settings;
 use acta_core::transcription::VoiceprintSummary;
+use auto_launch::{AutoLaunch, AutoLaunchBuilder, MacOSLaunchMode};
 use std::sync::Arc;
 use tauri::{AppHandle, Emitter, Manager, State};
 use tauri_plugin_opener::OpenerExt;
@@ -155,4 +156,22 @@ pub fn show_main(app: &AppHandle, meeting_id: Option<MeetingId>) -> tauri::Resul
 #[tauri::command]
 pub async fn main_window_show(app: AppHandle, meeting_id: Option<MeetingId>) -> ApiResult<()> {
     show_main(&app, meeting_id).map_err(internal)
+}
+
+/// Ítem de inicio de la propia app (SMAppService): macOS lo enseña como «acta» y
+/// el usuario lo puede apagar en Ajustes del Sistema, así que el estado se lee siempre de ahí.
+fn login_item() -> ApiResult<AutoLaunch> {
+    AutoLaunchBuilder::new().set_macos_launch_mode(MacOSLaunchMode::SMAppService).build().map_err(internal)
+}
+
+#[tauri::command]
+pub async fn launch_at_login_get() -> ApiResult<bool> {
+    login_item()?.is_enabled().map_err(internal)
+}
+
+#[tauri::command]
+pub async fn launch_at_login_set(enabled: bool) -> ApiResult<bool> {
+    let item = login_item()?;
+    if enabled { item.enable() } else { item.disable() }.map_err(internal)?;
+    item.is_enabled().map_err(internal)
 }

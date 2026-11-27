@@ -51,6 +51,8 @@ export interface MockState {
   liveLlm: (T.LlmOverride | null)[];
   systemProfile: T.SystemProfile;
   apps: T.InstalledApp[];
+  /** Si el «sistema» abriría acta al iniciar sesión. */
+  launchAtLogin: boolean;
 }
 
 /** Minúsculas y sin diacríticos, con el índice UTF-16 original de cada unidad. */
@@ -370,6 +372,7 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
     opened: [],
     exports: [],
     folders: [],
+    launchAtLogin: false,
     localLlm: mockLocalLlmStatus(),
     cleanup: [],
     kept: [],
@@ -844,6 +847,13 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       return state.permissions.find((p) => p.kind === kind)?.status ?? "unknown";
     },
     async openSystemSettings() {},
+    async launchAtLoginGet() {
+      return state.launchAtLogin;
+    },
+    async launchAtLoginSet(enabled) {
+      state.launchAtLogin = enabled;
+      return state.launchAtLogin;
+    },
     async healthGet() {
       return state.snapshot.warnings;
     },

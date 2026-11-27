@@ -118,6 +118,23 @@ describe("SettingsContainer", () => {
     await waitFor(() => expect(controls.state.settings.titles).toEqual({ calendar: true }));
   });
 
+  it("abrir al iniciar sesión se aplica al momento, sin la barra de guardado", async () => {
+    const { controls } = setup();
+    const toggle = await screen.findByRole("checkbox", { name: "Abrir acta al iniciar sesión" });
+    expect(toggle).not.toBeChecked();
+    await userEvent.click(toggle);
+    await waitFor(() => expect(controls.state.launchAtLogin).toBe(true));
+    expect(toggle).toBeChecked();
+    expect(screen.queryByRole("button", { name: "Guardar cambios" })).not.toBeInTheDocument();
+    await userEvent.click(toggle);
+    await waitFor(() => expect(controls.state.launchAtLogin).toBe(false));
+  });
+
+  it("abrir al iniciar sesión refleja lo que tiene macOS aunque no lo pusiera acta", async () => {
+    setup({ launchAtLogin: true });
+    expect(await screen.findByRole("checkbox", { name: "Abrir acta al iniciar sesión" })).toBeChecked();
+  });
+
   it("limpiar el transcript con el LLM viene encendido y se puede apagar", async () => {
     const { controls } = setup();
     const toggle = await screen.findByRole("checkbox", { name: "Limpiar el transcript con IA" });

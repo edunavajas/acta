@@ -44,6 +44,7 @@ export function SettingsContainer({ onReplayOnboarding }: { onReplayOnboarding?:
   const [modelsError, setModelsError] = useState<string | null>(null);
   const [permissionsError, setPermissionsError] = useState<string | null>(null);
   const [detecting, setDetecting] = useState<DetectState>(null);
+  const [launchAtLogin, setLaunchAtLogin] = useState<boolean | null>(null);
   const apps = useInstalledApps(section === "detection");
 
   const loadSettings = useCallback(() => {
@@ -79,6 +80,7 @@ export function SettingsContainer({ onReplayOnboarding }: { onReplayOnboarding?:
     loadSettings();
     loadVoiceprints();
     loadModels();
+    api.launchAtLoginGet().then(setLaunchAtLogin, () => setLaunchAtLogin(null));
     // Si falla, «Acerca de» dice que no está disponible en vez de quedarse esperando.
     api.appInfo().then(setInfo, () => setInfo(null));
   }, [api, loadSettings, loadVoiceprints, loadModels]);
@@ -214,6 +216,8 @@ export function SettingsContainer({ onReplayOnboarding }: { onReplayOnboarding?:
               voiceprintsError={voiceprintsError}
               onRetryVoiceprints={loadVoiceprints}
               onForget={forget}
+              launchAtLogin={launchAtLogin}
+              onLaunchAtLogin={(enabled) => api.launchAtLoginSet(enabled).then(setLaunchAtLogin, (e: unknown) => setMessage(`No se ha podido cambiar el arranque: ${errorMessage(e)}`))}
             />
           ) : null}
           {section === "recording" ? (
