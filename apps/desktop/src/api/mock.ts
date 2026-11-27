@@ -763,6 +763,9 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       if (!models) throw { code: "unavailable", message: `no se pudo conectar con ${key}/models: ¿está el servidor en marcha?` } satisfies T.ApiError;
       return [...models];
     },
+    async llmListCursorModels() {
+      return [...(CLI_MODELS.cursorCli ?? [])];
+    },
     async llmDetectLocal() {
       return structuredClone(state.local);
     },

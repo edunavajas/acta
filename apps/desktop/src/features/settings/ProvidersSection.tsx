@@ -152,9 +152,21 @@ function ProviderCard({ p, result, onChange, onRemove, onTest, onSecretSet, onSe
       <div className={`provider-fields${k.type === "openAiCompatible" && !isCustom ? " provider-fields-one" : ""}`}>
         {isCli ? (
           <>
-            <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
-              <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
-            </Field>
+            {k.type === "cursorCli" ? (
+              <ModelField
+                label={p.label}
+                value={k.model ?? ""}
+                defaultLabel="Por defecto"
+                reloadKey={located ? 1 : 0}
+                hint="Los modelos que permite tu cuenta de Cursor. El esfuerzo va en el nombre (-low, -high…)."
+                onChange={(model) => setKind({ ...k, model: model || null })}
+                load={() => api.llmListCursorModels(k.binaryPath, k.extraEnv)}
+              />
+            ) : (
+              <Field label="Modelo" hint="Vacío: el que tenga configurado el CLI.">
+                <input aria-label={`Modelo de ${p.label}`} placeholder="Por defecto" value={k.model ?? ""} onChange={(e) => setKind({ ...k, model: e.target.value || null })} />
+              </Field>
+            )}
             {k.type === "claudeCli" ? (
               <Field label="Esfuerzo" hint="Cuánto piensa antes de responder.">
                 <Select label={`Esfuerzo de ${p.label}`} value={k.effort ?? ""} onChange={(e) => setKind({ ...k, effort: e.target.value || null })}>

@@ -438,6 +438,24 @@ describe("SettingsContainer", () => {
     expect(screen.getByRole("note", { name: "Sin proveedor de IA" })).toHaveTextContent("Nadie se encarga de escribir las actas");
   });
 
+  it("Cursor: elige el modelo de una lista con «Por defecto» primero", async () => {
+    const s = freshSettings();
+    s.llm.providers = [{ id: "cursor-cli", label: "Cursor (CLI)", enabled: true, timeoutS: 600, kind: { type: "cursorCli", binaryPath: "/x/cursor-agent", model: null, extraEnv: {} } }];
+    const { api, controls } = setup({ settings: s });
+    const list = vi.spyOn(api, "llmListCursorModels").mockResolvedValue(["auto", "gpt-5.2"]);
+    await goTo("Proveedores de IA");
+    const select = await screen.findByRole("combobox", { name: "Modelo de Cursor (CLI)" });
+    expect(list).toHaveBeenCalledWith("/x/cursor-agent", {});
+    expect(within(select).getAllByRole("option").map((o) => o.textContent)).toEqual(["Por defecto", "auto", "gpt-5.2"]);
+    expect(select).toHaveValue("");
+    await userEvent.selectOptions(select, "gpt-5.2");
+    await userEvent.click(screen.getByRole("button", { name: "Guardar cambios" }));
+    await waitFor(() => expect(controls.state.settings.llm.providers[0]!.kind).toMatchObject({ model: "gpt-5.2" }));
+    await userEvent.selectOptions(select, "");
+    await userEvent.click(screen.getByRole("button", { name: "Guardar cambios" }));
+    await waitFor(() => expect(controls.state.settings.llm.providers[0]!.kind).toMatchObject({ model: null }));
+  });
+
   it("edita el esfuerzo y las variables de entorno de Claude", async () => {
     const { controls } = setup();
     await goTo("Proveedores de IA");

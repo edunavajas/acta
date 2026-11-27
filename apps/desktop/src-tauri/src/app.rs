@@ -940,7 +940,7 @@ impl AppCore {
                 ProviderKind::CodexCli { .. } => ("codexCli", vec![]),
                 ProviderKind::CursorCli { binary_path, extra_env, .. } => {
                     let listed = acta_llm::providers::cursor::list_models(binary_path, extra_env, std::time::Duration::from_secs(5)).await;
-                    ("cursorCli", listed.unwrap_or_default())
+                    ("cursorCli", listed.inspect_err(|e| tracing::warn!("cursor-agent models: {e}")).unwrap_or_default())
                 }
                 ProviderKind::Anthropic { .. } => ("anthropic", vec![]),
                 ProviderKind::BuiltIn { .. } => (
