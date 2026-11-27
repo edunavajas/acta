@@ -26,7 +26,7 @@ acta es un grabador de reuniones local para Mac. Está hecho en Rust con arquite
 | Procesos hijo | `tokio::process` + `kill_on_drop(true)` + `wait()` en **todos** los caminos. Además `#![deny(clippy::zombie_processes)]`, `disallowed-methods` sobre `std::process::Command::spawn` y `scripts/guards.sh`. | Es la lección de Meetily. |
 | Base de datos | **rusqlite 0.37 (bundled)** con FTS5 + sqlite-vec 0.1.x. Migraciones con `PRAGMA user_version`. | Es síncrono y simple (va con `spawn_blocking`). sqlx no aporta nada sin servidor. |
 | Embeddings | fastembed-rs con `intfloat/multilingual-e5-small` (384 dims), detrás del puerto `Embedder` y de la feature `local-embeddings`. | Es multilingüe y ligero. bge-m3 (1024) queda como opción futura con una migración. |
-| LLM | Puerto `LlmProvider` con cinco adaptadores: `claude -p`, `codex exec`, OpenAI-compatible, Anthropic y el **modelo local integrado** (§15, opcional). **De fábrica no hay ninguno activado**: la bienvenida detecta lo que hay en el Mac y el usuario elige. | Nada personal viaja como valor por defecto. Nunca se tocan las credenciales del CLI. |
+| LLM | Puerto `LlmProvider` con seis adaptadores: `claude -p`, `codex exec`, `cursor-agent -p`, OpenAI-compatible, Anthropic y el **modelo local integrado** (§15, opcional). **De fábrica no hay ninguno activado**: la bienvenida detecta lo que hay en el Mac y el usuario elige. | Nada personal viaja como valor por defecto. Nunca se tocan las credenciales del CLI. |
 | Procesado | Va en una cola de fondo y **no bloquea** una grabación nueva. | Así se pueden encadenar reuniones seguidas. |
 | Firma | **Ninguna**: `bundle.macOS.signingIdentity: null`, `hardenedRuntime: false`. El sidecar se compila con `swift build --disable-get-task-allow-entitlement`. | No hay certificado de Apple Developer; ver `docs/03-instalacion.md` §3. |
 
@@ -286,6 +286,7 @@ Durante la grabación, el supervisor guarda las `SpeakerSignal` (roster y hablan
 |---|---|
 | `claudeCli` | `<binary_path> -p --safe-mode --output-format json --json-schema '<schema>' --tools "" --strict-mcp-config --no-session-persistence --system-prompt '<sys>' [--model m]`. El prompt va **por stdin** y el `cwd` es un directorio temporal vacío. El resultado es `.result` del JSON. **No usar `--bare`**: ignora el login OAuth del usuario. |
 | `codexCli` | `<binary_path> exec --skip-git-repo-check --ephemeral --sandbox read-only --output-schema <fichero> -o <fichero_salida> [-m m] -`, con el prompt por stdin y `cwd` temporal. |
+| `cursorCli` | `<binary_path> -p --output-format json --mode ask --trust [--model m]`, con el prompt por stdin y `cwd` temporal. Sin flags de system prompt ni de esquema: ambos van delante del prompt y el llamador valida el JSON. `--mode ask` es solo lectura (sin escribir ficheros ni ejecutar comandos); nunca `--force`. El resultado es `.result` del JSON. Los modelos de «Reintentar con…» salen de `cursor-agent models`, que depende del plan de la cuenta. |
 | `openAiCompatible` | `POST {base_url}/chat/completions` con `response_format: {type: json_schema, strict: true}` y streaming SSE. |
 | `builtIn` | `{modelId}`. acta arranca su propio `llama-server` y le habla por la misma API compatible con OpenAI (§15). |
 | `anthropic` | Messages API. La salida estructurada va con una herramienta cuyo `input_schema` es el esquema. La clave está en el Llavero (`SecretRef`). |
@@ -519,7 +520,7 @@ WP6 es ahora dueño de la integración y de los contratos. Cambios hechos (Rust,
 |---|---|---|
 | `llm::ProviderKind::ClaudeCli` | `effort: Option<String>` → `claude -p --effort <nivel>` | WP3 |
 | `settings::DetectionSettings` | `denylist: Vec<String>` (bundle ids que nunca disparan; se quitan de `rules` y se filtran los eventos) | WP5 |
-| `api::CliDetection` | `claude_env`, `codex_env` (variables del alias con `$HOME` expandido). La detección prueba `zsh -lc` y, si no, `zsh -ic` (lee `~/.zshrc`) | El `claude` del usuario puede ser un alias con `CLAUDE_CONFIG_DIR` |
+| `api::CliDetection` | `claude_env`, `codex_env`, `cursor_env` (variables del alias con `$HOME` expandido). La detección prueba `zsh -lc` y, si no, `zsh -ic` (lee `~/.zshrc`) | El `claude` del usuario puede ser un alias con `CLAUDE_CONFIG_DIR` |
 | `api` | Comandos `secret_set`, `secret_delete` (Llavero, cuenta `provider:<id>`), `models_status`, `models_download`; DTO `ModelStatus`; evento `main:navigate` | WP5 |
 | `library::SearchIndex` | `remove_meeting` → `unindex_meeting`; `stale_meetings()` | Choque de nombres con `GroupStore::remove_meeting`; reindexar reuniones cuyo embedding falló |
 | `library::MeetingStore` | `save_screen_shares`, `get_capture` | Timeline con `screenShare`; borrar el fichero de una captura |

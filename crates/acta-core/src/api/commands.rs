@@ -186,12 +186,17 @@ pub struct CliDetection {
     /// Ruta absoluta de `claude` si se encontró (login shell `zsh -lc 'command -v claude'`).
     pub claude: Option<String>,
     pub codex: Option<String>,
+    /// `cursor-agent` (Cursor CLI).
+    #[serde(default)]
+    pub cursor: Option<String>,
     /// Variables que fija el alias de `claude` (p. ej. `CLAUDE_CONFIG_DIR`),
     /// con `$HOME` ya expandido. Van a `ProviderKind::ClaudeCli.extra_env`.
     #[serde(default)]
     pub claude_env: BTreeMap<String, String>,
     #[serde(default)]
     pub codex_env: BTreeMap<String, String>,
+    #[serde(default)]
+    pub cursor_env: BTreeMap<String, String>,
 }
 
 /// Micrófono disponible. `uid` es lo que se guarda en

@@ -117,7 +117,7 @@ Detalle del script, permisos y por qué no se firma: [docs/03-instalacion.md](do
 3. **Elige quién redacta el acta** en Ajustes › Proveedores:
    - modelo local integrado, [Ollama](https://ollama.com) o [LM Studio](https://lmstudio.ai), para no enviar nada fuera;
    - [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [OpenRouter](https://openrouter.ai) o cualquier servidor compatible con la API de OpenAI, con tu clave;
-   - el CLI de Claude Code o Codex que ya tengas instalado. acta lo ejecuta tal cual, sin tocar sus credenciales: comprueba que los términos de tu proveedor permiten ese uso.
+   - el CLI de Claude Code, Codex o Cursor que ya tengas instalado. acta lo ejecuta tal cual, sin tocar sus credenciales: comprueba que los términos de tu proveedor permiten ese uso.
 
 ## Cómo está hecho
 

@@ -36,6 +36,13 @@ pub enum ProviderKind {
         model: Option<String>,
         extra_env: BTreeMap<String, String>,
     },
+    /// `cursor-agent -p --mode ask` (Cursor CLI).
+    #[serde(rename_all = "camelCase")]
+    CursorCli {
+        binary_path: PathBuf,
+        model: Option<String>,
+        extra_env: BTreeMap<String, String>,
+    },
     /// Cualquier API compatible con OpenAI (Ollama, LM Studio, OpenRouter).
     #[serde(rename_all = "camelCase")]
     OpenAiCompatible {

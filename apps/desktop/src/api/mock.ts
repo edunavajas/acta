@@ -85,6 +85,7 @@ export function searchUtterances(utterances: T.Utterance[], query: string): T.Tr
 const CLI_MODELS: Partial<Record<T.ProviderKind["type"], string[]>> = {
   claudeCli: ["sonnet", "opus", "haiku"],
   codexCli: [],
+  cursorCli: ["auto"],
 };
 
 const GIB = 1024 ** 3;
@@ -753,7 +754,7 @@ export function createMockApi(seed: Partial<MockState> = {}): { api: ActaApi; co
       return structuredClone(state.apps);
     },
     async llmCliDetect() {
-      return { claude: "/opt/homebrew/bin/claude", codex: null, claudeEnv: {}, codexEnv: {} };
+      return { claude: "/opt/homebrew/bin/claude", codex: null, cursor: null, claudeEnv: {}, codexEnv: {}, cursorEnv: {} };
     },
     async llmListModels(baseUrl) {
       const key = baseUrl.trim().replace(/\/+$/, "");

@@ -1,4 +1,4 @@
-//! Pruebas contra el `claude` REAL del usuario (ignoradas por defecto).
+//! Pruebas contra el `claude` y el `cursor-agent` REALES del usuario (ignoradas por defecto).
 //!
 //! ```bash
 //! ACTA_REAL_CLAUDE=/opt/homebrew/bin/claude CLAUDE_CONFIG_DIR=$HOME/.claude-personal \
@@ -58,11 +58,8 @@ fn utt(idx: u32, sp: u128, start_ms: u64, text: &str) -> Utterance {
     }
 }
 
-#[tokio::test]
-#[ignore = "usa el claude real; ACTA_REAL_CLAUDE=<ruta>"]
-async fn real_claude_generates_minutes_with_shipped_schema() {
-    let Some(p) = provider() else { return };
-    let input = MinutesInput {
+fn minutes_input() -> MinutesInput {
+    MinutesInput {
         meeting_id: MeetingId::from_u128(1),
         title: "Reunión".into(),
         platform: Platform::Other,
@@ -78,13 +75,40 @@ async fn real_claude_generates_minutes_with_shipped_schema() {
         captures: vec![CaptureRef { ref_id: "c1".into(), capture_id: CaptureId::from_u128(9), at: MediaMs(6_000), reason: CaptureReason::SlideChange }],
         language: "es".into(),
         user_note: None,
-    };
-    let out = LlmMinutesGenerator::new(p, Arc::new(SystemClock)).generate(input).await.expect("acta real");
+    }
+}
+
+#[tokio::test]
+#[ignore = "usa el claude real; ACTA_REAL_CLAUDE=<ruta>"]
+async fn real_claude_generates_minutes_with_shipped_schema() {
+    let Some(p) = provider() else { return };
+    let out = LlmMinutesGenerator::new(p, Arc::new(SystemClock)).generate(minutes_input()).await.expect("acta real");
     eprintln!("{}", serde_json::to_string_pretty(&out).unwrap_or_default());
     assert!(!out.minutes.summary_md.trim().is_empty());
     assert!(!out.minutes.action_items.is_empty());
     assert!(out.minutes.action_items.iter().any(|a| a.is_mine));
     assert!(!out.escaleta.temas.is_empty());
+}
+
+/// `cursor-agent` no tiene salida estructurada nativa: el esquema va en el
+/// prompt y el acta sale de validar el JSON (con un reintento si hace falta).
+/// `ACTA_REAL_CURSOR=$HOME/.local/bin/cursor-agent cargo test -p acta-llm --test real_cli real_cursor -- --ignored --nocapture`
+#[tokio::test]
+#[ignore = "usa el cursor-agent real; ACTA_REAL_CURSOR=<ruta>"]
+async fn real_cursor_generates_minutes_with_shipped_schema() {
+    use acta_llm::providers::{cursor, test_provider, CursorCliProvider};
+    let Ok(bin) = std::env::var("ACTA_REAL_CURSOR") else { return };
+    let p = Arc::new(CursorCliProvider::new("cursor-cli".into(), bin.clone().into(), None, BTreeMap::new(), Duration::from_secs(300)));
+    let t = test_provider(p.as_ref()).await;
+    eprintln!("probar: {} ({:?} ms)", t.message, t.latency_ms);
+    assert!(t.ok, "{}", t.message);
+    let models = cursor::list_models(bin.as_ref(), &BTreeMap::new(), Duration::from_secs(20)).await.expect("modelos");
+    eprintln!("modelos: {models:?}");
+    assert!(models.iter().any(|m| m == "auto"));
+    let out = LlmMinutesGenerator::new(p, Arc::new(SystemClock)).generate(minutes_input()).await.expect("acta real");
+    eprintln!("{}", serde_json::to_string_pretty(&out).unwrap_or_default());
+    assert!(!out.minutes.summary_md.trim().is_empty());
+    assert!(!out.minutes.action_items.is_empty());
 }
 
 #[tokio::test]
