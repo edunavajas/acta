@@ -441,7 +441,7 @@ Tabla completa de comandos: `crates/acta-core/src/api/commands.rs` (documentaci�
 | Huellas | `voiceprints_list`, `voiceprint_delete{id}` |
 | Ajustes y diagnóstico | `settings_get`, `settings_update{settings}`, `llm_provider_test{providerId}`, `llm_cli_detect`, `secret_set{providerId, value}`, `secret_delete{providerId}`, `models_status`, `models_download{name}`, `permissions_status`, `permissions_request{kind}`, `open_system_settings{kind}`, `health_get`, `app_info`, `system_profile` (nombre de la cuenta e idiomas de macOS, para la bienvenida), `apps_list` (apps instaladas y en marcha con icono) |
 | Ventanas | `overlay_set_expanded{expanded}`, `main_window_show{meetingId?}` |
-| Arranque | `launch_at_login_get`, `launch_at_login_set{enabled}` (LaunchAgent de macOS vía `tauri-plugin-autostart`; se lee siempre del sistema y no se guarda en `Settings`) |
+| Arranque | `launch_at_login_get`, `launch_at_login_set{enabled}` (ítem de inicio con SMAppService vía `auto-launch`; se lee siempre del sistema y no se guarda en `Settings`) |
 
 | Evento | Payload | Frecuencia |
 |---|---|---|
