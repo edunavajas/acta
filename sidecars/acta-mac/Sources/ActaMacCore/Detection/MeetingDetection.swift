@@ -114,21 +114,40 @@ enum BrowserTabs {
         }
     }
 
-    private static let queue = DispatchQueue(label: "acta.applescript")
-
-    /// `nil` si falla (p. ej. Automatización denegada).
+    /// `nil` si falla (p. ej. Automatización denegada) o el navegador no contesta.
     static func tabs(bundleId: String) async -> [BrowserTab]? {
-        let source = script(bundleId: bundleId)
-        return await withCheckedContinuation { c in
-            queue.async {
-                var err: NSDictionary?
-                let result = NSAppleScript(source: source)?.executeAndReturnError(&err)
-                if let err {
-                    Log.debug("applescript \(bundleId): \(err)")
+        guard let out = await osascript(script(bundleId: bundleId), timeout: 4) else {
+            Log.debug("applescript \(bundleId): failed or timed out")
+            return nil
+        }
+        return parse(out)
+    }
+
+    /// Fuera de proceso a propósito: con NSAppleScript dentro del sidecar, un
+    /// navegador que no contesta colgaba la llamada para siempre (`with timeout`
+    /// no la corta) y mientras tanto el main actor dejaba de leer stdin, así que
+    /// comandos como capture.start se quedaban sin respuesta.
+    static func osascript(_ source: String, timeout: TimeInterval) async -> String? {
+        await withCheckedContinuation { c in
+            DispatchQueue.global(qos: .utility).async {
+                let p = Process()
+                p.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
+                p.arguments = ["-e", source]
+                let out = Pipe()
+                p.standardOutput = out
+                p.standardError = FileHandle.nullDevice
+                do { try p.run() } catch {
                     c.resume(returning: nil)
-                } else {
-                    c.resume(returning: parse(result?.stringValue ?? ""))
+                    return
                 }
+                let pid = p.processIdentifier
+                let timer = DispatchWorkItem { kill(pid, SIGKILL) }
+                DispatchQueue.global().asyncAfter(deadline: .now() + timeout, execute: timer)
+                // Leer antes de esperar: con muchas pestañas la salida llena el pipe.
+                let data = out.fileHandleForReading.readDataToEndOfFile()
+                p.waitUntilExit()
+                timer.cancel()
+                c.resume(returning: p.terminationStatus == 0 ? String(decoding: data, as: UTF8.self) : nil)
             }
         }
     }

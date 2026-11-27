@@ -59,6 +59,18 @@ private func obs(_ bundle: String, mic: Bool = false, window: String? = nil, tab
     #expect(BrowserTabs.script(bundleId: "com.apple.Safari").contains("(name of t)"))
 }
 
+@Test func `applescript output comes back from osascript`() async {
+    let out = await BrowserTabs.osascript("return \"https://a.com\" & (character id 9) & \"A\"", timeout: 5)
+    #expect(BrowserTabs.parse(out ?? "") == [BrowserTab(url: "https://a.com", title: "A")])
+}
+
+@Test func `a browser that never answers is cut at the timeout`() async {
+    let start = ContinuousClock.now
+    let out = await BrowserTabs.osascript("delay 30", timeout: 0.5)
+    #expect(out == nil)
+    #expect(ContinuousClock.now - start < .seconds(5))
+}
+
 @Test func `helpers resolve to their app by bundle prefix`() {
     let known = ["com.google.Chrome", "com.microsoft.teams2"]
     #expect(AppResolution.ownerByPrefix("com.google.Chrome.helper.renderer", known: known) == "com.google.Chrome")

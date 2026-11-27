@@ -408,10 +408,10 @@ impl DefaultPipeline {
         let used: std::collections::HashSet<&str> = transcript.utterances.iter().map(|u| u.text.as_str()).collect();
         let before = cache.entries.len();
         cache.entries.retain(|raw, _| used.contains(raw.as_str()));
-        if dirty || cache.entries.len() != before {
-            if let Err(e) = write_json(&path, &cache) {
-                tracing::warn!("no se pudo guardar la caché de limpieza: {e}");
-            }
+        if (dirty || cache.entries.len() != before)
+            && let Err(e) = write_json(&path, &cache)
+        {
+            tracing::warn!("no se pudo guardar la caché de limpieza: {e}");
         }
         for u in &mut transcript.utterances {
             if let Some(c) = cache.entries.get(&u.text) {
